@@ -136,3 +136,66 @@ footer {
 body[dir="rtl"] {
     text-align: right;
 }
+/* HERO WITH BACKGROUND CHART */
+.hero {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    background: #0f172a;
+}
+
+/* Canvas fills background */
+#chartCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.35;
+}
+
+/* content above canvas */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #cbd5e1;
+    margin-bottom: 25px;
+}
+
+/* buttons */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn.primary {
+    background: #60a5fa;
+    color: #0f172a;
+}
+
+.btn.secondary {
+    border: 1px solid #60a5fa;
+    color: #60a5fa;
+}
