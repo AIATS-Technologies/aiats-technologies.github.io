@@ -1,201 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIATS Technologies</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AIATS Technologies</title>
 
-        body {
-            background: #0f172a;
-            color: #ffffff;
-            line-height: 1.6;
-        }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
 
-        header {
-            background: linear-gradient(135deg, #0f172a, #1e3a8a);
-            padding: 80px 20px;
-            text-align: center;
-        }
+    body {
+        background: #0f172a;
+        color: #fff;
+        line-height: 1.6;
+        transition: all 0.3s ease;
+    }
 
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
+    body[dir="rtl"] {
+        text-align: right;
+    }
 
-        header p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-            max-width: 800px;
-            margin: auto;
-        }
+    header {
+        background: linear-gradient(135deg, #0f172a, #1e3a8a);
+        padding: 70px 20px;
+        text-align: center;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 60px 0;
-        }
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-            color: #60a5fa;
-        }
+    p {
+        color: #cbd5e1;
+    }
 
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: auto;
+        padding: 60px 0;
+    }
 
-        .card {
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        color: #60a5fa;
+        margin-bottom: 30px;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+    .services {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
 
-        .card h3 {
-            margin-bottom: 15px;
-            color: #60a5fa;
-        }
+    .card {
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+        transition: 0.3s;
+    }
 
-        .about {
-            text-align: center;
-            max-width: 900px;
-            margin: auto;
-        }
+    .card:hover {
+        transform: translateY(-5px);
+    }
 
-        .cta {
-            text-align: center;
-            padding: 60px 20px;
-            background: #1e3a8a;
-        }
+    .card h3 {
+        color: #60a5fa;
+        margin-bottom: 10px;
+    }
 
-        .cta a {
-            display: inline-block;
-            background: #60a5fa;
-            color: #0f172a;
-            text-decoration: none;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+    .cta {
+        text-align: center;
+        padding: 60px 20px;
+        background: #1e3a8a;
+    }
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: #020617;
-            color: #94a3b8;
-        }
-    </style>
+    .cta a {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 25px;
+        background: #60a5fa;
+        color: #0f172a;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: #020617;
+        color: #94a3b8;
+    }
+
+    /* Language switch */
+    .lang-switch {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        background: #1e293b;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .lang-switch button {
+        background: #60a5fa;
+        border: none;
+        padding: 6px 10px;
+        margin: 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+</style>
 </head>
-<body>
 
-    <header>
-        <h1>AIATS Technologies</h1>
-        <p>
-            Algorithmic Intelligent Auto Trading Systems
-            <br>
-            Empowering traders and investors through AI-driven automation,
-            quantitative research, training, and innovative trading technologies.
-        </p>
-    </header>
+<body dir="ltr">
 
-    <section class="container">
-        <h2 class="section-title">About Us</h2>
-        <div class="about">
-            <p>
-                AIATS Technologies specializes in developing advanced algorithmic
-                trading systems, automated investment solutions, and AI-powered
-                market analytics. We provide professional training programs,
-                trading system rentals, consulting services, and cutting-edge
-                fintech solutions for individuals and institutions.
-            </p>
+<!-- Language Switch -->
+<div class="lang-switch">
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('ar')">AR</button>
+</div>
+
+<header>
+    <h1 data-en="AIATS Technologies"
+        data-ar="تقنيات AIATS"></h1>
+
+    <p data-en="Algorithmic Intelligent Auto Trading Systems - empowering traders through AI, automation and quant research."
+       data-ar="أنظمة التداول الذكية الآلية - تمكين المتداولين من خلال الذكاء الاصطناعي والأتمتة والبحث الكمي."></p>
+</header>
+
+<!-- ABOUT -->
+<section class="container">
+    <h2 class="section-title" data-en="About Us" data-ar="من نحن"></h2>
+
+    <p style="text-align:center; max-width:800px; margin:auto;"
+       data-en="AIATS Technologies specializes in algorithmic trading systems, AI-driven analytics, training programs, system rentals, consulting, and fintech solutions."
+       data-ar="تتخصص AIATS في أنظمة التداول الخوارزمية والتحليلات المعتمدة على الذكاء الاصطناعي وبرامج التدريب وتأجير الأنظمة والاستشارات والحلول المالية التقنية.">
+    </p>
+</section>
+
+<!-- SERVICES -->
+<section class="container">
+    <h2 class="section-title" data-en="Our Services" data-ar="خدماتنا"></h2>
+
+    <div class="services">
+
+        <div class="card">
+            <h3 data-en="Algorithmic Trading Systems" data-ar="أنظمة التداول الخوارزمية"></h3>
+            <p data-en="Automated trading strategies for speed, efficiency, and risk control."
+               data-ar="استراتيجيات تداول آلية للسرعة والكفاءة وإدارة المخاطر."></p>
         </div>
-    </section>
 
-    <section class="container">
-        <h2 class="section-title">Our Services</h2>
-
-        <div class="services">
-            <div class="card">
-                <h3>📈 Algorithmic Trading Systems</h3>
-                <p>
-                    Automated trading strategies designed for efficiency,
-                    speed, and risk management.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>🎓 Training & Education</h3>
-                <p>
-                    Comprehensive training in algorithmic trading,
-                    quantitative analysis, and financial technology.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>🔄 System Rentals</h3>
-                <p>
-                    Access professional-grade trading systems through
-                    flexible rental and subscription plans.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>🤖 AI & Quant Research</h3>
-                <p>
-                    Machine learning models, market analytics, and
-                    quantitative research solutions.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>💼 Consulting Services</h3>
-                <p>
-                    Expert guidance for traders, firms, and institutions
-                    seeking automation and technology integration.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>⚡ Custom Development</h3>
-                <p>
-                    Tailored trading software, APIs, dashboards,
-                    and automation tools built to your requirements.
-                </p>
-            </div>
+        <div class="card">
+            <h3 data-en="Training & Education" data-ar="التدريب والتعليم"></h3>
+            <p data-en="Professional training in trading, AI, and quantitative finance."
+               data-ar="تدريب احترافي في التداول والذكاء الاصطناعي والتمويل الكمي."></p>
         </div>
-    </section>
 
-    <section class="cta">
-        <h2>Building the Future of Automated Trading</h2>
-        <p>
-            Join us in transforming financial markets through innovation,
-            artificial intelligence, and automation.
-        </p>
-        <a href="https://github.com/AIATS-Technologies">
-            Visit Our GitHub
-        </a>
-    </section>
+        <div class="card">
+            <h3 data-en="System Rentals" data-ar="تأجير الأنظمة"></h3>
+            <p data-en="Access professional trading systems via flexible plans."
+               data-ar="الوصول إلى أنظمة تداول احترافية عبر خطط مرنة."></p>
+        </div>
 
-    <footer>
-        © 2026 AIATS Technologies | Algorithmic Intelligent Auto Trading Systems
-    </footer>
+        <div class="card">
+            <h3 data-en="AI & Quant Research" data-ar="الذكاء الاصطناعي والبحث الكمي"></h3>
+            <p data-en="Machine learning models and advanced market analytics."
+               data-ar="نماذج تعلم الآلة وتحليلات السوق المتقدمة."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="Consulting Services" data-ar="الاستشارات"></h3>
+            <p data-en="Expert guidance for trading automation and fintech integration."
+               data-ar="إرشاد احترافي لأتمتة التداول والتكامل التقني المالي."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="Custom Development" data-ar="التطوير المخصص"></h3>
+            <p data-en="Tailored trading software, APIs, dashboards, and tools."
+               data-ar="برمجيات تداول مخصصة وواجهات API ولوحات تحكم وأدوات متقدمة."></p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2 data-en="Building the Future of Automated Trading"
+        data-ar="بناء مستقبل التداول الآلي"></h2>
+
+    <p data-en="Join us in transforming financial markets with AI and automation."
+       data-ar="انضم إلينا في تحويل الأسواق المالية باستخدام الذكاء الاصطناعي والأتمتة."></p>
+
+    <a href="https://github.com/AIATS-Technologies"
+       data-en="Visit Our GitHub"
+       data-ar="زيارة GitHub الخاص بنا"></a>
+</section>
+
+<footer>
+    © 2026 AIATS Technologies
+</footer>
+
+<script>
+function setLang(lang) {
+    const elements = document.querySelectorAll("[data-en]");
+
+    elements.forEach(el => {
+        el.textContent = el.getAttribute("data-" + lang);
+    });
+
+    if (lang === "ar") {
+        document.body.setAttribute("dir", "rtl");
+        document.body.setAttribute("lang", "ar");
+    } else {
+        document.body.setAttribute("dir", "ltr");
+        document.body.setAttribute("lang", "en");
+    }
+}
+
+// default language
+setLang("en");
+</script>
 
 </body>
 </html>
