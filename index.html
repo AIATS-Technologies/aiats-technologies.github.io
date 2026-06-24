@@ -85,7 +85,9 @@ canvas {
 <footer>© 2026 AIATS Technologies</footer>
 
 <script>
-// ---------------- LANGUAGE ----------------
+// =======================
+// LANGUAGE
+// =======================
 function setLang(lang) {
     document.querySelectorAll("[data-en]").forEach(el => {
         el.textContent = el.getAttribute("data-" + lang);
@@ -103,7 +105,9 @@ function toggleMenu() {
 
 setLang("en");
 
-// ---------------- CANVAS SETUP ----------------
+// =======================
+// CANVAS SETUP
+// =======================
 const canvas = document.getElementById("chartCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -114,39 +118,57 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-// ---------------- MARKET DATA ----------------
+// =======================
+// MARKET DATA
+// =======================
 let candles = [];
 let lastClose = 45000;
 
 function generateCandle() {
     let open = lastClose;
-    let change = (Math.random() - 0.5) * 250;
+
+    // faster + more volatile movement
+    let change = (Math.random() - 0.5) * 700;
 
     let close = open + change;
-    let high = Math.max(open, close) + Math.random() * 150;
-    let low = Math.min(open, close) - Math.random() * 150;
+    let high = Math.max(open, close) + Math.random() * 250;
+    let low = Math.min(open, close) - Math.random() * 250;
 
     lastClose = close;
 
     return { open, high, low, close };
 }
 
-// init
+// init candles
 for (let i = 0; i < 120; i++) {
     candles.push(generateCandle());
 }
 
-// ---------------- INDICATORS ----------------
+// =======================
+// INDICATORS (FAST CACHE)
+// =======================
+let ma20 = [];
+let ma50 = [];
+
 function SMA(period) {
     let arr = [];
+
     for (let i = period; i < candles.length; i++) {
         let sum = 0;
+
         for (let j = 0; j < period; j++) {
             sum += candles[i - j].close;
         }
+
         arr.push(sum / period);
     }
+
     return arr;
+}
+
+function updateIndicators() {
+    ma20 = SMA(20);
+    ma50 = SMA(50);
 }
 
 function RSI(period = 14) {
@@ -155,6 +177,7 @@ function RSI(period = 14) {
 
     for (let i = candles.length - period; i < candles.length; i++) {
         let diff = candles[i].close - candles[i - 1].close;
+
         if (diff >= 0) gains += diff;
         else losses -= diff;
     }
@@ -163,38 +186,43 @@ function RSI(period = 14) {
     return 100 - (100 / (1 + rs));
 }
 
-// ---------------- DRAWING ----------------
+// =======================
+// DRAWING
+// =======================
 function drawCandles() {
     let w = canvas.width / candles.length;
 
     candles.forEach((c, i) => {
         let x = i * w;
-
         let scale = canvas.height * 0.0008;
 
-        let o = canvas.height/2 - (c.open - lastClose) * scale;
-        let h = canvas.height/2 - (c.high - lastClose) * scale;
-        let l = canvas.height/2 - (c.low - lastClose) * scale;
-        let cl = canvas.height/2 - (c.close - lastClose) * scale;
+        let o = canvas.height / 2 - (c.open - lastClose) * scale;
+        let h = canvas.height / 2 - (c.high - lastClose) * scale;
+        let l = canvas.height / 2 - (c.low - lastClose) * scale;
+        let cl = canvas.height / 2 - (c.close - lastClose) * scale;
 
+        // wick
         ctx.strokeStyle = "#aaa";
         ctx.beginPath();
         ctx.moveTo(x, h);
         ctx.lineTo(x, l);
         ctx.stroke();
 
+        // body
         ctx.fillStyle = c.close > c.open ? "#00ffae" : "#ff4d4d";
         ctx.fillRect(x - 2, Math.min(o, cl), 4, Math.abs(cl - o) || 1);
     });
 }
 
 function drawMA(data, color) {
+    if (!data.length) return;
+
     ctx.strokeStyle = color;
     ctx.beginPath();
 
     data.forEach((v, i) => {
         let x = i * (canvas.width / candles.length);
-        let y = canvas.height/2 - (v - lastClose) * 0.08;
+        let y = canvas.height / 2 - (v - lastClose) * 0.08;
 
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
@@ -208,37 +236,43 @@ function drawUI() {
     ctx.font = "14px Arial";
 
     let rsi = RSI();
+
+    let signal = ma20.at(-1) > ma50.at(-1) ? "BUY" : "SELL";
+
     ctx.fillText("RSI: " + rsi.toFixed(2), 20, 30);
-
-    let ma20 = SMA(20);
-    let ma50 = SMA(50);
-
-    let last20 = ma20.at(-1);
-    let last50 = ma50.at(-1);
-
-    let signal = last20 > last50 ? "BUY" : "SELL";
 
     ctx.fillStyle = signal === "BUY" ? "#00ffae" : "#ff4d4d";
     ctx.fillText("Signal: " + signal, 20, 55);
 }
 
-// ---------------- LOOP ----------------
+// =======================
+// FAST LOOP
+// =======================
+function stepMarket() {
+    // faster movement (3 ticks per frame)
+    for (let i = 0; i < 3; i++) {
+        candles.shift();
+        candles.push(generateCandle());
+    }
+
+    updateIndicators();
+}
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     drawCandles();
-    drawMA(SMA(20), "#ffd700");
-    drawMA(SMA(50), "#00aaff");
+    drawMA(ma20, "#ffd700");
+    drawMA(ma50, "#00aaff");
     drawUI();
-
-    candles.shift();
-    candles.push(generateCandle());
-
-    requestAnimationFrame(draw);
 }
 
-draw();
-</script>
+// =======================
+// MAIN ENGINE (FAST MODE)
+// =======================
+setInterval(stepMarket, 60);   // fast market updates (~16 FPS feel)
+setInterval(draw, 60);         // fast rendering
 
+</script>
 </body>
 </html>
