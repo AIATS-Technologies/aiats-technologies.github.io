@@ -118,9 +118,8 @@ const canvas = document.getElementById("chartCanvas");
 const ctx = canvas.getContext("2d");
 
 function resize() {
-    const panel = document.querySelector(".chart-panel");
-    canvas.width = panel.clientWidth;
-    canvas.height = panel.clientHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight * 0.6;
 }
 resize();
 window.addEventListener("resize", resize);
@@ -238,31 +237,23 @@ function drawMA(data, color) {
 }
 
 function drawUI() {
-     let rsi = RSI();
+    ctx.fillStyle = "white";
+    ctx.font = "14px Arial";
+
+    let rsi = RSI();
     let signal = ma20.at(-1) > ma50.at(-1) ? "BUY" : "SELL";
 
-    // in-canvas label
-    ctx.fillStyle = "rgba(255,255,255,0.9)";
-    ctx.font = "13px Arial";
-    ctx.fillText("RSI: " + rsi.toFixed(2), 15, 25);
+    ctx.fillText("RSI: " + rsi.toFixed(2), 20, 50);
 
     ctx.fillStyle = signal === "BUY" ? "#00ffae" : "#ff4d4d";
-    ctx.fillText("Signal: " + signal, 15, 45);
-
-    // HTML overlay stats (top-right box)
-    document.getElementById("statsBox").innerHTML = `
-        <div>RSI: ${rsi.toFixed(2)}</div>
-        <div style="color:${signal === 'BUY' ? '#00ffae' : '#ff4d4d'}">
-            ${signal}
-        </div>
-    `;
+    ctx.fillText("Signal: " + signal, 20, 75);
 }
 
 // =======================
 // SLOWER ENGINE (IMPORTANT)
 // =======================
 function stepMarket() {
-    // slower movement (ONLY 1 candle per cycle)
+    // 🔽 slower movement (ONLY 1 candle per cycle)
     candles.shift();
     candles.push(generateCandle());
 
@@ -282,8 +273,8 @@ function draw() {
 // =======================
 // FINAL LOOP (SLOWER)
 // =======================
-setInterval(stepMarket, 200); 
-setInterval(draw, 100);       
+setInterval(stepMarket, 200); // 🔽 slower market updates
+setInterval(draw, 100);       // smoother but slower rendering
 
 </script>
 </body>
