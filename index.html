@@ -5,97 +5,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AIATS Technologies</title>
 
-<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<style>
+body {
+    margin: 0;
+    overflow-x: hidden;
+    background: #05070c;
+    font-family: Arial, sans-serif;
+}
+
+/* ===================== */
+/* NAVBAR */
+/* ===================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 55px;
+    background: rgba(10,12,18,0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    z-index: 10;
+    color: white;
+}
+
+/* ===================== */
+/* FULL BACKGROUND CHART */
+/* ===================== */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* ===================== */
+/* OVERLAY TEXT (NO BOX FEEL) */
+/* ===================== */
+.overlay {
+    position: fixed;
+    top: 70px;
+    left: 20px;
+    z-index: 5;
+    color: white;
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* SIGNAL COLORS */
+.buy { color: #00ffae; }
+.sell { color: #ff4d4d; }
+
+/* ===================== */
+/* SECTIONS (TRANSPARENT) */
+/* ===================== */
+section {
+    position: relative;
+    z-index: 2;
+    padding: 80px 20px;
+    color: white;
+}
+
+footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px;
+    color: #aaa;
+}
+</style>
 </head>
 
-<body dir="ltr">
+<body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
-    <div class="logo">AIATS</div>
-
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#home" data-en="Home" data-ar="الرئيسية"></a></li>
-        <li><a href="#about" data-en="About" data-ar="من نحن"></a></li>
-        <li><a href="#features" data-en="Features" data-ar="المميزات"></a></li>
-        <li><a href="#services" data-en="Services" data-ar="الخدمات"></a></li>
-        <li><a href="#training" data-en="Training" data-ar="التدريب"></a></li>
-        <li><a href="#contact" data-en="Contact" data-ar="اتصل بنا"></a></li>
-    </ul>
-
-    <div class="lang-switch">
-        <button onclick="setLang('en')">EN</button>
-        <button onclick="setLang('ar')">AR</button>
-    </div>
+    <div>AIATS</div>
+    <div>Trading View Style Simulation</div>
 </nav>
 
-<!-- HERO -->
-<header id="home" class="hero">
+<!-- OVERLAY INFO -->
+<div class="overlay">
+    <div id="price">Price: --</div>
+    <div id="rsi">RSI: --</div>
+    <div id="signal">Signal: --</div>
+</div>
 
-    <div class="chart-panel">
-
-        <div class="chart-title">
-            AIATS Trading Terminal
-        </div>
-
-        <div class="chart-stats" id="statsBox">
-            Loading...
-        </div>
-
-        <canvas id="chartCanvas"></canvas>
-
-    </div>
-
-</header>
+<!-- CANVAS BACKGROUND -->
+<canvas id="chartCanvas"></canvas>
 
 <!-- CONTENT -->
-<section id="features">
-<h2 data-en="Why AIATS" data-ar="لماذا AIATS"></h2>
+<section>
+<h2>Why AIATS</h2>
 </section>
 
-<section id="about">
-<h2 data-en="About AIATS" data-ar="عن AIATS"></h2>
+<section>
+<h2>About AIATS</h2>
 </section>
 
-<section id="services">
-<h2 data-en="Services" data-ar="الخدمات"></h2>
+<section>
+<h2>Services</h2>
 </section>
 
-<section id="training">
-<h2 data-en="Training Programs" data-ar="برامج التدريب"></h2>
+<section>
+<h2>Training</h2>
 </section>
 
-<section id="contact">
-<h2 data-en="Contact Us" data-ar="اتصل بنا"></h2>
+<section>
+<h2>Contact</h2>
 </section>
 
 <footer>© 2026 AIATS Technologies</footer>
 
 <script>
-// =======================
-// LANGUAGE
-// =======================
-function setLang(lang) {
-    document.querySelectorAll("[data-en]").forEach(el => {
-        el.textContent = el.getAttribute("data-" + lang);
-    });
-
-    document.body.setAttribute("lang", lang);
-    document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
-
-    document.getElementById("navLinks").classList.remove("active");
-}
-
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-}
-
-setLang("en");
-
 // =======================
 // CANVAS
 // =======================
@@ -104,21 +133,19 @@ const ctx = canvas.getContext("2d");
 
 function resize() {
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight * 0.6;
+    canvas.height = window.innerHeight;
 }
 resize();
 window.addEventListener("resize", resize);
 
 // =======================
-// MARKET DATA (SLOWER)
+// MARKET DATA (UNCHANGED LOGIC)
 // =======================
 let candles = [];
 let lastClose = 45000;
 
 function generateCandle() {
     let open = lastClose;
-
-    // 🔽 LOWER VOLATILITY = SLOWER FEEL
     let change = (Math.random() - 0.5) * 250;
 
     let close = open + change;
@@ -130,20 +157,18 @@ function generateCandle() {
     return { open, high, low, close };
 }
 
-// init
 for (let i = 0; i < 120; i++) {
     candles.push(generateCandle());
 }
 
 // =======================
-// INDICATORS
+// INDICATORS (UNCHANGED)
 // =======================
 let ma20 = [];
 let ma50 = [];
 
 function SMA(period) {
     let arr = [];
-
     for (let i = period; i < candles.length; i++) {
         let sum = 0;
         for (let j = 0; j < period; j++) {
@@ -151,13 +176,7 @@ function SMA(period) {
         }
         arr.push(sum / period);
     }
-
     return arr;
-}
-
-function updateIndicators() {
-    ma20 = SMA(20);
-    ma50 = SMA(50);
 }
 
 function RSI(period = 14) {
@@ -174,45 +193,57 @@ function RSI(period = 14) {
     return 100 - (100 / (1 + rs));
 }
 
-// =======================
-// DRAW
-// =======================
-function drawTitle() {
-    ctx.fillStyle = "rgba(255,255,255,0.8)";
-    ctx.font = "bold 18px Arial";
-    ctx.fillText("AIATS Market Simulation", 20, 25);
+function updateIndicators() {
+    ma20 = SMA(20);
+    ma50 = SMA(50);
 }
 
-function drawCandles() {
-    let w = canvas.width / candles.length;
+// =======================
+// DRAWING (TRADINGVIEW STYLE)
+// =======================
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    let w = canvas.width / candles.length;
+    let scale = canvas.height * 0.0007;
+
+    // candles
     candles.forEach((c, i) => {
         let x = i * w;
-        let scale = canvas.height * 0.0008;
 
-        let o = canvas.height / 2 - (c.open - lastClose) * scale;
-        let h = canvas.height / 2 - (c.high - lastClose) * scale;
-        let l = canvas.height / 2 - (c.low - lastClose) * scale;
-        let cl = canvas.height / 2 - (c.close - lastClose) * scale;
+        let o = canvas.height/2 - (c.open - lastClose) * scale;
+        let h = canvas.height/2 - (c.high - lastClose) * scale;
+        let l = canvas.height/2 - (c.low - lastClose) * scale;
+        let cl = canvas.height/2 - (c.close - lastClose) * scale;
 
-        ctx.strokeStyle = "#aaa";
+        ctx.strokeStyle = "rgba(255,255,255,0.25)";
         ctx.beginPath();
         ctx.moveTo(x, h);
         ctx.lineTo(x, l);
         ctx.stroke();
 
         ctx.fillStyle = c.close > c.open ? "#00ffae" : "#ff4d4d";
-        ctx.fillRect(x - 2, Math.min(o, cl), 4, Math.abs(cl - o) || 1);
+        ctx.fillRect(x - 1, Math.min(o, cl), 2, Math.abs(cl - o) || 1);
     });
+
+    drawMA(ma20, "#ffd700");
+    drawMA(ma50, "#00aaff");
+
+    updateUI();
 }
 
+// =======================
+// MA LINES
+// =======================
 function drawMA(data, color) {
+    if (!data.length) return;
+
     ctx.strokeStyle = color;
     ctx.beginPath();
 
     data.forEach((v, i) => {
         let x = i * (canvas.width / candles.length);
-        let y = canvas.height / 2 - (v - lastClose) * 0.08;
+        let y = canvas.height/2 - (v - lastClose) * 0.07;
 
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
@@ -221,46 +252,38 @@ function drawMA(data, color) {
     ctx.stroke();
 }
 
-function drawUI() {
-    ctx.fillStyle = "white";
-    ctx.font = "14px Arial";
-
+// =======================
+// UI OVERLAY (NO BOX FEEL)
+// =======================
+function updateUI() {
     let rsi = RSI();
     let signal = ma20.at(-1) > ma50.at(-1) ? "BUY" : "SELL";
 
-    ctx.fillText("RSI: " + rsi.toFixed(2), 20, 50);
+    document.getElementById("price").innerText =
+        "Price: " + lastClose.toFixed(2);
 
-    ctx.fillStyle = signal === "BUY" ? "#00ffae" : "#ff4d4d";
-    ctx.fillText("Signal: " + signal, 20, 75);
+    document.getElementById("rsi").innerText =
+        "RSI: " + rsi.toFixed(2);
+
+    let s = document.getElementById("signal");
+    s.innerText = "Signal: " + signal;
+    s.className = signal === "BUY" ? "buy" : "sell";
 }
 
 // =======================
-// SLOWER ENGINE (IMPORTANT)
+// ENGINE (SLOW + REALISTIC)
 // =======================
-function stepMarket() {
-    // 🔽 slower movement (ONLY 1 candle per cycle)
+function step() {
     candles.shift();
     candles.push(generateCandle());
-
     updateIndicators();
 }
 
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+setInterval(step, 250);
+setInterval(draw, 60);
 
-    drawTitle();
-    drawCandles();
-    drawMA(ma20, "#ffd700");
-    drawMA(ma50, "#00aaff");
-    drawUI();
-}
-
-// =======================
-// FINAL LOOP (SLOWER)
-// =======================
-setInterval(stepMarket, 200); // 🔽 slower market updates
-setInterval(draw, 100);       // smoother but slower rendering
-
+updateIndicators();
 </script>
+
 </body>
 </html>
