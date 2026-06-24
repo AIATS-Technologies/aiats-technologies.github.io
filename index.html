@@ -7,6 +7,22 @@
 
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90vh;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+</style>
 </head>
 
 <body dir="ltr">
@@ -32,137 +48,44 @@
     </div>
 </nav>
 
-<!-- HERO (IMPORTANT UPGRADE) -->
+<!-- HERO -->
 <header id="home" class="hero">
-    <canvas id="chartCanvas"></canvas>
+<canvas id="chartCanvas"></canvas>
 
-    <div class="hero-content">
-        <h1 data-en="AI-Powered Trading Intelligence"
-            data-ar="ذكاء تداول مدعوم بالذكاء الاصطناعي"></h1>
+<div class="hero-content">
+    <h1 data-en="AI-Powered Trading Intelligence"
+        data-ar="ذكاء تداول مدعوم بالذكاء الاصطناعي"></h1>
 
-        <p data-en="Build, automate, and scale algorithmic trading systems with AI-driven market intelligence."
-           data-ar="ابنِ وأتمت ووسّع أنظمة التداول باستخدام ذكاء السوق الاصطناعي."></p>
-
-        <div class="hero-buttons">
-            <a href="#services" class="btn primary"
-               data-en="Explore Systems" data-ar="استكشف الأنظمة"></a>
-
-            <a href="#training" class="btn secondary"
-               data-en="Start Learning" data-ar="ابدأ التعلم"></a>
-        </div>
-    </div>
+    <p data-en="Build, automate, and scale algorithmic trading systems with AI-driven market intelligence."
+       data-ar="ابنِ وأتمت ووسّع أنظمة التداول باستخدام ذكاء السوق الاصطناعي."></p>
+</div>
 </header>
 
-<!-- FEATURES (THIS MAKES IT LOOK PROFESSIONAL) -->
+<!-- CONTENT -->
 <section id="features">
-    <h2 data-en="Why AIATS" data-ar="لماذا AIATS"></h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3 data-en="Real-Time AI Systems" data-ar="أنظمة ذكاء لحظية"></h3>
-            <p data-en="Live market analysis using machine learning models."
-               data-ar="تحليل مباشر للسوق باستخدام نماذج تعلم الآلة."></p>
-        </div>
-
-        <div class="card">
-            <h3 data-en="Automated Trading" data-ar="تداول آلي"></h3>
-            <p data-en="Fully automated execution with risk control."
-               data-ar="تنفيذ آلي كامل مع إدارة مخاطر."></p>
-        </div>
-
-        <div class="card">
-            <h3 data-en="Quant Strategies" data-ar="استراتيجيات كمية"></h3>
-            <p data-en="Data-driven trading models and signals."
-               data-ar="نماذج تداول تعتمد على البيانات والإحصاء."></p>
-        </div>
-
-    </div>
+<h2 data-en="Why AIATS" data-ar="لماذا AIATS"></h2>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
-    <h2 data-en="About AIATS" data-ar="عن AIATS"></h2>
-
-    <p class="center-text"
-       data-en="AIATS Technologies builds next-generation algorithmic trading systems powered by AI, data science, and quantitative research."
-       data-ar="AIATS Technologies تبني الجيل القادم من أنظمة التداول الخوارزمية المدعومة بالذكاء الاصطناعي وعلوم البيانات والبحث الكمي.">
-    </p>
+<h2 data-en="About AIATS" data-ar="عن AIATS"></h2>
 </section>
 
-<!-- SERVICES -->
 <section id="services">
-    <h2 data-en="Services" data-ar="الخدمات"></h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3 data-en="Trading Systems" data-ar="أنظمة التداول"></h3>
-            <p data-en="Institutional-grade automated trading platforms."
-               data-ar="منصات تداول آلية بمستوى مؤسسي."></p>
-        </div>
-
-        <div class="card">
-            <h3 data-en="AI Analytics" data-ar="تحليلات الذكاء الاصطناعي"></h3>
-            <p data-en="Predictive models for financial markets."
-               data-ar="نماذج تنبؤية للأسواق المالية."></p>
-        </div>
-
-        <div class="card">
-            <h3 data-en="Consulting" data-ar="الاستشارات"></h3>
-            <p data-en="Fintech and automation consulting services."
-               data-ar="استشارات في التقنية المالية والأتمتة."></p>
-        </div>
-
-    </div>
+<h2 data-en="Services" data-ar="الخدمات"></h2>
 </section>
 
-<!-- TRAINING -->
 <section id="training">
-    <h2 data-en="Training Programs" data-ar="برامج التدريب"></h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3 data-en="Beginner Path" data-ar="المبتدئين"></h3>
-        </div>
-
-        <div class="card">
-            <h3 data-en="Advanced Trading" data-ar="المتقدم"></h3>
-        </div>
-
-        <div class="card">
-            <h3 data-en="AI & Quant Finance" data-ar="الذكاء الاصطناعي والتمويل الكمي"></h3>
-        </div>
-
-    </div>
+<h2 data-en="Training Programs" data-ar="برامج التدريب"></h2>
 </section>
 
-<!-- CTA -->
-<section class="cta">
-    <h2 data-en="Start Building Intelligent Trading Systems"
-        data-ar="ابدأ بناء أنظمة تداول ذكية"></h2>
-
-    <a href="https://github.com/AIATS-Technologies"
-       data-en="Visit GitHub"
-       data-ar="زيارة GitHub"></a>
-</section>
-
-<!-- CONTACT -->
 <section id="contact">
-    <h2 data-en="Contact Us" data-ar="اتصل بنا"></h2>
-
-    <div class="card contact">
-        <p>Email: contact@aiats.tech</p>
-        <p>GitHub: AIATS-Technologies</p>
-    </div>
+<h2 data-en="Contact Us" data-ar="اتصل بنا"></h2>
 </section>
 
-<footer>
-    © 2026 AIATS Technologies
-</footer>
+<footer>© 2026 AIATS Technologies</footer>
 
 <script>
+// ---------------- LANGUAGE ----------------
 function setLang(lang) {
     document.querySelectorAll("[data-en]").forEach(el => {
         el.textContent = el.getAttribute("data-" + lang);
@@ -179,8 +102,8 @@ function toggleMenu() {
 }
 
 setLang("en");
-</script>
-<script>
+
+// ---------------- CANVAS SETUP ----------------
 const canvas = document.getElementById("chartCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -191,61 +114,131 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-// smoother BTC-like data
-let prices = [];
-let base = 45000;
+// ---------------- MARKET DATA ----------------
+let candles = [];
+let lastClose = 45000;
 
-// initial dataset (less noisy)
-for (let i = 0; i < 120; i++) {
-    base += (Math.random() - 0.5) * 200; // smaller volatility
-    prices.push(base);
+function generateCandle() {
+    let open = lastClose;
+    let change = (Math.random() - 0.5) * 250;
+
+    let close = open + change;
+    let high = Math.max(open, close) + Math.random() * 150;
+    let low = Math.min(open, close) - Math.random() * 150;
+
+    lastClose = close;
+
+    return { open, high, low, close };
 }
 
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+// init
+for (let i = 0; i < 120; i++) {
+    candles.push(generateCandle());
+}
 
-    // subtle grid (clean trading terminal feel)
-    ctx.strokeStyle = "rgba(255,255,255,0.04)";
-    ctx.lineWidth = 1;
+// ---------------- INDICATORS ----------------
+function SMA(period) {
+    let arr = [];
+    for (let i = period; i < candles.length; i++) {
+        let sum = 0;
+        for (let j = 0; j < period; j++) {
+            sum += candles[i - j].close;
+        }
+        arr.push(sum / period);
+    }
+    return arr;
+}
 
-    for (let i = 0; i < 8; i++) {
-        ctx.beginPath();
-        ctx.moveTo(0, (i / 8) * canvas.height);
-        ctx.lineTo(canvas.width, (i / 8) * canvas.height);
-        ctx.stroke();
+function RSI(period = 14) {
+    let gains = 0;
+    let losses = 0;
+
+    for (let i = candles.length - period; i < candles.length; i++) {
+        let diff = candles[i].close - candles[i - 1].close;
+        if (diff >= 0) gains += diff;
+        else losses -= diff;
     }
 
-    // price line
+    let rs = gains / (losses || 1);
+    return 100 - (100 / (1 + rs));
+}
+
+// ---------------- DRAWING ----------------
+function drawCandles() {
+    let w = canvas.width / candles.length;
+
+    candles.forEach((c, i) => {
+        let x = i * w;
+
+        let scale = canvas.height * 0.0008;
+
+        let o = canvas.height/2 - (c.open - lastClose) * scale;
+        let h = canvas.height/2 - (c.high - lastClose) * scale;
+        let l = canvas.height/2 - (c.low - lastClose) * scale;
+        let cl = canvas.height/2 - (c.close - lastClose) * scale;
+
+        ctx.strokeStyle = "#aaa";
+        ctx.beginPath();
+        ctx.moveTo(x, h);
+        ctx.lineTo(x, l);
+        ctx.stroke();
+
+        ctx.fillStyle = c.close > c.open ? "#00ffae" : "#ff4d4d";
+        ctx.fillRect(x - 2, Math.min(o, cl), 4, Math.abs(cl - o) || 1);
+    });
+}
+
+function drawMA(data, color) {
+    ctx.strokeStyle = color;
     ctx.beginPath();
 
-    for (let i = 0; i < prices.length; i++) {
-        let x = (i / prices.length) * canvas.width;
-
-        // smoother scaling (less jumpy)
-        let y = canvas.height / 2 - (prices[i] - base) * 0.08;
+    data.forEach((v, i) => {
+        let x = i * (canvas.width / candles.length);
+        let y = canvas.height/2 - (v - lastClose) * 0.08;
 
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
-    }
+    });
 
-    ctx.strokeStyle = "#00ffae";
-    ctx.lineWidth = 2;
-    ctx.shadowColor = "#00ffae";
-    ctx.shadowBlur = 8;
     ctx.stroke();
+}
 
-    // NORMAL SPEED update (slow market movement)
-    base += (Math.random() - 0.5) * 80; // slow changes
+function drawUI() {
+    ctx.fillStyle = "white";
+    ctx.font = "14px Arial";
 
-    prices.shift();
-    prices.push(base);
+    let rsi = RSI();
+    ctx.fillText("RSI: " + rsi.toFixed(2), 20, 30);
 
-    setTimeout(() => {
-        requestAnimationFrame(draw);
-    }, 60); // slows animation (~16fps feel)
+    let ma20 = SMA(20);
+    let ma50 = SMA(50);
+
+    let last20 = ma20.at(-1);
+    let last50 = ma50.at(-1);
+
+    let signal = last20 > last50 ? "BUY" : "SELL";
+
+    ctx.fillStyle = signal === "BUY" ? "#00ffae" : "#ff4d4d";
+    ctx.fillText("Signal: " + signal, 20, 55);
+}
+
+// ---------------- LOOP ----------------
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawCandles();
+    drawMA(SMA(20), "#ffd700");
+    drawMA(SMA(50), "#00aaff");
+    drawUI();
+
+    candles.shift();
+    candles.push(generateCandle());
+
+    requestAnimationFrame(draw);
 }
 
 draw();
 </script>
+
 </body>
 </html>
