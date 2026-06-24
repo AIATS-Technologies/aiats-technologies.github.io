@@ -106,7 +106,7 @@ function toggleMenu() {
 setLang("en");
 
 // =======================
-// CANVAS SETUP
+// CANVAS
 // =======================
 const canvas = document.getElementById("chartCanvas");
 const ctx = canvas.getContext("2d");
@@ -119,7 +119,7 @@ resize();
 window.addEventListener("resize", resize);
 
 // =======================
-// MARKET DATA
+// MARKET DATA (SLOWER)
 // =======================
 let candles = [];
 let lastClose = 45000;
@@ -127,25 +127,25 @@ let lastClose = 45000;
 function generateCandle() {
     let open = lastClose;
 
-    // faster + more volatile movement
-    let change = (Math.random() - 0.5) * 700;
+    // 🔽 LOWER VOLATILITY = SLOWER FEEL
+    let change = (Math.random() - 0.5) * 250;
 
     let close = open + change;
-    let high = Math.max(open, close) + Math.random() * 250;
-    let low = Math.min(open, close) - Math.random() * 250;
+    let high = Math.max(open, close) + Math.random() * 120;
+    let low = Math.min(open, close) - Math.random() * 120;
 
     lastClose = close;
 
     return { open, high, low, close };
 }
 
-// init candles
+// init
 for (let i = 0; i < 120; i++) {
     candles.push(generateCandle());
 }
 
 // =======================
-// INDICATORS (FAST CACHE)
+// INDICATORS
 // =======================
 let ma20 = [];
 let ma50 = [];
@@ -155,11 +155,9 @@ function SMA(period) {
 
     for (let i = period; i < candles.length; i++) {
         let sum = 0;
-
         for (let j = 0; j < period; j++) {
             sum += candles[i - j].close;
         }
-
         arr.push(sum / period);
     }
 
@@ -177,7 +175,6 @@ function RSI(period = 14) {
 
     for (let i = candles.length - period; i < candles.length; i++) {
         let diff = candles[i].close - candles[i - 1].close;
-
         if (diff >= 0) gains += diff;
         else losses -= diff;
     }
@@ -187,8 +184,14 @@ function RSI(period = 14) {
 }
 
 // =======================
-// DRAWING
+// DRAW
 // =======================
+function drawTitle() {
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
+    ctx.font = "bold 18px Arial";
+    ctx.fillText("AIATS Market Simulation", 20, 25);
+}
+
 function drawCandles() {
     let w = canvas.width / candles.length;
 
@@ -201,22 +204,18 @@ function drawCandles() {
         let l = canvas.height / 2 - (c.low - lastClose) * scale;
         let cl = canvas.height / 2 - (c.close - lastClose) * scale;
 
-        // wick
         ctx.strokeStyle = "#aaa";
         ctx.beginPath();
         ctx.moveTo(x, h);
         ctx.lineTo(x, l);
         ctx.stroke();
 
-        // body
         ctx.fillStyle = c.close > c.open ? "#00ffae" : "#ff4d4d";
         ctx.fillRect(x - 2, Math.min(o, cl), 4, Math.abs(cl - o) || 1);
     });
 }
 
 function drawMA(data, color) {
-    if (!data.length) return;
-
     ctx.strokeStyle = color;
     ctx.beginPath();
 
@@ -236,24 +235,21 @@ function drawUI() {
     ctx.font = "14px Arial";
 
     let rsi = RSI();
-
     let signal = ma20.at(-1) > ma50.at(-1) ? "BUY" : "SELL";
 
-    ctx.fillText("RSI: " + rsi.toFixed(2), 20, 30);
+    ctx.fillText("RSI: " + rsi.toFixed(2), 20, 50);
 
     ctx.fillStyle = signal === "BUY" ? "#00ffae" : "#ff4d4d";
-    ctx.fillText("Signal: " + signal, 20, 55);
+    ctx.fillText("Signal: " + signal, 20, 75);
 }
 
 // =======================
-// FAST LOOP
+// SLOWER ENGINE (IMPORTANT)
 // =======================
 function stepMarket() {
-    // faster movement (3 ticks per frame)
-    for (let i = 0; i < 3; i++) {
-        candles.shift();
-        candles.push(generateCandle());
-    }
+    // slower movement (ONLY 1 candle per cycle)
+    candles.shift();
+    candles.push(generateCandle());
 
     updateIndicators();
 }
@@ -261,6 +257,7 @@ function stepMarket() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    drawTitle();
     drawCandles();
     drawMA(ma20, "#ffd700");
     drawMA(ma50, "#00aaff");
@@ -268,10 +265,10 @@ function draw() {
 }
 
 // =======================
-// MAIN ENGINE (FAST MODE)
+// FINAL LOOP (SLOWER)
 // =======================
-setInterval(stepMarket, 60);   // fast market updates (~16 FPS feel)
-setInterval(draw, 60);         // fast rendering
+setInterval(stepMarket, 200); 
+setInterval(draw, 100);       
 
 </script>
 </body>
