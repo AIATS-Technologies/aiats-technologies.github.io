@@ -34,14 +34,14 @@
 
 <!-- HERO (IMPORTANT UPGRADE) -->
 <header id="home" class="hero">
-    <div class="hero-content">
+    <canvas id="chartCanvas"></canvas>
 
+    <div class="hero-content">
         <h1 data-en="AI-Powered Trading Intelligence"
             data-ar="ذكاء تداول مدعوم بالذكاء الاصطناعي"></h1>
 
-        <p data-en="Build, automate, and scale algorithmic trading systems with institutional-grade AI technology."
-           data-ar="ابنِ وأتمت ووسّع أنظمة التداول الخوارزمية بتقنيات ذكاء اصطناعي احترافية.">
-        </p>
+        <p data-en="Build, automate, and scale algorithmic trading systems with AI-driven market intelligence."
+           data-ar="ابنِ وأتمت ووسّع أنظمة التداول باستخدام ذكاء السوق الاصطناعي."></p>
 
         <div class="hero-buttons">
             <a href="#services" class="btn primary"
@@ -50,7 +50,6 @@
             <a href="#training" class="btn secondary"
                data-en="Start Learning" data-ar="ابدأ التعلم"></a>
         </div>
-
     </div>
 </header>
 
@@ -181,6 +180,47 @@ function toggleMenu() {
 
 setLang("en");
 </script>
+<script>
+const canvas = document.getElementById("chartCanvas");
+const ctx = canvas.getContext("2d");
 
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight * 0.9;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+// fake trading data
+let points = [];
+for (let i = 0; i < 60; i++) {
+    points.push(100 + Math.random() * 50);
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height - points[0]);
+
+    for (let i = 1; i < points.length; i++) {
+        let x = (i / points.length) * canvas.width;
+        let y = canvas.height - points[i];
+        ctx.lineTo(x, y);
+    }
+
+    ctx.strokeStyle = "#60a5fa";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // animate movement
+    points.shift();
+    points.push(100 + Math.random() * 80);
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
 </body>
 </html>
