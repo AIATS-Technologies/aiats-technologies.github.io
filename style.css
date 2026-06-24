@@ -221,11 +221,9 @@ body[dir="rtl"] {
 
 /* canvas fits inside panel */
 canvas {
-    position: absolute;
-    top: 80px;
-    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    display: block;
 }
 
 /* overlay title */
