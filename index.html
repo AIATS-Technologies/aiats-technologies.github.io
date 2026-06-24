@@ -5,126 +5,296 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AIATS Technologies</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
 <style>
-body {
-    margin: 0;
-    overflow-x: hidden;
-    background: #05070c;
-    font-family: Arial, sans-serif;
-}
-
-/* ===================== */
-/* NAVBAR */
-/* ===================== */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 55px;
-    background: rgba(10,12,18,0.7);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15px;
-    z-index: 10;
-    color: white;
-}
-
-/* ===================== */
-/* FULL BACKGROUND CHART */
-/* ===================== */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-/* ===================== */
-/* OVERLAY TEXT (NO BOX FEEL) */
-/* ===================== */
-.overlay {
-    position: fixed;
-    top: 70px;
-    left: 20px;
-    z-index: 5;
-    color: white;
-    font-size: 13px;
-    line-height: 1.6;
-    opacity: 0.9;
-}
-
-/* SIGNAL COLORS */
-.buy { color: #00ffae; }
-.sell { color: #ff4d4d; }
-
-/* ===================== */
-/* SECTIONS (TRANSPARENT) */
-/* ===================== */
-section {
-    position: relative;
-    z-index: 2;
-    padding: 80px 20px;
-    color: white;
-}
-
-footer {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 40px;
-    color: #aaa;
-}
+body { margin:0; overflow-x:hidden; }
+canvas { display:block; }
 </style>
+
 </head>
 
 <body>
+<!-- SYSTEM BOOT SCREEN -->
+<div id="bootScreen" class="boot-screen">
+    <div class="boot-box">
 
+        <div class="boot-title">AIATS SYSTEM INITIALIZING</div>
+
+        <div id="bootLog" class="boot-log"></div>
+
+        <div class="boot-bar">
+            <div class="boot-progress" id="bootProgress"></div>
+        </div>
+
+    </div>
+</div>
 <!-- NAVBAR -->
 <nav class="navbar">
-    <div>AIATS</div>
-    <div>Trading View Style Simulation</div>
+    <div class="logo">AIATS</div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
-<!-- OVERLAY INFO -->
-<div class="overlay">
-    <div id="price">Price: --</div>
-    <div id="rsi">RSI: --</div>
-    <div id="signal">Signal: --</div>
-</div>
+<!-- HERO -->
+<section class="hero">
+    <canvas id="chartCanvas"></canvas>
 
-<!-- CANVAS BACKGROUND -->
-<canvas id="chartCanvas"></canvas>
+    <div class="hero-content">
+        <h1>Smarter Trading Starts Here</h1>
+        <p>AI-powered market simulation with real-time momentum engine</p>
 
-<!-- CONTENT -->
-<section>
-<h2>Why AIATS</h2>
+        <div class="hero-buttons">
+            <a href="#training" class="btn primary">Training</a>
+            <a href="#services" class="btn secondary">Services</a>
+        </div>
+    </div>
 </section>
 
-<section>
-<h2>About AIATS</h2>
+<!-- ABOUT -->
+<section id="about" class="about">
+    <div class="about-container">
+        <h2>About AIATS</h2>
+
+        <p>
+            AIATS Technologies is a modern trading simulation platform that visualizes financial markets using AI-style
+            market modeling, real-time generated data, and technical indicators.
+        </p>
+
+        <p>
+            It simulates price action, trends, and momentum to help users understand how trading systems work without
+            financial risk, creating a realistic learning environment.
+        </p>
+
+        <p>
+            Modern trading relies on speed, automation, and data-driven logic. AIATS demonstrates how algorithms analyze
+            markets and reduce emotional decision-making.
+        </p>
+
+        <p>
+            The platform bridges visualization, automation, and strategy learning into one interactive system.
+        </p>
+    </div>
 </section>
 
-<section>
-<h2>Services</h2>
+<!-- SERVICES -->
+<section id="services" class="services">
+
+    <h2>Services</h2>
+
+    <div class="services-grid">
+
+        <div class="service-card gradient-1">
+            <div class="icon">📊</div>
+            <h3>Market Simulation</h3>
+            <p>Real-time synthetic price engine for learning and analysis.</p>
+        </div>
+
+        <div class="service-card gradient-2">
+            <div class="icon">🤖</div>
+            <h3>AI Trading Visualization</h3>
+            <p>Indicators, momentum, and smart signal overlays.</p>
+        </div>
+
+        <div class="service-card gradient-3">
+            <div class="icon">⚡</div>
+            <h3>Strategy System</h3>
+            <p>Test trading logic in a risk-free environment.</p>
+        </div>
+
+    </div>
+
 </section>
 
-<section>
-<h2>Training</h2>
+<!-- TRAINING -->
+<section id="training" class="training">
+
+    <h2>Training</h2>
+
+    <p class="training-subtitle">
+        Explore modern trading systems and algorithmic market logic.
+    </p>
+
+    <div class="training-grid">
+
+        <div class="training-card" onclick="selectModule(this)">
+            <div class="badge">Core</div>
+            <h3>Algorithmic Trading</h3>
+        </div>
+
+        <div class="training-card" onclick="selectModule(this)">
+            <div class="badge">Tools</div>
+            <h3>TradingView Analysis</h3>
+        </div>
+
+        <div class="training-card" onclick="selectModule(this)">
+            <div class="badge">Data</div>
+            <h3>Numerical Models</h3>
+        </div>
+
+        <div class="training-card" onclick="selectModule(this)">
+            <div class="badge">AI</div>
+            <h3>AI Simulation</h3>
+        </div>
+
+    </div>
+
+    <div id="trainingOutput" class="training-output data-panel">
+        <div class="data-title">System Output</div>
+
+        <div class="data-row">
+            <span>Module</span>
+            <span id="d_module">—</span>
+        </div>
+
+        <div class="data-row">
+            <span>Signal</span>
+            <span id="d_signal">—</span>
+        </div>
+
+        <div class="data-row">
+            <span>Volatility</span>
+            <span id="d_volatility">—</span>
+        </div>
+
+        <div class="data-row">
+            <span>Bias</span>
+            <span id="d_bias">—</span>
+        </div>
+    </div>
+
 </section>
 
-<section>
-<h2>Contact</h2>
+<!-- CONTACT -->
+<section id="contact" class="contact">
+
+    <h2>Contact</h2>
+
+    <p class="contact-subtitle">
+        Send us a message and we’ll respond soon.
+    </p>
+
+    <form class="contact-form" onsubmit="submitForm(event)">
+
+        <div class="form-row">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+        </div>
+
+        <input type="text" id="subject" placeholder="Subject" required>
+
+        <textarea id="message" rows="5" placeholder="Message" required></textarea>
+
+        <button type="submit">Send</button>
+
+    </form>
+
+    <div id="contactStatus" class="contact-status"></div>
+
 </section>
 
 <footer>© 2026 AIATS Technologies</footer>
 
 <script>
+const bootLines = [
+    "[SYSTEM] Initializing AIATS core engine...",
+    "[DATA] Loading market simulation module...",
+    "[CHART] Connecting candlestick renderer...",
+    "[AI] Activating momentum prediction layer...",
+    "[INDICATORS] Calculating SMA / Momentum models...",
+    "[NETWORK] Syncing synthetic market feed...",
+    "[SECURITY] Encrypting trading session...",
+    "[READY] System online."
+];
+
+let bootIndex = 0;
+let bootLog = document.getElementById("bootLog");
+let bootProgress = document.getElementById("bootProgress");
+
+function runBoot() {
+
+    if (bootIndex < bootLines.length) {
+        let line = document.createElement("div");
+        line.textContent = bootLines[bootIndex];
+        bootLog.appendChild(line);
+
+        bootProgress.style.width =
+            ((bootIndex + 1) / bootLines.length) * 100 + "%";
+
+        bootIndex++;
+        setTimeout(runBoot, 500);
+    } else {
+        setTimeout(() => {
+            document.getElementById("bootScreen").style.opacity = "0";
+            document.getElementById("bootScreen").style.transition = "0.8s ease";
+
+            setTimeout(() => {
+                document.getElementById("bootScreen").remove();
+            }, 900);
+        }, 600);
+    }
+}
+
+window.addEventListener("load", runBoot);
+// =======================
+// NAV
+// =======================
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+// =======================
+// TRAINING DATA
+// =======================
+function selectModule(el) {
+
+    document.querySelectorAll(".training-card")
+        .forEach(c => c.classList.remove("active"));
+
+    el.classList.add("active");
+
+    let title = el.querySelector("h3").innerText;
+
+    let data = {
+        "Algorithmic Trading": { signal:"78%", volatility:"Medium", bias:"Bullish" },
+        "TradingView Analysis": { signal:"64%", volatility:"Low", bias:"Neutral" },
+        "Numerical Models": { signal:"71%", volatility:"High", bias:"Bearish" },
+        "AI Simulation": { signal:"85%", volatility:"Very High", bias:"Adaptive" }
+    };
+
+    let d = data[title] || {};
+
+    document.getElementById("d_module").innerText = title;
+    document.getElementById("d_signal").innerText = d.signal || "—";
+    document.getElementById("d_volatility").innerText = d.volatility || "—";
+    document.getElementById("d_bias").innerText = d.bias || "—";
+}
+
+// =======================
+// CONTACT FORM
+// =======================
+function submitForm(e) {
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let status = document.getElementById("contactStatus");
+
+    status.innerText = "Sending...";
+
+    setTimeout(() => {
+        status.innerText = `Thanks ${name}, we received your message.`;
+        document.querySelector(".contact-form").reset();
+    }, 1000);
+}
+
 // =======================
 // CANVAS
 // =======================
@@ -133,13 +303,13 @@ const ctx = canvas.getContext("2d");
 
 function resize() {
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = document.querySelector(".hero").offsetHeight;
 }
 resize();
 window.addEventListener("resize", resize);
 
 // =======================
-// MARKET DATA (UNCHANGED LOGIC)
+// MARKET DATA
 // =======================
 let candles = [];
 let lastClose = 45000;
@@ -153,19 +323,17 @@ function generateCandle() {
     let low = Math.min(open, close) - Math.random() * 120;
 
     lastClose = close;
-
     return { open, high, low, close };
 }
 
-for (let i = 0; i < 120; i++) {
-    candles.push(generateCandle());
-}
+for (let i = 0; i < 120; i++) candles.push(generateCandle());
 
 // =======================
-// INDICATORS (UNCHANGED)
+// INDICATORS
 // =======================
 let ma20 = [];
 let ma50 = [];
+let momentumSeries = [];
 
 function SMA(period) {
     let arr = [];
@@ -179,27 +347,27 @@ function SMA(period) {
     return arr;
 }
 
-function RSI(period = 14) {
-    let gains = 0;
-    let losses = 0;
-
-    for (let i = candles.length - period; i < candles.length; i++) {
-        let diff = candles[i].close - candles[i - 1].close;
-        if (diff >= 0) gains += diff;
-        else losses -= diff;
-    }
-
-    let rs = gains / (losses || 1);
-    return 100 - (100 / (1 + rs));
-}
-
 function updateIndicators() {
     ma20 = SMA(20);
     ma50 = SMA(50);
 }
 
+function getMomentumSeries(period = 10) {
+    let series = [];
+    for (let i = period; i < candles.length; i++) {
+        let start = candles[i - period].close;
+        let end = candles[i].close;
+        series.push(((end - start) / start) * 100);
+    }
+    return series;
+}
+
+function updateMomentum() {
+    momentumSeries = getMomentumSeries(10);
+}
+
 // =======================
-// DRAWING (TRADINGVIEW STYLE)
+// DRAW
 // =======================
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -211,78 +379,76 @@ function draw() {
     candles.forEach((c, i) => {
         let x = i * w;
 
-        let o = canvas.height/2 - (c.open - lastClose) * scale;
-        let h = canvas.height/2 - (c.high - lastClose) * scale;
-        let l = canvas.height/2 - (c.low - lastClose) * scale;
-        let cl = canvas.height/2 - (c.close - lastClose) * scale;
+        let o = canvas.height/2 - (c.open-lastClose)*scale;
+        let h = canvas.height/2 - (c.high-lastClose)*scale;
+        let l = canvas.height/2 - (c.low-lastClose)*scale;
+        let cl = canvas.height/2 - (c.close-lastClose)*scale;
 
-        ctx.strokeStyle = "rgba(255,255,255,0.25)";
+        ctx.strokeStyle = "rgba(255,255,255,0.2)";
         ctx.beginPath();
         ctx.moveTo(x, h);
         ctx.lineTo(x, l);
         ctx.stroke();
 
         ctx.fillStyle = c.close > c.open ? "#00ffae" : "#ff4d4d";
-        ctx.fillRect(x - 1, Math.min(o, cl), 2, Math.abs(cl - o) || 1);
+        ctx.fillRect(x-1, Math.min(o,cl), 2, Math.abs(cl-o)||1);
     });
 
+    // MA
+    updateIndicators();
     drawMA(ma20, "#ffd700");
     drawMA(ma50, "#00aaff");
 
-    updateUI();
+    // momentum dots
+    updateMomentum();
+
+    for (let i = 10; i < candles.length; i++) {
+        let m = momentumSeries[i-10];
+        if (!m) continue;
+
+        let x = i*w;
+        let y = canvas.height/2 - (candles[i].close-lastClose)*scale;
+
+        ctx.fillStyle = m>0 ? "#00ffae" : "#ff4d4d";
+        ctx.beginPath();
+        ctx.arc(x, y, 2.5, 0, Math.PI*2);
+        ctx.fill();
+    }
+
+    // price
+    ctx.fillStyle = "#00ffae";
+    ctx.font = "12px Arial";
+    ctx.fillText(lastClose.toFixed(2), canvas.width-100, canvas.height/2);
 }
 
-// =======================
-// MA LINES
-// =======================
 function drawMA(data, color) {
     if (!data.length) return;
 
     ctx.strokeStyle = color;
     ctx.beginPath();
 
-    data.forEach((v, i) => {
-        let x = i * (canvas.width / candles.length);
-        let y = canvas.height/2 - (v - lastClose) * 0.07;
-
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+    data.forEach((v,i)=>{
+        let x = i*(canvas.width/candles.length);
+        let y = canvas.height/2 - (v-lastClose)*0.07;
+        if(i===0) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
     });
 
     ctx.stroke();
 }
 
 // =======================
-// UI OVERLAY (NO BOX FEEL)
+// LOOP
 // =======================
-function updateUI() {
-    let rsi = RSI();
-    let signal = ma20.at(-1) > ma50.at(-1) ? "BUY" : "SELL";
-
-    document.getElementById("price").innerText =
-        "Price: " + lastClose.toFixed(2);
-
-    document.getElementById("rsi").innerText =
-        "RSI: " + rsi.toFixed(2);
-
-    let s = document.getElementById("signal");
-    s.innerText = "Signal: " + signal;
-    s.className = signal === "BUY" ? "buy" : "sell";
-}
-
-// =======================
-// ENGINE (SLOW + REALISTIC)
-// =======================
-function step() {
+setInterval(()=>{
     candles.shift();
     candles.push(generateCandle());
-    updateIndicators();
-}
+},250);
 
-setInterval(step, 250);
-setInterval(draw, 60);
+setInterval(draw,60);
 
 updateIndicators();
+updateMomentum();
 </script>
 
 </body>
