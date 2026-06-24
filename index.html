@@ -184,40 +184,65 @@ setLang("en");
 const canvas = document.getElementById("chartCanvas");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
+function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight * 0.9;
 }
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+resize();
+window.addEventListener("resize", resize);
 
-// fake trading data
-let points = [];
-for (let i = 0; i < 60; i++) {
-    points.push(100 + Math.random() * 50);
+// smoother BTC-like data
+let prices = [];
+let base = 45000;
+
+// initial dataset (less noisy)
+for (let i = 0; i < 120; i++) {
+    base += (Math.random() - 0.5) * 200; // smaller volatility
+    prices.push(base);
 }
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.beginPath();
-    ctx.moveTo(0, canvas.height - points[0]);
+    // subtle grid (clean trading terminal feel)
+    ctx.strokeStyle = "rgba(255,255,255,0.04)";
+    ctx.lineWidth = 1;
 
-    for (let i = 1; i < points.length; i++) {
-        let x = (i / points.length) * canvas.width;
-        let y = canvas.height - points[i];
-        ctx.lineTo(x, y);
+    for (let i = 0; i < 8; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, (i / 8) * canvas.height);
+        ctx.lineTo(canvas.width, (i / 8) * canvas.height);
+        ctx.stroke();
     }
 
-    ctx.strokeStyle = "#60a5fa";
+    // price line
+    ctx.beginPath();
+
+    for (let i = 0; i < prices.length; i++) {
+        let x = (i / prices.length) * canvas.width;
+
+        // smoother scaling (less jumpy)
+        let y = canvas.height / 2 - (prices[i] - base) * 0.08;
+
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+
+    ctx.strokeStyle = "#00ffae";
     ctx.lineWidth = 2;
+    ctx.shadowColor = "#00ffae";
+    ctx.shadowBlur = 8;
     ctx.stroke();
 
-    // animate movement
-    points.shift();
-    points.push(100 + Math.random() * 80);
+    // NORMAL SPEED update (slow market movement)
+    base += (Math.random() - 0.5) * 80; // slow changes
 
-    requestAnimationFrame(draw);
+    prices.shift();
+    prices.push(base);
+
+    setTimeout(() => {
+        requestAnimationFrame(draw);
+    }, 60); // slows animation (~16fps feel)
 }
 
 draw();
