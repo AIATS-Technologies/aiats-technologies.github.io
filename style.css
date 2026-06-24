@@ -1,6 +1,3 @@
-/* =========================
-   GLOBAL RESET
-========================= */
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +13,7 @@ body {
 }
 
 /* =========================
-   NAVBAR (TRADING STYLE)
+   NAVBAR
 ========================= */
 .navbar {
     position: sticky;
@@ -41,9 +38,7 @@ body {
     color: #00ffae;
 }
 
-/* =========================
-   NAV LINKS
-========================= */
+/* NAV LINKS */
 .nav-links {
     list-style: none;
     display: flex;
@@ -59,13 +54,11 @@ body {
 }
 
 .nav-links a:hover {
-    background: rgba(0, 255, 174, 0.1);
     color: #00ffae;
+    background: rgba(0,255,174,0.08);
 }
 
-/* =========================
-   MOBILE MENU
-========================= */
+/* MOBILE */
 .menu-toggle {
     display: none;
     font-size: 24px;
@@ -101,61 +94,23 @@ body {
 }
 
 /* =========================
-   LANGUAGE BUTTONS
-========================= */
-.lang-switch button {
-    background: #00ffae;
-    border: none;
-    padding: 6px 10px;
-    margin-left: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #0b0f14;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-section {
-    padding: 80px 20px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-}
-
-h2 {
-    color: #00ffae;
-    font-size: 2rem;
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-    text-align: center;
-    padding: 25px;
-    background: #05070c;
-    color: #64748b;
-}
-
-/* =========================
-   HERO (FULL CHART BACKGROUND)
+   HERO (ONLY PLACE CHART EXISTS)
 ========================= */
 .hero {
     position: relative;
     height: 90vh;
-    overflow: hidden;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    overflow: hidden;
+
     background: #0b0f14;
 }
 
-/* FULL BACKGROUND CHART */
-#chartCanvas {
+/* IMPORTANT: ONLY HERO CANVAS */
+.hero canvas#chartCanvas {
     position: absolute;
     top: 0;
     left: 0;
@@ -163,18 +118,19 @@ footer {
     width: 100%;
     height: 100%;
 
-    opacity: 0.35;
+    opacity: 0.30; /* subtle background effect */
     z-index: 1;
+
+    pointer-events: none; /* prevents blocking clicks */
 }
 
-/* HERO CONTENT OVER CHART */
+/* HERO CONTENT ON TOP */
 .hero-content {
     position: relative;
     z-index: 2;
 
-    max-width: 800px;
     text-align: center;
-
+    max-width: 800px;
     padding: 20px;
 }
 
@@ -188,9 +144,7 @@ footer {
     margin-bottom: 20px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 .hero-buttons {
     display: flex;
     gap: 12px;
@@ -215,8 +169,28 @@ footer {
 }
 
 /* =========================
-   RTL SUPPORT
+   SECTIONS
 ========================= */
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #00ffae;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #05070c;
+    color: #64748b;
+}
+
+/* RTL */
 body[dir="rtl"] {
     text-align: right;
 }
