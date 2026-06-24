@@ -6,8 +6,6 @@
 <title>AIATS Technologies</title>
 
 <link rel="stylesheet" href="style.css">
-
-<!-- Better Arabic + English font -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -22,6 +20,7 @@
     <ul class="nav-links" id="navLinks">
         <li><a href="#home" data-en="Home" data-ar="الرئيسية"></a></li>
         <li><a href="#about" data-en="About" data-ar="من نحن"></a></li>
+        <li><a href="#features" data-en="Features" data-ar="المميزات"></a></li>
         <li><a href="#services" data-en="Services" data-ar="الخدمات"></a></li>
         <li><a href="#training" data-en="Training" data-ar="التدريب"></a></li>
         <li><a href="#contact" data-en="Contact" data-ar="اتصل بنا"></a></li>
@@ -33,60 +32,87 @@
     </div>
 </nav>
 
-<!-- HERO -->
-<header id="home">
-    <h1 data-en="AIATS Technologies" data-ar="تقنيات AIATS"></h1>
+<!-- HERO (IMPORTANT UPGRADE) -->
+<header id="home" class="hero">
+    <div class="hero-content">
 
-    <p data-en="AI-powered algorithmic trading systems for modern financial markets."
-       data-ar="أنظمة تداول خوارزمية مدعومة بالذكاء الاصطناعي للأسواق المالية الحديثة.">
-    </p>
+        <h1 data-en="AI-Powered Trading Intelligence"
+            data-ar="ذكاء تداول مدعوم بالذكاء الاصطناعي"></h1>
 
-    <p data-en="We design, build, and deploy intelligent trading automation solutions."
-       data-ar="نقوم بتصميم وبناء ونشر حلول تداول ذكية مؤتمتة.">
-    </p>
+        <p data-en="Build, automate, and scale algorithmic trading systems with institutional-grade AI technology."
+           data-ar="ابنِ وأتمت ووسّع أنظمة التداول الخوارزمية بتقنيات ذكاء اصطناعي احترافية.">
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#services" class="btn primary"
+               data-en="Explore Systems" data-ar="استكشف الأنظمة"></a>
+
+            <a href="#training" class="btn secondary"
+               data-en="Start Learning" data-ar="ابدأ التعلم"></a>
+        </div>
+
+    </div>
 </header>
+
+<!-- FEATURES (THIS MAKES IT LOOK PROFESSIONAL) -->
+<section id="features">
+    <h2 data-en="Why AIATS" data-ar="لماذا AIATS"></h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3 data-en="Real-Time AI Systems" data-ar="أنظمة ذكاء لحظية"></h3>
+            <p data-en="Live market analysis using machine learning models."
+               data-ar="تحليل مباشر للسوق باستخدام نماذج تعلم الآلة."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="Automated Trading" data-ar="تداول آلي"></h3>
+            <p data-en="Fully automated execution with risk control."
+               data-ar="تنفيذ آلي كامل مع إدارة مخاطر."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="Quant Strategies" data-ar="استراتيجيات كمية"></h3>
+            <p data-en="Data-driven trading models and signals."
+               data-ar="نماذج تداول تعتمد على البيانات والإحصاء."></p>
+        </div>
+
+    </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
-    <h2 data-en="About Us" data-ar="من نحن"></h2>
+    <h2 data-en="About AIATS" data-ar="عن AIATS"></h2>
 
-    <p data-en="AIATS Technologies is a fintech and AI company focused on algorithmic trading systems, quantitative research, and automation tools."
-       data-ar="AIATS Technologies هي شركة تقنية مالية وذكاء اصطناعي تركز على أنظمة التداول الخوارزمية والبحث الكمي وأدوات الأتمتة.">
-    </p>
-
-    <p data-en="We combine machine learning, financial engineering, and data science to build intelligent trading systems."
-       data-ar="نقوم بدمج تعلم الآلة والهندسة المالية وعلوم البيانات لبناء أنظمة تداول ذكية.">
+    <p class="center-text"
+       data-en="AIATS Technologies builds next-generation algorithmic trading systems powered by AI, data science, and quantitative research."
+       data-ar="AIATS Technologies تبني الجيل القادم من أنظمة التداول الخوارزمية المدعومة بالذكاء الاصطناعي وعلوم البيانات والبحث الكمي.">
     </p>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
-    <h2 data-en="Our Services" data-ar="خدماتنا"></h2>
+    <h2 data-en="Services" data-ar="الخدمات"></h2>
 
     <div class="grid">
 
         <div class="card">
-            <h3 data-en="Algorithmic Trading Systems" data-ar="أنظمة التداول الخوارزمية"></h3>
-            <p data-en="Automated systems for fast execution, risk control, and market strategy deployment."
-               data-ar="أنظمة آلية للتنفيذ السريع وإدارة المخاطر وتطبيق الاستراتيجيات."></p>
+            <h3 data-en="Trading Systems" data-ar="أنظمة التداول"></h3>
+            <p data-en="Institutional-grade automated trading platforms."
+               data-ar="منصات تداول آلية بمستوى مؤسسي."></p>
         </div>
 
         <div class="card">
-            <h3 data-en="AI Market Analysis" data-ar="تحليل السوق بالذكاء الاصطناعي"></h3>
-            <p data-en="Machine learning models that analyze trends, volatility, and financial data."
-               data-ar="نماذج تعلم الآلة لتحليل الاتجاهات والتقلبات والبيانات المالية."></p>
+            <h3 data-en="AI Analytics" data-ar="تحليلات الذكاء الاصطناعي"></h3>
+            <p data-en="Predictive models for financial markets."
+               data-ar="نماذج تنبؤية للأسواق المالية."></p>
         </div>
 
         <div class="card">
-            <h3 data-en="Quantitative Research" data-ar="البحث الكمي"></h3>
-            <p data-en="Mathematical and statistical models for building profitable strategies."
-               data-ar="نماذج رياضية وإحصائية لبناء استراتيجيات مربحة."></p>
-        </div>
-
-        <div class="card">
-            <h3 data-en="Automation Tools" data-ar="أدوات الأتمتة"></h3>
-            <p data-en="Custom tools for trading workflows, APIs, and financial automation."
-               data-ar="أدوات مخصصة لأتمتة التداول وواجهات API والعمليات المالية."></p>
+            <h3 data-en="Consulting" data-ar="الاستشارات"></h3>
+            <p data-en="Fintech and automation consulting services."
+               data-ar="استشارات في التقنية المالية والأتمتة."></p>
         </div>
 
     </div>
@@ -96,27 +122,18 @@
 <section id="training">
     <h2 data-en="Training Programs" data-ar="برامج التدريب"></h2>
 
-    <p data-en="Structured learning paths for beginners, intermediate, and advanced traders."
-       data-ar="مسارات تعليمية منظمة للمبتدئين والمتوسطين والمتقدمين."></p>
-
     <div class="grid">
 
         <div class="card">
-            <h3 data-en="Beginner Level" data-ar="المستوى المبتدئ"></h3>
-            <p data-en="Learn trading basics, markets, and financial foundations."
-               data-ar="تعلم أساسيات التداول والأسواق والأسس المالية."></p>
+            <h3 data-en="Beginner Path" data-ar="المبتدئين"></h3>
         </div>
 
         <div class="card">
-            <h3 data-en="Advanced Trading" data-ar="التداول المتقدم"></h3>
-            <p data-en="Algorithmic strategies, indicators, and risk systems."
-               data-ar="استراتيجيات خوارزمية ومؤشرات وأنظمة المخاطر."></p>
+            <h3 data-en="Advanced Trading" data-ar="المتقدم"></h3>
         </div>
 
         <div class="card">
             <h3 data-en="AI & Quant Finance" data-ar="الذكاء الاصطناعي والتمويل الكمي"></h3>
-            <p data-en="Machine learning applications in financial prediction."
-               data-ar="تطبيقات تعلم الآلة في التنبؤ المالي."></p>
         </div>
 
     </div>
@@ -124,10 +141,8 @@
 
 <!-- CTA -->
 <section class="cta">
-    <h2 data-en="Build the Future of Trading" data-ar="ابنِ مستقبل التداول"></h2>
-
-    <p data-en="Join AIATS Technologies today and automate your trading intelligence."
-       data-ar="انضم إلى AIATS Technologies و أتمت ذكاء التداول لديك."></p>
+    <h2 data-en="Start Building Intelligent Trading Systems"
+        data-ar="ابدأ بناء أنظمة تداول ذكية"></h2>
 
     <a href="https://github.com/AIATS-Technologies"
        data-en="Visit GitHub"
@@ -138,21 +153,16 @@
 <section id="contact">
     <h2 data-en="Contact Us" data-ar="اتصل بنا"></h2>
 
-    <div class="card" style="max-width:500px; margin:auto;">
+    <div class="card contact">
         <p>Email: contact@aiats.tech</p>
         <p>GitHub: AIATS-Technologies</p>
-
-        <p data-en="We typically respond within 24–48 hours."
-           data-ar="نرد عادة خلال 24 إلى 48 ساعة."></p>
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     © 2026 AIATS Technologies
 </footer>
 
-<!-- SCRIPT -->
 <script>
 function setLang(lang) {
     document.querySelectorAll("[data-en]").forEach(el => {
@@ -162,7 +172,6 @@ function setLang(lang) {
     document.body.setAttribute("lang", lang);
     document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
 
-    // close mobile menu when switching language
     document.getElementById("navLinks").classList.remove("active");
 }
 
