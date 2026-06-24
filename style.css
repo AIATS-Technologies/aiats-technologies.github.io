@@ -1,3 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* NAVBAR */
 .navbar {
     position: sticky;
     top: 0;
@@ -5,7 +20,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 25px;
+    padding: 14px 25px;
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid #1e293b;
@@ -20,13 +35,12 @@
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 22px;
+    gap: 20px;
 }
 
 .nav-links a {
-    color: #fff;
+    color: white;
     text-decoration: none;
-    font-weight: 500;
     transition: 0.3s;
 }
 
@@ -34,6 +48,7 @@
     color: #60a5fa;
 }
 
+/* Language buttons */
 .lang-switch button {
     background: #60a5fa;
     border: none;
@@ -42,4 +57,39 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+}
+
+/* HERO */
+header {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+}
+
+header h1 {
+    font-size: 3rem;
+}
+
+header p {
+    margin-top: 10px;
+    color: #cbd5e1;
+}
+
+/* SECTIONS */
+section {
+    padding: 70px 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #60a5fa;
+    margin-bottom: 15px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #020617;
+    color: #94a3b8;
 }
