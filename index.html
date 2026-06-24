@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AIATS Technologies</title>
 
-<!-- External CSS -->
 <link rel="stylesheet" href="style.css">
+
+<!-- Better Arabic + English font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body dir="ltr">
@@ -15,7 +17,9 @@
 <nav class="navbar">
     <div class="logo">AIATS</div>
 
-    <ul class="nav-links">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <ul class="nav-links" id="navLinks">
         <li><a href="#home" data-en="Home" data-ar="الرئيسية"></a></li>
         <li><a href="#about" data-en="About" data-ar="من نحن"></a></li>
         <li><a href="#services" data-en="Services" data-ar="الخدمات"></a></li>
@@ -32,37 +36,123 @@
 <!-- HERO -->
 <header id="home">
     <h1 data-en="AIATS Technologies" data-ar="تقنيات AIATS"></h1>
-    <p data-en="Algorithmic AI trading systems."
-       data-ar="أنظمة التداول الذكية بالذكاء الاصطناعي."></p>
+
+    <p data-en="AI-powered algorithmic trading systems for modern financial markets."
+       data-ar="أنظمة تداول خوارزمية مدعومة بالذكاء الاصطناعي للأسواق المالية الحديثة.">
+    </p>
+
+    <p data-en="We design, build, and deploy intelligent trading automation solutions."
+       data-ar="نقوم بتصميم وبناء ونشر حلول تداول ذكية مؤتمتة.">
+    </p>
 </header>
 
 <!-- ABOUT -->
 <section id="about">
     <h2 data-en="About Us" data-ar="من نحن"></h2>
-    <p data-en="We build AI trading systems."
-       data-ar="نحن نبني أنظمة تداول ذكية."></p>
+
+    <p data-en="AIATS Technologies is a fintech and AI company focused on algorithmic trading systems, quantitative research, and automation tools."
+       data-ar="AIATS Technologies هي شركة تقنية مالية وذكاء اصطناعي تركز على أنظمة التداول الخوارزمية والبحث الكمي وأدوات الأتمتة.">
+    </p>
+
+    <p data-en="We combine machine learning, financial engineering, and data science to build intelligent trading systems."
+       data-ar="نقوم بدمج تعلم الآلة والهندسة المالية وعلوم البيانات لبناء أنظمة تداول ذكية.">
+    </p>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
-    <h2 data-en="Services" data-ar="الخدمات"></h2>
+    <h2 data-en="Our Services" data-ar="خدماتنا"></h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3 data-en="Algorithmic Trading Systems" data-ar="أنظمة التداول الخوارزمية"></h3>
+            <p data-en="Automated systems for fast execution, risk control, and market strategy deployment."
+               data-ar="أنظمة آلية للتنفيذ السريع وإدارة المخاطر وتطبيق الاستراتيجيات."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="AI Market Analysis" data-ar="تحليل السوق بالذكاء الاصطناعي"></h3>
+            <p data-en="Machine learning models that analyze trends, volatility, and financial data."
+               data-ar="نماذج تعلم الآلة لتحليل الاتجاهات والتقلبات والبيانات المالية."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="Quantitative Research" data-ar="البحث الكمي"></h3>
+            <p data-en="Mathematical and statistical models for building profitable strategies."
+               data-ar="نماذج رياضية وإحصائية لبناء استراتيجيات مربحة."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="Automation Tools" data-ar="أدوات الأتمتة"></h3>
+            <p data-en="Custom tools for trading workflows, APIs, and financial automation."
+               data-ar="أدوات مخصصة لأتمتة التداول وواجهات API والعمليات المالية."></p>
+        </div>
+
+    </div>
 </section>
 
 <!-- TRAINING -->
 <section id="training">
-    <h2 data-en="Training" data-ar="التدريب"></h2>
+    <h2 data-en="Training Programs" data-ar="برامج التدريب"></h2>
+
+    <p data-en="Structured learning paths for beginners, intermediate, and advanced traders."
+       data-ar="مسارات تعليمية منظمة للمبتدئين والمتوسطين والمتقدمين."></p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3 data-en="Beginner Level" data-ar="المستوى المبتدئ"></h3>
+            <p data-en="Learn trading basics, markets, and financial foundations."
+               data-ar="تعلم أساسيات التداول والأسواق والأسس المالية."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="Advanced Trading" data-ar="التداول المتقدم"></h3>
+            <p data-en="Algorithmic strategies, indicators, and risk systems."
+               data-ar="استراتيجيات خوارزمية ومؤشرات وأنظمة المخاطر."></p>
+        </div>
+
+        <div class="card">
+            <h3 data-en="AI & Quant Finance" data-ar="الذكاء الاصطناعي والتمويل الكمي"></h3>
+            <p data-en="Machine learning applications in financial prediction."
+               data-ar="تطبيقات تعلم الآلة في التنبؤ المالي."></p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2 data-en="Build the Future of Trading" data-ar="ابنِ مستقبل التداول"></h2>
+
+    <p data-en="Join AIATS Technologies today and automate your trading intelligence."
+       data-ar="انضم إلى AIATS Technologies و أتمت ذكاء التداول لديك."></p>
+
+    <a href="https://github.com/AIATS-Technologies"
+       data-en="Visit GitHub"
+       data-ar="زيارة GitHub"></a>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-    <h2 data-en="Contact" data-ar="اتصل بنا"></h2>
+    <h2 data-en="Contact Us" data-ar="اتصل بنا"></h2>
+
+    <div class="card" style="max-width:500px; margin:auto;">
+        <p>Email: contact@aiats.tech</p>
+        <p>GitHub: AIATS-Technologies</p>
+
+        <p data-en="We typically respond within 24–48 hours."
+           data-ar="نرد عادة خلال 24 إلى 48 ساعة."></p>
+    </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
     © 2026 AIATS Technologies
 </footer>
 
-<!-- JS -->
+<!-- SCRIPT -->
 <script>
 function setLang(lang) {
     document.querySelectorAll("[data-en]").forEach(el => {
@@ -71,6 +161,13 @@ function setLang(lang) {
 
     document.body.setAttribute("lang", lang);
     document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+    // close mobile menu when switching language
+    document.getElementById("navLinks").classList.remove("active");
+}
+
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
 }
 
 setLang("en");
