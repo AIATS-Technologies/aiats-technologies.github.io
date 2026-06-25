@@ -697,3 +697,7 @@ footer {
         font-size: 10px;
     }
 }
+html,
+body{
+    touch-action: pan-y;
+}
