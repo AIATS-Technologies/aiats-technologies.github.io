@@ -452,6 +452,37 @@ window.addEventListener("wheel",(e)=>{
     if(e.deltaY<0 && current>0) show(current-1);
 });
 
+/* ================= MOBILE SWIPE ================= */
+
+let touchStartY = 0;
+let touchEndY = 0;
+
+window.addEventListener("touchstart", e => {
+    touchStartY = e.changedTouches[0].screenY;
+});
+
+window.addEventListener("touchend", e => {
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+});
+
+function handleSwipe() {
+
+    const diff = touchStartY - touchEndY;
+
+    if (Math.abs(diff) < 50) return;
+
+    // swipe up
+    if (diff > 0 && current < sections.length - 1) {
+        show(current + 1);
+    }
+
+    // swipe down
+    if (diff < 0 && current > 0) {
+        show(current - 1);
+    }
+}
+
 /* ================= TRAINING ================= */
 function select(el){
     document.querySelectorAll(".training-card").forEach(c=>c.classList.remove("active"));
