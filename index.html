@@ -6,449 +6,544 @@
 <title>AIATS Technologies</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-body { margin:0; overflow-x:hidden; }
-canvas { display:block; }
-</style>
+/* ===================== GLOBAL ===================== */
+* { margin:0; padding:0; box-sizing:border-box; }
 
+body {
+    font-family:'Cairo',sans-serif;
+    background:#0b0f14;
+    color:white;
+    overflow:hidden; /* IMPORTANT: app mode */
+}
+
+/* ===================== BOOT ===================== */
+.boot-screen {
+    position:fixed;
+    inset:0;
+    background:#05070c;
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.boot-box {
+    width:420px;
+    padding:20px;
+    border:1px solid #1f2a3a;
+    background:rgba(10,15,25,0.9);
+}
+
+.boot-title {
+    color:#00ffae;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.boot-log {
+    font-size:12px;
+    height:140px;
+    color:#cbd5e1;
+}
+
+.boot-bar {
+    height:6px;
+    background:#111827;
+}
+
+.boot-progress {
+    height:100%;
+    width:0%;
+    background:#00ffae;
+}
+
+/* ===================== NAV ===================== */
+.navbar {
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 20px;
+    background:rgba(10,15,25,0.7);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #1f2a3a;
+}
+
+.logo {
+    color:#00ffae;
+    font-weight:bold;
+}
+
+.nav-links {
+    display:flex;
+    gap:15px;
+    list-style:none;
+}
+
+.nav-links a {
+    color:#94a3b8;
+    text-decoration:none;
+}
+
+/* ===================== FULL SCREEN SYSTEM ===================== */
+section {
+    position:absolute;
+    inset:0;
+    height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:60px 20px;
+    text-align:center;
+    transition:0.3s ease;
+}
+
+section.active {
+    display:flex;
+}
+
+/* ===================== HERO ===================== */
+.hero {
+    position:relative;
+    overflow:hidden;
+}
+
+canvas {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    opacity:0.3;
+    pointer-events:none;
+}
+
+.hero-content {
+    position:relative;
+    z-index:2;
+}
+
+.hero h1 {
+    font-size:2.8rem;
+}
+
+.hero p {
+    color:#94a3b8;
+    margin-top:10px;
+}
+
+.hero-buttons {
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    justify-content:center;
+}
+
+.btn {
+    padding:10px 16px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn.primary {
+    background:#00ffae;
+    color:#0b0f14;
+}
+
+.btn.secondary {
+    border:1px solid #00ffae;
+    color:#00ffae;
+}
+
+/* ===================== SERVICES ===================== */
+.services-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    max-width:1000px;
+}
+
+.service-card {
+    background:rgba(10,15,25,0.5);
+    border:1px solid #1f2a3a;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* ===================== TRAINING ===================== */
+.training-grid {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.training-card {
+    padding:12px;
+    background:#0f1722;
+    border:1px solid #1f2a3a;
+    cursor:pointer;
+}
+
+.training-card.active {
+    border-color:#00ffae;
+}
+
+.training-output {
+    margin-top:20px;
+    background:rgba(10,15,25,0.6);
+    padding:15px;
+}
+
+/* ===================== CONTACT ===================== */
+input,textarea {
+    padding:10px;
+    margin:5px;
+    background:#0f1722;
+    border:1px solid #1f2a3a;
+    color:white;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+    position:fixed;
+    bottom:10px;
+    width:100%;
+    text-align:center;
+    color:#64748b;
+}
+</style>
 </head>
 
 <body>
-<!-- SYSTEM BOOT SCREEN -->
+
+<!-- BOOT -->
 <div id="bootScreen" class="boot-screen">
     <div class="boot-box">
-
-        <div class="boot-title">AIATS SYSTEM INITIALIZING</div>
-
+        <div class="boot-title">AIATS SYSTEM BOOTING</div>
         <div id="bootLog" class="boot-log"></div>
-
-        <div class="boot-bar">
-            <div class="boot-progress" id="bootProgress"></div>
-        </div>
-
+        <div class="boot-bar"><div id="bootProgress" class="boot-progress"></div></div>
     </div>
 </div>
-<!-- NAVBAR -->
+
+<!-- NAV -->
 <nav class="navbar">
-    <div class="logo">AIATS</div>
-
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#training">Training</a></li>
-        <li><a href="#contact">Contact</a></li>
+    <div class="logo">AIATS TECHNOLOGIES</div>
+    <ul class="nav-links">
+        <li><a onclick="go(1)">About</a></li>
+        <li><a onclick="go(2)">Services</a></li>
+        <li><a onclick="go(3)">Training</a></li>
+        <li><a onclick="go(4)">Contact</a></li>
     </ul>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero active">
     <canvas id="chartCanvas"></canvas>
-
     <div class="hero-content">
-        <h1>Smarter Trading Starts Here</h1>
-        <p>AI-powered market simulation with real-time momentum engine</p>
+        <h1>Intelligent Trading Starts Here</h1>
+        <p>AI-powered trading HFT engine</p>
 
         <div class="hero-buttons">
-            <a href="#training" class="btn primary">Training</a>
-            <a href="#services" class="btn secondary">Services</a>
+            <a class="btn primary" onclick="go(3)">Training</a>
+            <a class="btn secondary" onclick="go(2)">Services</a>
         </div>
     </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="about">
-    <div class="about-container">
-        <h2>About AIATS</h2>
+<section id="about">
+    <h2>About AIATS</h2>
+
+    <div style="max-width:900px;margin:0 auto;line-height:1.8;color:#94a3b8;text-align:center;">
 
         <p>
-            AIATS Technologies is a modern trading simulation platform that visualizes financial markets using AI-style
-            market modeling, real-time generated data, and technical indicators.
+            AIATS Technologies is a group of engineers and quantitative developers focused on building
+            advanced algorithmic trading systems powered by artificial intelligence, data science, and
+            modern software engineering.
         </p>
 
         <p>
-            It simulates price action, trends, and momentum to help users understand how trading systems work without
-            financial risk, creating a realistic learning environment.
+            We design and develop fully automated trading infrastructures that transform market data into
+            structured, executable strategies. Our systems are built to analyze price behavior, manage risk,
+            and execute trades with precision and consistency across different market conditions.
         </p>
 
         <p>
-            Modern trading relies on speed, automation, and data-driven logic. AIATS demonstrates how algorithms analyze
-            markets and reduce emotional decision-making.
+            At AIATS, we combine engineering discipline with financial research to create scalable trading
+            solutions that help traders and developers move from manual decision-making to intelligent
+            automation.
         </p>
 
         <p>
-            The platform bridges visualization, automation, and strategy learning into one interactive system.
+            Our mission is simple: build reliable, transparent, and high-performance trading systems that
+            bring institutional-level automation tools to individual traders and teams.
         </p>
+
     </div>
 </section>
-
 <!-- SERVICES -->
-<section id="services" class="services">
-
+<section id="services">
     <h2>Services</h2>
 
-    <div class="services-grid">
+    <div class="services-wrapper">
 
-        <div class="service-card gradient-1">
-            <div class="icon">📊</div>
-            <h3>Market Simulation</h3>
-            <p>Real-time synthetic price engine for learning and analysis.</p>
+        <div class="service-slide">
+            <div class="service-card">
+                <div class="icon">🔐</div>
+                <h3>Binance Auto-Trading Integration</h3>
+                <p>Connect Binance API (trade-only access, no withdrawals) to secure automated execution systems.</p>
+            </div>
         </div>
 
-        <div class="service-card gradient-2">
-            <div class="icon">🤖</div>
-            <h3>AI Trading Visualization</h3>
-            <p>Indicators, momentum, and smart signal overlays.</p>
+        <div class="service-slide">
+            <div class="service-card">
+                <div class="icon">⚙️</div>
+                <h3>Strategy Automation</h3>
+                <p>Convert manual trading strategies into fully automated execution engines with rule-based logic.</p>
+            </div>
         </div>
 
-        <div class="service-card gradient-3">
-            <div class="icon">⚡</div>
-            <h3>Strategy System</h3>
-            <p>Test trading logic in a risk-free environment.</p>
+        <div class="service-slide">
+            <div class="service-card">
+                <div class="icon">📈</div>
+                <h3>Indicator Development</h3>
+                <p>Custom TradingView indicators: momentum, trend detection, volatility systems, and hybrid signals.</p>
+            </div>
+        </div>
+
+        <div class="service-slide">
+            <div class="service-card">
+                <div class="icon">🧠</div>
+                <h3>Full Trading Systems</h3>
+                <p>End-to-end infrastructure: data, signals, execution, and risk management systems.</p>
+            </div>
         </div>
 
     </div>
-
 </section>
 
 <!-- TRAINING -->
-<section id="training" class="training">
+<section id="training">
 
-    <h2>Training</h2>
+<h2>Training Core</h2>
 
-    <p class="training-subtitle">
-        Explore modern trading systems and algorithmic market logic.
-    </p>
+<p style="color:#94a3b8;margin-bottom:20px;">
+Building Automated Trading Systems </p>
 
-    <div class="training-grid">
+<div class="training-grid">
 
-        <div class="training-card" onclick="selectModule(this)">
-            <div class="badge">Core</div>
-            <h3>Algorithmic Trading</h3>
-        </div>
-
-        <div class="training-card" onclick="selectModule(this)">
-            <div class="badge">Tools</div>
-            <h3>TradingView Analysis</h3>
-        </div>
-
-        <div class="training-card" onclick="selectModule(this)">
-            <div class="badge">Data</div>
-            <h3>Numerical Models</h3>
-        </div>
-
-        <div class="training-card" onclick="selectModule(this)">
-            <div class="badge">AI</div>
-            <h3>AI Simulation</h3>
-        </div>
-
+    <div class="training-card" >
+        TradingView indicator development using Pine Script
     </div>
 
-    <div id="trainingOutput" class="training-output data-panel">
-        <div class="data-title">System Output</div>
-
-        <div class="data-row">
-            <span>Module</span>
-            <span id="d_module">—</span>
-        </div>
-
-        <div class="data-row">
-            <span>Signal</span>
-            <span id="d_signal">—</span>
-        </div>
-
-        <div class="data-row">
-            <span>Volatility</span>
-            <span id="d_volatility">—</span>
-        </div>
-
-        <div class="data-row">
-            <span>Bias</span>
-            <span id="d_bias">—</span>
-        </div>
+    <div class="training-card" >
+        Strategy creation and backtesting
     </div>
+
+    <div class="training-card" >
+        Signal generation and alert systems
+    </div>
+
+    <div class="training-card" >
+        Binance API integration
+    </div>
+    <div class="training-card" >
+        Python automation for trade execution
+    </div>
+    <div class="training-card" >
+        Position sizing and risk management
+    </div>
+    <div class="training-card" >
+        Stop-loss and take-profit automation
+    </div>
+    <div class="training-card" >
+        Portfolio protection and capital preservation
+    </div>
+    <div class="training-card" >
+
+        Building complete end-to-end algorithmic trading systems
+    </div>
+
+
+
+</div>
+
 
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact">
+<section id="contact">
 
-    <h2>Contact</h2>
+    <h2>Contact AIATS</h2>
 
-    <p class="contact-subtitle">
-        Send us a message and we’ll respond soon.
+    <p style="color:#94a3b8;margin-bottom:30px;">
+        Have questions about training, strategy development, automation, or Binance integration?
+        Contact us directly.
     </p>
 
-    <form class="contact-form" onsubmit="submitForm(event)">
+    <div class="contact-buttons">
 
-        <div class="form-row">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-        </div>
+        <a href="https://t.me/aiats_technologies_3" target="_blank" class="contact-btn telegram" >
+             <i class="fa-brands fa-telegram"></i> Telegram
+        </a>
+<br>
+        <a href="https://wa.me/963994434234" target="_blank" class="contact-btn whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            WhatsApp
+        </a>
+<br>       
+         <a
+        href="mailto:aiatstechnologies@gmail.com"
+        class="contact-btn email"
+    >
+        <i class="fa-solid fa-envelope"></i>
+        Email
+    </a>
 
-        <input type="text" id="subject" placeholder="Subject" required>
-
-        <textarea id="message" rows="5" placeholder="Message" required></textarea>
-
-        <button type="submit">Send</button>
-
-    </form>
-
-    <div id="contactStatus" class="contact-status"></div>
+    </div>
 
 </section>
 
-<footer>© 2026 AIATS Technologies</footer>
+<footer>© 2026 AIATS</footer>
 
 <script>
-const bootLines = [
-    "[SYSTEM] Initializing AIATS core engine...",
-    "[DATA] Loading market simulation module...",
-    "[CHART] Connecting candlestick renderer...",
-    "[AI] Activating momentum prediction layer...",
-    "[INDICATORS] Calculating SMA / Momentum models...",
-    "[NETWORK] Syncing synthetic market feed...",
-    "[SECURITY] Encrypting trading session...",
-    "[READY] System online."
-];
 
-let bootIndex = 0;
-let bootLog = document.getElementById("bootLog");
-let bootProgress = document.getElementById("bootProgress");
+/* ================= BOOT ================= */
+let logs=["INIT","LOADING AI","MARKET DATA","READY"];
+let i=0;
 
-function runBoot() {
-
-    if (bootIndex < bootLines.length) {
-        let line = document.createElement("div");
-        line.textContent = bootLines[bootIndex];
-        bootLog.appendChild(line);
-
-        bootProgress.style.width =
-            ((bootIndex + 1) / bootLines.length) * 100 + "%";
-
-        bootIndex++;
-        setTimeout(runBoot, 500);
-    } else {
-        setTimeout(() => {
-            document.getElementById("bootScreen").style.opacity = "0";
-            document.getElementById("bootScreen").style.transition = "0.8s ease";
-
-            setTimeout(() => {
-                document.getElementById("bootScreen").remove();
-            }, 900);
-        }, 600);
+function boot(){
+    if(i<logs.length){
+        document.getElementById("bootLog").innerHTML+=logs[i]+"<br>";
+        document.getElementById("bootProgress").style.width=((i+1)/logs.length*100)+"%";
+        i++;
+        setTimeout(boot,500);
+    }else{
+        setTimeout(()=>document.getElementById("bootScreen").remove(),800);
     }
 }
+window.onload=boot;
 
-window.addEventListener("load", runBoot);
-// =======================
-// NAV
-// =======================
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
+/* ================= SECTION SYSTEM ================= */
+const sections=document.querySelectorAll("section");
+let current=0;
+
+function show(n){
+    sections.forEach(s=>s.classList.remove("active"));
+    sections[n].classList.add("active");
+    current=n;
 }
 
-// =======================
-// TRAINING DATA
-// =======================
-function selectModule(el) {
+function go(n){
+    show(n);
+}
 
-    document.querySelectorAll(".training-card")
-        .forEach(c => c.classList.remove("active"));
+show(0);
 
+/* wheel navigation */
+window.addEventListener("wheel",(e)=>{
+    if(e.deltaY>0 && current<sections.length-1) show(current+1);
+    if(e.deltaY<0 && current>0) show(current-1);
+});
+
+/* ================= TRAINING ================= */
+function select(el){
+    document.querySelectorAll(".training-card").forEach(c=>c.classList.remove("active"));
     el.classList.add("active");
-
-    let title = el.querySelector("h3").innerText;
-
-    let data = {
-        "Algorithmic Trading": { signal:"78%", volatility:"Medium", bias:"Bullish" },
-        "TradingView Analysis": { signal:"64%", volatility:"Low", bias:"Neutral" },
-        "Numerical Models": { signal:"71%", volatility:"High", bias:"Bearish" },
-        "AI Simulation": { signal:"85%", volatility:"Very High", bias:"Adaptive" }
-    };
-
-    let d = data[title] || {};
-
-    document.getElementById("d_module").innerText = title;
-    document.getElementById("d_signal").innerText = d.signal || "—";
-    document.getElementById("d_volatility").innerText = d.volatility || "—";
-    document.getElementById("d_bias").innerText = d.bias || "—";
+    document.getElementById("out").innerText="Module: "+el.innerText;
 }
 
-// =======================
-// CONTACT FORM
-// =======================
-function submitForm(e) {
-    e.preventDefault();
+/* ================= CHART ================= */
+const canvas=document.getElementById("chartCanvas");
+const ctx=canvas.getContext("2d");
 
-    let name = document.getElementById("name").value;
-    let status = document.getElementById("contactStatus");
-
-    status.innerText = "Sending...";
-
-    setTimeout(() => {
-        status.innerText = `Thanks ${name}, we received your message.`;
-        document.querySelector(".contact-form").reset();
-    }, 1000);
-}
-
-// =======================
-// CANVAS
-// =======================
-const canvas = document.getElementById("chartCanvas");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = document.querySelector(".hero").offsetHeight;
+function resize(){
+    canvas.width=innerWidth;
+    canvas.height=innerHeight;
 }
 resize();
-window.addEventListener("resize", resize);
+window.addEventListener("resize",resize);
 
-// =======================
-// MARKET DATA
-// =======================
-let candles = [];
-let lastClose = 45000;
+let candles=[];
+let last=45000;
 
-function generateCandle() {
-    let open = lastClose;
-    let change = (Math.random() - 0.5) * 250;
-
-    let close = open + change;
-    let high = Math.max(open, close) + Math.random() * 120;
-    let low = Math.min(open, close) - Math.random() * 120;
-
-    lastClose = close;
-    return { open, high, low, close };
+function c(){
+    let o=last;
+    let cl=o+(Math.random()-0.5)*120;
+    last=cl;
+    return {o,cl};
 }
 
-for (let i = 0; i < 120; i++) candles.push(generateCandle());
+for(let i=0;i<120;i++) candles.push(c());
 
-// =======================
-// INDICATORS
-// =======================
-let ma20 = [];
-let ma50 = [];
-let momentumSeries = [];
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-function SMA(period) {
-    let arr = [];
-    for (let i = period; i < candles.length; i++) {
-        let sum = 0;
-        for (let j = 0; j < period; j++) {
-            sum += candles[i - j].close;
-        }
-        arr.push(sum / period);
-    }
-    return arr;
-}
+    let w=canvas.width/candles.length;
 
-function updateIndicators() {
-    ma20 = SMA(20);
-    ma50 = SMA(50);
-}
+    candles.forEach((d,i)=>{
+        let x=i*w;
+        let y=canvas.height/2-(d.cl-last)*0.4;
 
-function getMomentumSeries(period = 10) {
-    let series = [];
-    for (let i = period; i < candles.length; i++) {
-        let start = candles[i - period].close;
-        let end = candles[i].close;
-        series.push(((end - start) / start) * 100);
-    }
-    return series;
-}
-
-function updateMomentum() {
-    momentumSeries = getMomentumSeries(10);
-}
-
-// =======================
-// DRAW
-// =======================
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    let w = canvas.width / candles.length;
-    let scale = canvas.height * 0.0007;
-
-    // candles
-    candles.forEach((c, i) => {
-        let x = i * w;
-
-        let o = canvas.height/2 - (c.open-lastClose)*scale;
-        let h = canvas.height/2 - (c.high-lastClose)*scale;
-        let l = canvas.height/2 - (c.low-lastClose)*scale;
-        let cl = canvas.height/2 - (c.close-lastClose)*scale;
-
-        ctx.strokeStyle = "rgba(255,255,255,0.2)";
-        ctx.beginPath();
-        ctx.moveTo(x, h);
-        ctx.lineTo(x, l);
-        ctx.stroke();
-
-        ctx.fillStyle = c.close > c.open ? "#00ffae" : "#ff4d4d";
-        ctx.fillRect(x-1, Math.min(o,cl), 2, Math.abs(cl-o)||1);
+        ctx.fillStyle=d.cl>d.o?"#00ffae":"#ff4d4d";
+        ctx.fillRect(x,y,2,6);
     });
-
-    // MA
-    updateIndicators();
-    drawMA(ma20, "#ffd700");
-    drawMA(ma50, "#00aaff");
-
-    // momentum dots
-    updateMomentum();
-
-    for (let i = 10; i < candles.length; i++) {
-        let m = momentumSeries[i-10];
-        if (!m) continue;
-
-        let x = i*w;
-        let y = canvas.height/2 - (candles[i].close-lastClose)*scale;
-
-        ctx.fillStyle = m>0 ? "#00ffae" : "#ff4d4d";
-        ctx.beginPath();
-        ctx.arc(x, y, 2.5, 0, Math.PI*2);
-        ctx.fill();
-    }
-
-    // price
-    ctx.fillStyle = "#00ffae";
-    ctx.font = "12px Arial";
-    ctx.fillText(lastClose.toFixed(2), canvas.width-100, canvas.height/2);
 }
 
-function drawMA(data, color) {
-    if (!data.length) return;
-
-    ctx.strokeStyle = color;
-    ctx.beginPath();
-
-    data.forEach((v,i)=>{
-        let x = i*(canvas.width/candles.length);
-        let y = canvas.height/2 - (v-lastClose)*0.07;
-        if(i===0) ctx.moveTo(x,y);
-        else ctx.lineTo(x,y);
-    });
-
-    ctx.stroke();
-}
-
-// =======================
-// LOOP
-// =======================
 setInterval(()=>{
     candles.shift();
-    candles.push(generateCandle());
-},250);
+    candles.push(c());
+},300);
 
 setInterval(draw,60);
 
-updateIndicators();
-updateMomentum();
+
+const trainingData = [
+    {
+        title: "Algorithmic Trading",
+        desc: "Build full automated trading systems from scratch using structured logic, execution engines, and market flow design.",
+        tags: ["Python", "Binance API", "Automation", "Backtesting"]
+    },
+    {
+        title: "TradingView Systems",
+        desc: "Design indicators and strategy scripts using Pine Script and connect signals to execution systems.",
+        tags: ["TradingView", "Pine Script", "Signals"]
+    },
+    {
+        title: "AI Market Models",
+        desc: "Use AI-based models to simulate and predict market behavior using historical and real-time data.",
+        tags: ["Machine Learning", "Data", "Prediction"]
+    },
+    {
+        title: "Risk Management",
+        desc: "Learn portfolio protection, position sizing, drawdown control, and capital preservation strategies.",
+        tags: ["Risk", "Capital", "Strategy Safety"]
+    }
+];
+
+function selectTraining(i) {
+    document.querySelectorAll(".training-item")
+        .forEach(el => el.classList.remove("active"));
+
+    document.querySelectorAll(".training-item")[i]
+        .classList.add("active");
+
+    const t = trainingData[i];
+
+    document.getElementById("trainingPanel").innerHTML = `
+        <div class="training-title">${t.title}</div>
+        <div class="training-desc">${t.desc}</div>
+        <div class="training-tags">
+            ${t.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+        </div>
+    `;
+}
 </script>
 
 </body>
