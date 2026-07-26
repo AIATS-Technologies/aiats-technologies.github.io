@@ -1,581 +1,2717 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AIATS Technologies</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-/* ===================== GLOBAL ===================== */
-* { margin:0; padding:0; box-sizing:border-box; }
+    <title>AIATS Technologies | Algorithmic Trading Infrastructure</title>
 
-body {
-    font-family:'Cairo',sans-serif;
-    background:#0b0f14;
-    color:white;
-    overflow:hidden; /* IMPORTANT: app mode */
-}
+    <meta
+        name="description"
+        content="AIATS Technologies develops automated algorithmic trading infrastructure where mathematics, technology and engineering work together to transform systematic strategies into measurable execution."
+    >
 
-/* ===================== BOOT ===================== */
-.boot-screen {
-    position:fixed;
-    inset:0;
-    background:#05070c;
-    z-index:9999;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+    <meta name="theme-color" content="#05070c">
 
-.boot-box {
-    width:420px;
-    padding:20px;
-    border:1px solid #1f2a3a;
-    background:rgba(10,15,25,0.9);
-}
+    <style>
 
-.boot-title {
-    color:#00ffae;
-    font-weight:bold;
-    margin-bottom:10px;
-}
+        /* =========================================================
+           ROOT
+        ========================================================= */
 
-.boot-log {
-    font-size:12px;
-    height:140px;
-    color:#cbd5e1;
-}
+        :root {
+            --bg: #05070c;
+            --bg-2: #080c14;
+            --bg-3: #0c111b;
 
-.boot-bar {
-    height:6px;
-    background:#111827;
-}
+            --white: #f5f7fb;
+            --text: #dce2ec;
+            --muted: #8994a6;
+            --dim: #566174;
 
-.boot-progress {
-    height:100%;
-    width:0%;
-    background:#00ffae;
-}
+            --blue: #55aaff;
+            --blue-2: #8ac8ff;
 
-/* ===================== NAV ===================== */
-.navbar {
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:1000;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 20px;
-    background:rgba(10,15,25,0.7);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid #1f2a3a;
-}
+            --green: #55d98a;
 
-.logo {
-    color:#00ffae;
-    font-weight:bold;
-}
+            --line: rgba(255,255,255,0.075);
 
-.nav-links {
-    display:flex;
-    gap:15px;
-    list-style:none;
-}
+            --container: 1180px;
+        }
 
-.nav-links a {
-    color:#94a3b8;
-    text-decoration:none;
-}
 
-/* ===================== FULL SCREEN SYSTEM ===================== */
-section {
-    position:absolute;
-    inset:0;
-    height:100vh;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    padding:60px 20px;
-    text-align:center;
-    transition:0.3s ease;
-}
+        /* =========================================================
+           RESET
+        ========================================================= */
 
-section.active {
-    display:flex;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* ===================== HERO ===================== */
-.hero {
-    position:relative;
-    overflow:hidden;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-canvas {
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    opacity:0.3;
-    pointer-events:none;
-}
+        body {
+            background:
+                radial-gradient(
+                    circle at 80% 5%,
+                    rgba(55, 145, 255, 0.10),
+                    transparent 30%
+                ),
+                var(--bg);
 
-.hero-content {
-    position:relative;
-    z-index:2;
-}
+            color: var(--white);
 
-.hero h1 {
-    font-size:2.8rem;
-}
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
 
-.hero p {
-    color:#94a3b8;
-    margin-top:10px;
-}
+            line-height: 1.6;
+        }
 
-.hero-buttons {
-    margin-top:20px;
-    display:flex;
-    gap:10px;
-    justify-content:center;
-}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-.btn {
-    padding:10px 16px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-}
+        .container {
+            width: min(
+                var(--container),
+                calc(100% - 40px)
+            );
 
-.btn.primary {
-    background:#00ffae;
-    color:#0b0f14;
-}
+            margin: 0 auto;
+        }
 
-.btn.secondary {
-    border:1px solid #00ffae;
-    color:#00ffae;
-}
 
-/* ===================== SERVICES ===================== */
-.services-grid {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    max-width:1000px;
-}
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
 
-.service-card {
-    background:rgba(10,15,25,0.5);
-    border:1px solid #1f2a3a;
-    padding:15px;
-    border-radius:10px;
-}
+        .navbar {
+            position: fixed;
 
-/* ===================== TRAINING ===================== */
-.training-grid {
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
+            top: 0;
+            left: 0;
 
-.training-card {
-    padding:12px;
-    background:#0f1722;
-    border:1px solid #1f2a3a;
-    cursor:pointer;
-}
+            width: 100%;
 
-.training-card.active {
-    border-color:#00ffae;
-}
+            z-index: 1000;
 
-.training-output {
-    margin-top:20px;
-    background:rgba(10,15,25,0.6);
-    padding:15px;
-}
+            border-bottom:
+                1px solid rgba(255,255,255,0.055);
 
-/* ===================== CONTACT ===================== */
-input,textarea {
-    padding:10px;
-    margin:5px;
-    background:#0f1722;
-    border:1px solid #1f2a3a;
-    color:white;
-}
+            background:
+                rgba(5,7,12,0.78);
 
-/* ===================== FOOTER ===================== */
-footer {
-    position:fixed;
-    bottom:10px;
-    width:100%;
-    text-align:center;
-    color:#64748b;
-}
-</style>
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-inner {
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            font-size: 20px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .brand-mark {
+            width: 31px;
+            height: 31px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid rgba(85,170,255,0.45);
+
+            border-radius: 8px;
+
+            color: var(--blue);
+
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .brand span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-contact {
+            padding: 9px 16px;
+
+            border:
+                1px solid rgba(85,170,255,0.35);
+
+            border-radius: 7px;
+
+            color: white !important;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+
+            padding-top: 150px;
+            padding-bottom: 110px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            top: -280px;
+            right: -160px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(70,160,255,0.13),
+                    transparent 68%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.05fr
+                0.95fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 7px 13px;
+
+            border:
+                1px solid rgba(85,170,255,0.22);
+
+            border-radius: 100px;
+
+            background:
+                rgba(85,170,255,0.045);
+
+            color: var(--blue-2);
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+            box-shadow:
+                0 0 12px rgba(85,217,138,0.7);
+        }
+
+        h1 {
+            max-width: 780px;
+
+            margin-top: 25px;
+
+            font-size:
+                clamp(50px, 6.4vw, 82px);
+
+            line-height: 0.96;
+
+            letter-spacing: -4px;
+        }
+
+        .gradient {
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff 15%,
+                    #65b5ff 90%
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-copy {
+            max-width: 650px;
+
+            margin-top: 29px;
+
+            color: var(--muted);
+
+            font-size: 18px;
+
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 13px;
+
+            margin-top: 35px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 47px;
+
+            padding: 0 20px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                border 0.2s ease;
+        }
+
+        .btn-primary {
+            background: white;
+
+            color: #05070c;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+
+            background: #e5f3ff;
+        }
+
+        .btn-secondary {
+            border:
+                1px solid var(--line);
+
+            background:
+                rgba(255,255,255,0.025);
+
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            border-color:
+                rgba(85,170,255,0.4);
+        }
+
+
+        /* =========================================================
+           SYSTEM PANEL
+        ========================================================= */
+
+        .system-panel {
+            position: relative;
+
+            border:
+                1px solid rgba(255,255,255,0.085);
+
+            border-radius: 17px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(18,29,48,0.95),
+                    rgba(6,10,18,0.98)
+                );
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,0.45);
+        }
+
+        .panel-header {
+            height: 46px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 16px;
+
+            gap: 7px;
+
+            border-bottom:
+                1px solid var(--line);
+        }
+
+        .panel-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #4e5b6e;
+        }
+
+        .panel-title {
+            margin-left: 9px;
+
+            color: var(--dim);
+
+            font-family: monospace;
+
+            font-size: 10px;
+        }
+
+        .panel-body {
+            padding: 27px;
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding-bottom: 23px;
+
+            border-bottom:
+                1px solid var(--line);
+        }
+
+        .system-status-label {
+            color: var(--muted);
+
+            font-family: monospace;
+
+            font-size: 11px;
+        }
+
+        .system-status-value {
+            color: var(--green);
+
+            font-family: monospace;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .system-stack {
+            margin-top: 23px;
+        }
+
+        .stack-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.045);
+        }
+
+        .stack-row span:first-child {
+            color: #738096;
+
+            font-family: monospace;
+
+            font-size: 11px;
+        }
+
+        .stack-row span:last-child {
+            color: white;
+
+            font-family: monospace;
+
+            font-size: 11px;
+        }
+
+        .engine {
+            margin-top: 23px;
+
+            padding: 18px;
+
+            border:
+                1px solid rgba(85,170,255,0.15);
+
+            border-radius: 10px;
+
+            background:
+                rgba(85,170,255,0.035);
+        }
+
+        .engine-head {
+            display: flex;
+            justify-content: space-between;
+
+            color: var(--muted);
+
+            font-family: monospace;
+
+            font-size: 10px;
+        }
+
+        .engine-active {
+            color: var(--green);
+        }
+
+        .engine-line {
+            height: 1px;
+
+            margin: 19px 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(85,170,255,0.65),
+                    transparent
+                );
+        }
+
+        .execution-path {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            color: #7d8ba0;
+
+            font-family: monospace;
+
+            font-size: 9px;
+
+            letter-spacing: 0.5px;
+        }
+
+        .execution-path strong {
+            color: white;
+        }
+
+
+        /* =========================================================
+           METRIC BAR
+        ========================================================= */
+
+        .metrics {
+            border-top:
+                1px solid var(--line);
+
+            border-bottom:
+                1px solid var(--line);
+
+            background:
+                rgba(255,255,255,0.012);
+        }
+
+        .metrics-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+        }
+
+        .metric-box {
+            padding: 31px 15px;
+
+            text-align: center;
+
+            border-right:
+                1px solid var(--line);
+        }
+
+        .metric-box:last-child {
+            border-right: none;
+        }
+
+        .metric-number {
+            font-size: 25px;
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+        }
+
+        .metric-number.green {
+            color: var(--green);
+        }
+
+        .metric-label {
+            margin-top: 6px;
+
+            color: var(--dim);
+
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================================
+           SECTIONS
+        ========================================================= */
+
+        section {
+            padding: 125px 0;
+        }
+
+        .section-head {
+            max-width: 760px;
+
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            color: var(--blue);
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: 1.8px;
+
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin-top: 13px;
+
+            font-size:
+                clamp(36px, 4.3vw, 56px);
+
+            line-height: 1.02;
+
+            letter-spacing: -2.5px;
+        }
+
+        .section-copy {
+            margin-top: 20px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.75;
+        }
+
+
+        /* =========================================================
+           BIG IDEA
+        ========================================================= */
+
+        .idea-section {
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent,
+                    rgba(65,145,255,0.025),
+                    transparent
+                );
+        }
+
+        .idea-grid {
+            display: grid;
+
+            grid-template-columns:
+                0.9fr
+                1.1fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+        .idea-quote {
+            padding-left: 28px;
+
+            border-left:
+                2px solid var(--blue);
+        }
+
+        .idea-quote p {
+            font-size:
+                clamp(30px, 4vw, 51px);
+
+            line-height: 1.08;
+
+            letter-spacing: -2px;
+
+            font-weight: 700;
+        }
+
+        .idea-quote span {
+            color: var(--blue);
+        }
+
+        .idea-text p {
+            margin-bottom: 19px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.85;
+        }
+
+        .idea-text strong {
+            color: white;
+        }
+
+
+        /* =========================================================
+           DISCIPLINES
+        ========================================================= */
+
+        .disciplines {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .discipline {
+            min-height: 215px;
+
+            padding: 28px 23px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.008)
+                );
+        }
+
+        .discipline-number {
+            color: var(--blue);
+
+            font-family: monospace;
+
+            font-size: 10px;
+        }
+
+        .discipline h3 {
+            margin-top: 25px;
+
+            font-size: 19px;
+        }
+
+        .discipline p {
+            margin-top: 11px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           ARCHITECTURE
+        ========================================================= */
+
+        .architecture {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 12px;
+        }
+
+        .architecture-card {
+            position: relative;
+
+            min-height: 235px;
+
+            padding: 24px 19px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 12px;
+
+            background: var(--bg-3);
+        }
+
+        .architecture-card:not(:last-child)::after {
+            content: "→";
+
+            position: absolute;
+
+            right: -17px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--dim);
+
+            z-index: 4;
+        }
+
+        .architecture-number {
+            color: var(--blue);
+
+            font-family: monospace;
+
+            font-size: 10px;
+        }
+
+        .architecture-card h3 {
+            margin-top: 22px;
+
+            font-size: 16px;
+        }
+
+        .architecture-card p {
+            margin-top: 10px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           CAPABILITIES
+        ========================================================= */
+
+        .capabilities {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+        }
+
+        .capability {
+            padding: 29px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 13px;
+
+            background: var(--bg-3);
+
+            transition:
+                transform 0.25s ease,
+                border 0.25s ease;
+        }
+
+        .capability:hover {
+            transform: translateY(-4px);
+
+            border-color:
+                rgba(85,170,255,0.28);
+        }
+
+        .capability-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background:
+                rgba(85,170,255,0.07);
+
+            color: var(--blue-2);
+
+            font-family: monospace;
+
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        .capability h3 {
+            margin-top: 20px;
+
+            font-size: 17px;
+        }
+
+        .capability p {
+            margin-top: 10px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           PERFORMANCE
+        ========================================================= */
+
+        .performance {
+            display: grid;
+
+            grid-template-columns:
+                1.15fr
+                0.85fr;
+
+            gap: 18px;
+        }
+
+        .performance-card {
+            padding: 30px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 14px;
+
+            background: var(--bg-3);
+        }
+
+        .performance-label {
+            color: var(--dim);
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+        }
+
+        .performance-number {
+            margin-top: 7px;
+
+            font-size: 48px;
+
+            font-weight: 850;
+
+            letter-spacing: -2px;
+        }
+
+        .performance-number.green {
+            color: var(--green);
+        }
+
+        .chart {
+            height: 215px;
+
+            margin-top: 28px;
+
+            border-bottom:
+                1px solid var(--line);
+        }
+
+        .chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-area {
+            fill:
+                rgba(85,170,255,0.06);
+        }
+
+        .chart-line {
+            fill: none;
+
+            stroke: var(--blue);
+
+            stroke-width: 3;
+        }
+
+        .performance-list {
+            margin-top: 20px;
+        }
+
+        .performance-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 14px 0;
+
+            border-bottom:
+                1px solid var(--line);
+
+            font-size: 12px;
+        }
+
+        .performance-row span {
+            color: var(--muted);
+        }
+
+        .performance-row strong {
+            color: white;
+        }
+
+
+        /* =========================================================
+           PHILOSOPHY
+        ========================================================= */
+
+        .philosophy {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .philosophy-card {
+            padding: 36px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 14px;
+
+            background: var(--bg-3);
+        }
+
+        .philosophy-card.featured {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(85,170,255,0.09),
+                    rgba(255,255,255,0.01)
+                );
+
+            border-color:
+                rgba(85,170,255,0.25);
+        }
+
+        .philosophy-card h3 {
+            font-size: 23px;
+        }
+
+        .philosophy-card p {
+            margin-top: 18px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           FORMULA
+        ========================================================= */
+
+        .formula-section {
+            padding-top: 80px;
+        }
+
+        .formula {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            align-items: center;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            background: var(--bg-3);
+        }
+
+        .formula-item {
+            min-height: 145px;
+
+            padding: 25px 15px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            border-right:
+                1px solid var(--line);
+        }
+
+        .formula-item:last-child {
+            border-right: none;
+        }
+
+        .formula-symbol {
+            color: var(--blue);
+
+            font-family: monospace;
+
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .formula-label {
+            margin-top: 8px;
+
+            color: white;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .cta {
+            padding: 100px 35px;
+
+            text-align: center;
+
+            border:
+                1px solid rgba(85,170,255,0.2);
+
+            border-radius: 20px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(85,170,255,0.13),
+                    transparent 65%
+                ),
+                var(--bg-3);
+        }
+
+        .cta h2 {
+            max-width: 760px;
+
+            margin: 0 auto;
+        }
+
+        .cta p {
+            max-width: 620px;
+
+            margin: 20px auto 0;
+
+            color: var(--muted);
+
+            font-size: 15px;
+        }
+
+        .cta .hero-actions {
+            justify-content: center;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding: 55px 0 30px;
+
+            border-top:
+                1px solid var(--line);
+        }
+
+        .footer-main {
+            display: flex;
+
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 40px;
+        }
+
+        .footer-brand strong {
+            font-size: 17px;
+
+            letter-spacing: 1.5px;
+        }
+
+        .footer-brand p {
+            margin-top: 6px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .footer-email {
+            color: var(--blue-2);
+
+            font-family: monospace;
+
+            font-size: 12px;
+        }
+
+        .disclaimer {
+            margin-top: 35px;
+            padding-top: 25px;
+
+            border-top:
+                1px solid var(--line);
+
+            color: #5e697b;
+
+            font-size: 9px;
+
+            line-height: 1.8;
+        }
+
+        .copyright {
+            margin-top: 25px;
+
+            color: #4e5869;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .hero-grid,
+            .idea-grid,
+            .performance {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .architecture-card::after {
+                display: none;
+            }
+
+            .disciplines {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .metrics-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .metric-box:nth-child(3) {
+                border-right: none;
+            }
+
+            .capabilities {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .container {
+                width:
+                    calc(100% - 28px);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 125px;
+            }
+
+            h1 {
+                font-size: 49px;
+
+                letter-spacing: -2.5px;
+            }
+
+            section {
+                padding: 85px 0;
+            }
+
+            .metrics-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .metric-box {
+                border-bottom:
+                    1px solid var(--line);
+            }
+
+            .metric-box:nth-child(2n) {
+                border-right: none;
+            }
+
+            .disciplines,
+            .architecture,
+            .capabilities,
+            .philosophy {
+                grid-template-columns: 1fr;
+            }
+
+            .formula {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .formula-item {
+                border-bottom:
+                    1px solid var(--line);
+            }
+
+            .formula-item:nth-child(2n) {
+                border-right: none;
+            }
+
+            .footer-main {
+                flex-direction: column;
+            }
+
+            .cta {
+                padding: 65px 20px;
+            }
+        }
+
+
+        @media (max-width: 420px) {
+
+            h1 {
+                font-size: 43px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric-number {
+                font-size: 21px;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<!-- BOOT -->
-<div id="bootScreen" class="boot-screen">
-    <div class="boot-box">
-        <div class="boot-title">AIATS SYSTEM BOOTING</div>
-        <div id="bootLog" class="boot-log"></div>
-        <div class="boot-bar"><div id="bootProgress" class="boot-progress"></div></div>
-    </div>
-</div>
 
-<!-- NAV -->
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
 <nav class="navbar">
-    <div class="logo">AIATS TECHNOLOGIES</div>
-    <ul class="nav-links">
-        <li><a onclick="go(1)">About</a></li>
-        <li><a onclick="go(2)">Services</a></li>
-        <li><a onclick="go(3)">Training</a></li>
-        <li><a onclick="go(4)">Contact</a></li>
-    </ul>
+
+    <div class="container nav-inner">
+
+        <a href="#" class="brand">
+
+            <div class="brand-mark">
+                AI
+            </div>
+
+            AI<span>ATS</span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#principle">
+                Principle
+            </a>
+
+            <a href="#architecture">
+                Architecture
+            </a>
+
+            <a href="#technology">
+                Technology
+            </a>
+
+            <a href="#performance">
+                Performance
+            </a>
+
+            <a
+                href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Inquiry"
+                class="nav-contact">
+
+                Contact
+
+            </a>
+
+        </div>
+
+    </div>
+
 </nav>
 
-<!-- HERO -->
-<section class="hero active">
-    <canvas id="chartCanvas"></canvas>
-    <div class="hero-content">
-        <h1>Intelligent Trading Starts Here</h1>
-        <p>AI-powered trading HFT engine</p>
 
-        <div class="hero-buttons">
-            <a class="btn primary" onclick="go(3)">Training</a>
-            <a class="btn secondary" onclick="go(2)">Services</a>
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+
+        <div>
+
+            <div class="eyebrow">
+
+                <span class="live-dot"></span>
+
+                Automated Algorithmic Trading Infrastructure
+
+            </div>
+
+
+            <h1>
+
+                When the numbers,
+                technology and
+                <span class="gradient">
+                    engineers work together.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-copy">
+
+                AIATS is an automated algorithmic trading infrastructure
+                designed to coordinate multiple strategies, process
+                structured signals and transform systematic decisions
+                into automated execution.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#principle"
+                    class="btn btn-primary">
+
+                    Explore AIATS
+
+                </a>
+
+
+                <a
+                    href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Technical%20Brief%20Request"
+                    class="btn btn-secondary">
+
+                    Request Technical Brief
+
+                </a>
+
+            </div>
+
         </div>
+
+
+        <!-- SYSTEM VISUAL -->
+
+        <div class="system-panel">
+
+            <div class="panel-header">
+
+                <span class="panel-dot"></span>
+                <span class="panel-dot"></span>
+                <span class="panel-dot"></span>
+
+                <span class="panel-title">
+                    aiats.execution.infrastructure
+                </span>
+
+            </div>
+
+
+            <div class="panel-body">
+
+
+                <div class="system-status">
+
+                    <span class="system-status-label">
+                        SYSTEM STATUS
+                    </span>
+
+                    <span class="system-status-value">
+                        ● ONLINE
+                    </span>
+
+                </div>
+
+
+                <div class="system-stack">
+
+                    <div class="stack-row">
+
+                        <span>
+                            STRATEGY LAYER
+                        </span>
+
+                        <span>
+                            MULTIPLE
+                        </span>
+
+                    </div>
+
+
+                    <div class="stack-row">
+
+                        <span>
+                            INPUT LAYER
+                        </span>
+
+                        <span>
+                            STRUCTURED
+                        </span>
+
+                    </div>
+
+
+                    <div class="stack-row">
+
+                        <span>
+                            SIGNAL ENGINE
+                        </span>
+
+                        <span>
+                            PROCESSING
+                        </span>
+
+                    </div>
+
+
+                    <div class="stack-row">
+
+                        <span>
+                            EXECUTION
+                        </span>
+
+                        <span>
+                            AUTOMATED
+                        </span>
+
+                    </div>
+
+
+                    <div class="stack-row">
+
+                        <span>
+                            ANALYTICS
+                        </span>
+
+                        <span>
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="engine">
+
+                    <div class="engine-head">
+
+                        <span>
+                            EXECUTION ENGINE
+                        </span>
+
+                        <span class="engine-active">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="engine-line"></div>
+
+
+                    <div class="execution-path">
+
+                        <span>
+                            SIGNAL
+                        </span>
+
+                        <strong>
+                            →
+                        </strong>
+
+                        <span>
+                            VALIDATE
+                        </span>
+
+                        <strong>
+                            →
+                        </strong>
+
+                        <span>
+                            EXECUTE
+                        </span>
+
+                        <strong>
+                            →
+                        </strong>
+
+                        <span>
+                            RECORD
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-    <h2>About AIATS</h2>
 
-    <div style="max-width:900px;margin:0 auto;line-height:1.8;color:#94a3b8;text-align:center;">
+<!-- =========================================================
+     HISTORICAL METRICS
+========================================================= -->
 
-        <p>
-            AIATS Technologies is a group of engineers and quantitative developers focused on building
-            advanced algorithmic trading systems powered by artificial intelligence, data science, and
-            modern software engineering.
-        </p>
+<div class="metrics">
 
-        <p>
-            We design and develop fully automated trading infrastructures that transform market data into
-            structured, executable strategies. Our systems are built to analyze price behavior, manage risk,
-            and execute trades with precision and consistency across different market conditions.
-        </p>
+    <div class="container metrics-grid">
 
-        <p>
-            At AIATS, we combine engineering discipline with financial research to create scalable trading
-            solutions that help traders and developers move from manual decision-making to intelligent
-            automation.
-        </p>
 
-        <p>
-            Our mission is simple: build reliable, transparent, and high-performance trading systems that
-            bring institutional-level automation tools to individual traders and teams.
-        </p>
+        <div class="metric-box">
 
-    </div>
-</section>
-<!-- SERVICES -->
-<section id="services">
-    <h2>Services</h2>
-
-    <div class="services-wrapper">
-
-        <div class="service-slide">
-            <div class="service-card">
-                <div class="icon">🔐</div>
-                <h3>Binance Auto-Trading Integration</h3>
-                <p>Connect Binance API (trade-only access, no withdrawals) to secure automated execution systems.</p>
+            <div class="metric-number">
+                11,319
             </div>
+
+            <div class="metric-label">
+                Recorded Orders
+            </div>
+
         </div>
 
-        <div class="service-slide">
-            <div class="service-card">
-                <div class="icon">⚙️</div>
-                <h3>Strategy Automation</h3>
-                <p>Convert manual trading strategies into fully automated execution engines with rule-based logic.</p>
+
+        <div class="metric-box">
+
+            <div class="metric-number">
+                $1.62M+
             </div>
+
+            <div class="metric-label">
+                Recorded Activity
+            </div>
+
         </div>
 
-        <div class="service-slide">
-            <div class="service-card">
-                <div class="icon">📈</div>
-                <h3>Indicator Development</h3>
-                <p>Custom TradingView indicators: momentum, trend detection, volatility systems, and hybrid signals.</p>
+
+        <div class="metric-box">
+
+            <div class="metric-number">
+                493
             </div>
+
+            <div class="metric-label">
+                Avg. Orders / Day
+            </div>
+
         </div>
 
-        <div class="service-slide">
-            <div class="service-card">
-                <div class="icon">🧠</div>
-                <h3>Full Trading Systems</h3>
-                <p>End-to-end infrastructure: data, signals, execution, and risk management systems.</p>
+
+        <div class="metric-box">
+
+            <div class="metric-number">
+                23
             </div>
+
+            <div class="metric-label">
+                Reporting Days
+            </div>
+
+        </div>
+
+
+        <div class="metric-box">
+
+            <div class="metric-number green">
+                +7.22%
+            </div>
+
+            <div class="metric-label">
+                Reported ROI
+            </div>
+
         </div>
 
     </div>
-</section>
-
-<!-- TRAINING -->
-<section id="training">
-
-<h2>Training Core</h2>
-
-<p style="color:#94a3b8;margin-bottom:20px;">
-Building Automated Trading Systems </p>
-
-<div class="training-grid">
-
-    <div class="training-card" >
-        TradingView indicator development using Pine Script
-    </div>
-
-    <div class="training-card" >
-        Strategy creation and backtesting
-    </div>
-
-    <div class="training-card" >
-        Signal generation and alert systems
-    </div>
-
-    <div class="training-card" >
-        Binance API integration
-    </div>
-    <div class="training-card" >
-        Python automation for trade execution
-    </div>
-    <div class="training-card" >
-        Position sizing and risk management
-    </div>
-    <div class="training-card" >
-        Stop-loss and take-profit automation
-    </div>
-    <div class="training-card" >
-        Portfolio protection and capital preservation
-    </div>
-    <div class="training-card" >
-
-        Building complete end-to-end algorithmic trading systems
-    </div>
-
-
 
 </div>
 
 
-</section>
+<!-- =========================================================
+     PRINCIPLE
+========================================================= -->
 
-<!-- CONTACT -->
-<section id="contact">
+<section id="principle" class="idea-section">
 
-    <h2>Contact AIATS</h2>
+    <div class="container idea-grid">
 
-    <p style="color:#94a3b8;margin-bottom:30px;">
-        Have questions about training, strategy development, automation, or Binance integration?
-        Contact us directly.
-    </p>
 
-    <div class="contact-buttons">
+        <div class="idea-quote">
 
-        <a href="https://t.me/aiats_technologies_3" target="_blank" class="contact-btn telegram" >
-             <i class="fa-brands fa-telegram"></i> Telegram
-        </a>
-<br>
-        <a href="https://wa.me/963994434234" target="_blank" class="contact-btn whatsapp">
-            <i class="fa-brands fa-whatsapp"></i>
-            WhatsApp
-        </a>
-<br>       
-         <a
-        href="mailto:aiatstechnologies@gmail.com"
-        class="contact-btn email"
-    >
-        <i class="fa-solid fa-envelope"></i>
-        Email
-    </a>
+            <p>
+
+                The advantage is not
+                necessarily one perfect
+                decision.
+
+                <br><br>
+
+                It is the ability to make
+                <span>thousands of disciplined
+                decisions systematically.</span>
+
+            </p>
+
+        </div>
+
+
+        <div class="idea-text">
+
+            <div class="section-tag">
+                The Principle
+            </div>
+
+
+            <h2>
+                Markets are complex.
+                Systems can be disciplined.
+            </h2>
+
+
+            <p>
+
+                Markets contain uncertainty. Human attention is limited,
+                and manual execution introduces hesitation, fatigue and
+                inconsistency.
+
+            </p>
+
+
+            <p>
+
+                Quantitative methods approach the problem differently.
+                Mathematical rules define the methodology. Technology
+                makes it executable. Engineering connects the components.
+                Automation makes the process repeatable.
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    The objective is not to predict everything.
+                </strong>
+
+                The objective is to build a system capable of applying
+                a defined methodology systematically across a large
+                number of decisions.
+
+            </p>
+
+
+            <p>
+
+                That is the principle behind AIATS.
+
+            </p>
+
+        </div>
 
     </div>
 
 </section>
 
-<footer>© 2026 AIATS</footer>
 
-<script>
+<!-- =========================================================
+     DISCIPLINES
+========================================================= -->
 
-/* ================= BOOT ================= */
-let logs=["INIT","LOADING AI","MARKET DATA","READY"];
-let i=0;
+<section>
 
-function boot(){
-    if(i<logs.length){
-        document.getElementById("bootLog").innerHTML+=logs[i]+"<br>";
-        document.getElementById("bootProgress").style.width=((i+1)/logs.length*100)+"%";
-        i++;
-        setTimeout(boot,500);
-    }else{
-        setTimeout(()=>document.getElementById("bootScreen").remove(),800);
-    }
-}
-window.onload=boot;
-
-/* ================= SECTION SYSTEM ================= */
-const sections=document.querySelectorAll("section");
-let current=0;
-
-function show(n){
-    sections.forEach(s=>s.classList.remove("active"));
-    sections[n].classList.add("active");
-    current=n;
-}
-
-function go(n){
-    show(n);
-}
-
-show(0);
-
-/* wheel navigation */
-window.addEventListener("wheel",(e)=>{
-    if(e.deltaY>0 && current<sections.length-1) show(current+1);
-    if(e.deltaY<0 && current>0) show(current-1);
-});
-
-/* ================= MOBILE SWIPE ================= */
-
-let touchStartY = 0;
-let touchEndY = 0;
-
-window.addEventListener("touchstart", e => {
-    touchStartY = e.changedTouches[0].screenY;
-});
-
-window.addEventListener("touchend", e => {
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-});
-
-function handleSwipe() {
-
-    const diff = touchStartY - touchEndY;
-
-    if (Math.abs(diff) < 50) return;
-
-    // swipe up
-    if (diff > 0 && current < sections.length - 1) {
-        show(current + 1);
-    }
-
-    // swipe down
-    if (diff < 0 && current > 0) {
-        show(current - 1);
-    }
-}
-
-/* ================= TRAINING ================= */
-function select(el){
-    document.querySelectorAll(".training-card").forEach(c=>c.classList.remove("active"));
-    el.classList.add("active");
-    document.getElementById("out").innerText="Module: "+el.innerText;
-}
-
-/* ================= CHART ================= */
-const canvas=document.getElementById("chartCanvas");
-const ctx=canvas.getContext("2d");
-
-function resize(){
-    canvas.width=innerWidth;
-    canvas.height=innerHeight;
-}
-resize();
-window.addEventListener("resize",resize);
-
-let candles=[];
-let last=45000;
-
-function c(){
-    let o=last;
-    let cl=o+(Math.random()-0.5)*120;
-    last=cl;
-    return {o,cl};
-}
-
-for(let i=0;i<120;i++) candles.push(c());
-
-function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    let w=canvas.width/candles.length;
-
-    candles.forEach((d,i)=>{
-        let x=i*w;
-        let y=canvas.height/2-(d.cl-last)*0.4;
-
-        ctx.fillStyle=d.cl>d.o?"#00ffae":"#ff4d4d";
-        ctx.fillRect(x,y,2,6);
-    });
-}
-
-setInterval(()=>{
-    candles.shift();
-    candles.push(c());
-},300);
-
-setInterval(draw,60);
+    <div class="container">
 
 
-const trainingData = [
-    {
-        title: "Algorithmic Trading",
-        desc: "Build full automated trading systems from scratch using structured logic, execution engines, and market flow design.",
-        tags: ["Python", "Binance API", "Automation", "Backtesting"]
-    },
-    {
-        title: "TradingView Systems",
-        desc: "Design indicators and strategy scripts using Pine Script and connect signals to execution systems.",
-        tags: ["TradingView", "Pine Script", "Signals"]
-    },
-    {
-        title: "AI Market Models",
-        desc: "Use AI-based models to simulate and predict market behavior using historical and real-time data.",
-        tags: ["Machine Learning", "Data", "Prediction"]
-    },
-    {
-        title: "Risk Management",
-        desc: "Learn portfolio protection, position sizing, drawdown control, and capital preservation strategies.",
-        tags: ["Risk", "Capital", "Strategy Safety"]
-    }
-];
+        <div class="section-head">
 
-function selectTraining(i) {
-    document.querySelectorAll(".training-item")
-        .forEach(el => el.classList.remove("active"));
+            <div class="section-tag">
+                The Equation
+            </div>
 
-    document.querySelectorAll(".training-item")[i]
-        .classList.add("active");
+            <h2>
+                When the disciplines
+                meet, the system emerges.
+            </h2>
 
-    const t = trainingData[i];
+            <p class="section-copy">
 
-    document.getElementById("trainingPanel").innerHTML = `
-        <div class="training-title">${t.title}</div>
-        <div class="training-desc">${t.desc}</div>
-        <div class="training-tags">
-            ${t.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+                AIATS brings together the disciplines required to turn
+                a systematic trading methodology into an operating
+                execution infrastructure.
+
+            </p>
+
         </div>
-    `;
-}
-</script>
+
+
+        <div class="disciplines">
+
+
+            <div class="discipline">
+
+                <div class="discipline-number">
+                    01 / MATHEMATICS
+                </div>
+
+                <h3>
+                    Define the Logic
+                </h3>
+
+                <p>
+
+                    Mathematical and quantitative methods provide
+                    structure for systematic decision-making.
+
+                </p>
+
+            </div>
+
+
+            <div class="discipline">
+
+                <div class="discipline-number">
+                    02 / DATA
+                </div>
+
+                <h3>
+                    Inform the System
+                </h3>
+
+                <p>
+
+                    Structured information provides the foundation
+                    upon which strategy logic operates.
+
+                </p>
+
+            </div>
+
+
+            <div class="discipline">
+
+                <div class="discipline-number">
+                    03 / TECHNOLOGY
+                </div>
+
+                <h3>
+                    Make It Scalable
+                </h3>
+
+                <p>
+
+                    Software infrastructure transforms methodology
+                    into an executable digital system.
+
+                </p>
+
+            </div>
+
+
+            <div class="discipline">
+
+                <div class="discipline-number">
+                    04 / ENGINEERING
+                </div>
+
+                <h3>
+                    Make It Work
+                </h3>
+
+                <p>
+
+                    Engineering connects strategy, processing,
+                    execution and analytics into one infrastructure.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ARCHITECTURE
+========================================================= -->
+
+<section id="architecture">
+
+    <div class="container">
+
+
+        <div class="section-head">
+
+            <div class="section-tag">
+                System Architecture
+            </div>
+
+            <h2>
+                From strategy
+                to measurable execution.
+            </h2>
+
+            <p class="section-copy">
+
+                AIATS separates strategy generation from execution,
+                allowing multiple strategy modules to operate through
+                a coordinated infrastructure.
+
+            </p>
+
+        </div>
+
+
+        <div class="architecture">
+
+
+            <div class="architecture-card">
+
+                <div class="architecture-number">
+                    01
+                </div>
+
+                <h3>
+                    Strategy Layer
+                </h3>
+
+                <p>
+
+                    Multiple independent strategy modules generate
+                    structured trading signals according to predefined
+                    logic.
+
+                </p>
+
+            </div>
+
+
+            <div class="architecture-card">
+
+                <div class="architecture-number">
+                    02
+                </div>
+
+                <h3>
+                    Input Layer
+                </h3>
+
+                <p>
+
+                    Structured inputs enter the AIATS processing
+                    environment.
+
+                </p>
+
+            </div>
+
+
+            <div class="architecture-card">
+
+                <div class="architecture-number">
+                    03
+                </div>
+
+                <h3>
+                    Signal Engine
+                </h3>
+
+                <p>
+
+                    Signals are processed through validation,
+                    filtering and predefined execution rules.
+
+                </p>
+
+            </div>
+
+
+            <div class="architecture-card">
+
+                <div class="architecture-number">
+                    04
+                </div>
+
+                <h3>
+                    Execution Engine
+                </h3>
+
+                <p>
+
+                    Approved instructions are coordinated and routed
+                    through connected execution environments.
+
+                </p>
+
+            </div>
+
+
+            <div class="architecture-card">
+
+                <div class="architecture-number">
+                    05
+                </div>
+
+                <h3>
+                    Analytics
+                </h3>
+
+                <p>
+
+                    Execution activity is recorded and transformed
+                    into structured information for analysis.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TECHNOLOGY
+========================================================= -->
+
+<section id="technology">
+
+    <div class="container">
+
+
+        <div class="section-head">
+
+            <div class="section-tag">
+                Core Technology
+            </div>
+
+            <h2>
+                Built as infrastructure,
+                not a single trading bot.
+            </h2>
+
+            <p class="section-copy">
+
+                AIATS is designed around modularity, automation,
+                concurrent operations and measurable execution.
+
+            </p>
+
+        </div>
+
+
+        <div class="capabilities">
+
+
+            <div class="capability">
+
+                <div class="capability-icon">
+                    MS
+                </div>
+
+                <h3>
+                    Multi-Strategy Architecture
+                </h3>
+
+                <p>
+
+                    Multiple strategy modules can operate within
+                    the same execution infrastructure.
+
+                </p>
+
+            </div>
+
+
+            <div class="capability">
+
+                <div class="capability-icon">
+                    SP
+                </div>
+
+                <h3>
+                    Signal Processing
+                </h3>
+
+                <p>
+
+                    Structured signals can be received, processed
+                    and evaluated before execution.
+
+                </p>
+
+            </div>
+
+
+            <div class="capability">
+
+                <div class="capability-icon">
+                    AE
+                </div>
+
+                <h3>
+                    Automated Execution
+                </h3>
+
+                <p>
+
+                    Validated instructions can be transformed into
+                    systematic execution workflows.
+
+                </p>
+
+            </div>
+
+
+            <div class="capability">
+
+                <div class="capability-icon">
+                    CO
+                </div>
+
+                <h3>
+                    Concurrent Operations
+                </h3>
+
+                <p>
+
+                    Multiple strategies and execution processes can
+                    operate simultaneously.
+
+                </p>
+
+            </div>
+
+
+            <div class="capability">
+
+                <div class="capability-icon">
+                    RC
+                </div>
+
+                <h3>
+                    Rule-Based Control
+                </h3>
+
+                <p>
+
+                    Execution workflows can incorporate predefined
+                    operational and risk controls.
+
+                </p>
+
+            </div>
+
+
+            <div class="capability">
+
+                <div class="capability-icon">
+                    AN
+                </div>
+
+                <h3>
+                    Analytics & Records
+                </h3>
+
+                <p>
+
+                    Structured execution records provide a foundation
+                    for evaluating system performance.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PERFORMANCE
+========================================================= -->
+
+<section id="performance">
+
+    <div class="container">
+
+
+        <div class="section-head">
+
+            <div class="section-tag">
+                Historical System Snapshot
+            </div>
+
+            <h2>
+                When the system runs,
+                the result becomes measurable.
+            </h2>
+
+            <p class="section-copy">
+
+                A historical reporting period demonstrates the
+                operational output of the system under real execution
+                conditions.
+
+            </p>
+
+        </div>
+
+
+        <div class="performance">
+
+
+            <div class="performance-card">
+
+                <div class="performance-label">
+                    Reported Portfolio ROI
+                </div>
+
+                <div class="performance-number green">
+                    +7.22%
+                </div>
+
+
+                <div class="chart">
+
+                    <svg
+                        viewBox="0 0 800 215"
+                        preserveAspectRatio="none">
+
+                        <path
+                            class="chart-area"
+                            d="
+                            M0 195
+                            L70 181
+                            L140 185
+                            L210 164
+                            L280 168
+                            L350 136
+                            L420 145
+                            L490 112
+                            L560 120
+                            L630 87
+                            L700 71
+                            L800 35
+                            L800 215
+                            L0 215
+                            Z
+                            "
+                        />
+
+                        <path
+                            class="chart-line"
+                            d="
+                            M0 195
+                            L70 181
+                            L140 185
+                            L210 164
+                            L280 168
+                            L350 136
+                            L420 145
+                            L490 112
+                            L560 120
+                            L630 87
+                            L700 71
+                            L800 35
+                            "
+                        />
+
+                    </svg>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-card">
+
+                <div class="performance-label">
+                    Historical Metrics
+                </div>
+
+
+                <div class="performance-list">
+
+
+                    <div class="performance-row">
+
+                        <span>
+                            Capital Cycles
+                        </span>
+
+                        <strong>
+                            44 Cycle
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="performance-row">
+
+                        <span>
+                            Reported Profit
+                        </span>
+
+                        <strong>
+                            $2,780
+                        </strong>
+
+                    </div>
+
+
+                    <div class="performance-row">
+
+                        <span>
+                            Recorded Activity
+                        </span>
+
+                        <strong>
+                            $1.62M+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="performance-row">
+
+                        <span>
+                            Recorded Orders
+                        </span>
+
+                        <strong>
+                            11,319
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PHILOSOPHY
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+
+        <div class="section-head">
+
+            <div class="section-tag">
+                The Difference
+            </div>
+
+            <h2>
+                Technology does not replace
+                the strategy. It amplifies it.
+            </h2>
+
+        </div>
+
+
+        <div class="philosophy">
+
+
+            <div class="philosophy-card">
+
+                <h3>
+                    A human can identify an opportunity.
+                </h3>
+
+                <p>
+
+                    A quantitative model can define a rule.
+                    An engineer can translate that rule into software.
+                    But manual execution remains limited by time,
+                    attention and human consistency.
+
+                </p>
+
+            </div>
+
+
+            <div class="philosophy-card featured">
+
+                <h3>
+                    An infrastructure can scale the methodology.
+                </h3>
+
+                <p>
+
+                    AIATS is designed to transform systematic logic
+                    into repeatable execution across a large number
+                    of decisions.
+
+                    <br><br>
+
+                    The goal is not one perfect trade.
+
+                    <strong>
+                        The goal is disciplined execution at scale.
+                    </strong>
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FORMULA
+========================================================= -->
+
+<section class="formula-section">
+
+    <div class="container">
+
+
+        <div class="formula">
+
+
+            <div class="formula-item">
+
+                <div class="formula-symbol">
+                    01
+                </div>
+
+                <div class="formula-label">
+                    Mathematics
+                </div>
+
+            </div>
+
+
+            <div class="formula-item">
+
+                <div class="formula-symbol">
+                    +
+                </div>
+
+                <div class="formula-label">
+                    Data
+                </div>
+
+            </div>
+
+
+            <div class="formula-item">
+
+                <div class="formula-symbol">
+                    +
+                </div>
+
+                <div class="formula-label">
+                    Technology
+                </div>
+
+            </div>
+
+
+            <div class="formula-item">
+
+                <div class="formula-symbol">
+                    +
+                </div>
+
+                <div class="formula-label">
+                    Engineering
+                </div>
+
+            </div>
+
+
+            <div class="formula-item">
+
+                <div class="formula-symbol">
+                    =
+                </div>
+
+                <div class="formula-label">
+                    Measurable Execution
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+
+        <div class="cta">
+
+            <div class="section-tag">
+                AIATS Technologies
+            </div>
+
+
+            <h2>
+                Explore the infrastructure
+                behind systematic execution.
+            </h2>
+
+
+            <p>
+
+                For technical discussions, partnership inquiries
+                or access to the AIATS technical brief, contact
+                the AIATS technology team.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+
+                <a
+                    href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Technical%20Brief%20Request"
+                    class="btn btn-primary">
+
+                    Request Technical Brief
+
+                </a>
+
+
+                <a
+                    href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Partnership%20Inquiry"
+                    class="btn btn-secondary">
+
+                    Partnership Inquiry
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-main">
+
+
+            <div class="footer-brand">
+
+                <strong>
+                    AIATS Technologies
+                </strong>
+
+                <p>
+                    Automated Intelligence for Algorithmic Trading.
+                </p>
+
+            </div>
+
+
+            <a
+                class="footer-email"
+                href="mailto:aiatstechnologies@gmail.com">
+
+                aiatstechnologies@gmail.com
+
+            </a>
+
+        </div>
+
+
+        <div class="disclaimer">
+
+            AIATS is an algorithmic trading technology and execution
+            infrastructure. Historical performance figures presented
+            on this website represent results from a specific historical
+            reporting period and are provided for informational purposes
+            only.
+
+            Historical performance does not guarantee future results.
+            Trading digital assets involves substantial risk, including
+            the potential loss of capital.
+
+            Nothing on this website constitutes financial advice,
+            an investment recommendation, an offer of securities,
+            or a guarantee of future returns.
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 AIATS Technologies. All rights reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
 
 </body>
 </html>
