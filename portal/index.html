@@ -313,38 +313,7 @@
 
     import { supabase } from "./js/supabase-config.js";
 
-    const status = document.getElementById("connectionStatus");
 
-   async function testConnection() {
-
-    try {
-
-        const {
-            data: { session }
-        } = await supabase.auth.getSession();
-
-        if (session) {
-            status.textContent =
-                "Secure connection established.";
-        } else {
-            status.textContent =
-                "Supabase connection established. Please sign in.";
-        }
-
-        status.classList.add("success");
-
-    } catch (error) {
-
-        console.error("Supabase connection error:", error);
-
-        status.textContent =
-            "Unable to connect to Supabase.";
-
-        status.classList.add("error");
-    }
-}
-
-testConnection();
 </script>
 
 </body>
