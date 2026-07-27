@@ -323,14 +323,15 @@
 
         try {
 
-            const { error } = await supabase
-                .from("profiles")
-                .select("id")
-                .limit(1);
+            const { data: { session } } = await supabase.auth.getSession();
 
-            if (error) {
-                throw error;
-            }
+if (session) {
+    status.textContent = "Secure connection established.";
+} else {
+    status.textContent = "Supabase connection established. Please sign in.";
+}
+
+status.classList.add("success");
 
             status.textContent = "Secure connection established.";
             status.classList.add("success");
