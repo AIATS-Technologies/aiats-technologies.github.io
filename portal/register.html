@@ -399,22 +399,20 @@
         try {
 
             const {
-                data,
-                error
-            } = await supabase.auth.signUp({
-
-                email: email,
-
-                password: password,
-
-                options: {
-                    data: {
-                        full_name: fullName,
-                        account_type: accountType
-                    }
-                }
-
-            });
+    data,
+    error
+} = await supabase.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+        emailRedirectTo:
+            "https://aiats-technologies.github.io/portal/",
+        data: {
+            full_name: fullName,
+            account_type: accountType
+        }
+    }
+});
 
             if (error) {
                 throw error;
