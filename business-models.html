@@ -1,0 +1,3833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AIATS Business Models — Algorithmic Trading Infrastructure</title>
+
+<meta
+    name="description"
+    content="Explore AIATS business models for portfolio managers, partners, individual portfolios, B2B companies and professional investment funds."
+>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+
+    background: #03060b;
+    color: #f4f7fb;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    line-height: 1.6;
+}
+
+img,
+svg,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --bg: #03060b;
+    --bg2: #070c14;
+    --bg3: #0b111b;
+
+    --text: #f4f7fb;
+    --muted: #8490a3;
+    --dim: #4e5a6d;
+
+    --blue: #4da8ff;
+    --blue2: #8acbff;
+    --cyan: #52d9ff;
+    --green: #52df91;
+
+    --border: rgba(255,255,255,.075);
+    --border-blue: rgba(77,168,255,.25);
+
+    --container: 1180px;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.016) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.016) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 80%
+        );
+}
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 420px;
+    height: 420px;
+
+    left: var(--mouse-x, 50%);
+    top: var(--mouse-y, 20%);
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(77,168,255,.05),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+
+    width: min(
+        var(--container),
+        calc(100% - 40px)
+    );
+
+    max-width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section {
+
+    width: 100%;
+    max-width: 100%;
+
+    padding: 120px 0;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    max-width: 100%;
+
+    z-index: 1000;
+
+    background:
+        rgba(3,6,11,.72);
+
+    backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.nav-inner {
+
+    height: 74px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    min-width: 0;
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+    font-weight: 850;
+
+    letter-spacing: 2px;
+}
+
+.logo h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+    letter-spacing: 2px;
+}
+
+.logo-mark {
+
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid var(--border-blue);
+
+    border-radius: 8px;
+
+    color: var(--blue);
+
+    font: 10px monospace;
+}
+
+.logo-mark::after {
+    content: "AI";
+}
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    min-width: 0;
+}
+
+.nav-links a {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    transition: color .25s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-links a.active {
+    color: var(--blue2);
+}
+
+.nav-contact {
+
+    padding: 8px 15px;
+
+    border:
+        1px solid var(--border-blue);
+
+    border-radius: 7px;
+
+    color: white !important;
+}
+
+.menu {
+
+    display: none;
+
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    min-height: 86vh;
+
+    padding-top: 155px;
+    padding-bottom: 100px;
+
+    display: flex;
+
+    align-items: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    top: -300px;
+    right: -250px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(77,168,255,.09),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.hero-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(0, .95fr);
+
+    gap: 70px;
+
+    align-items: center;
+
+    min-width: 0;
+}
+
+.hero-grid > * {
+    min-width: 0;
+}
+
+.eyebrow {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    max-width: 100%;
+
+    padding: 7px 13px;
+
+    border:
+        1px solid var(--border-blue);
+
+    border-radius: 100px;
+
+    color: var(--blue2);
+
+    background:
+        rgba(77,168,255,.035);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+
+    text-transform: uppercase;
+}
+
+.pulse {
+
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        box-shadow:
+            0 0 0 0
+            rgba(82,223,145,.5);
+    }
+
+    70% {
+        box-shadow:
+            0 0 0 10px
+            rgba(82,223,145,0);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0
+            rgba(82,223,145,0);
+    }
+}
+
+h1 {
+
+    max-width: 780px;
+
+    margin-top: 25px;
+
+    font-size:
+        clamp(48px, 6vw, 80px);
+
+    line-height: .97;
+
+    letter-spacing: -4px;
+
+    overflow-wrap: break-word;
+}
+
+.gradient {
+
+    background:
+        linear-gradient(
+            105deg,
+            white 15%,
+            var(--blue2) 85%
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-copy {
+
+    max-width: 650px;
+
+    margin-top: 28px;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+.actions {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 34px;
+}
+
+.btn {
+
+    min-height: 46px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    transition:
+        transform .25s,
+        background .25s,
+        border .25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+
+    background: white;
+
+    color: #03060b;
+}
+
+.btn-secondary {
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+
+/* =========================================================
+   HERO SYSTEM VISUAL
+========================================================= */
+
+.model-orbit {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 450px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(77,168,255,.09),
+            transparent 58%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(14,25,42,.85),
+            rgba(5,9,16,.98)
+        );
+
+    overflow: hidden;
+}
+
+.orbit-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(77,168,255,.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(77,168,255,.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 36px 36px;
+
+    opacity: .45;
+}
+
+.orbit-ring {
+
+    position: absolute;
+
+    width: 290px;
+    height: 290px;
+
+    border:
+        1px solid
+        rgba(77,168,255,.15);
+
+    border-radius: 50%;
+
+    animation:
+        orbitSpin 18s linear infinite;
+}
+
+.orbit-ring::before,
+.orbit-ring::after {
+
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: var(--blue);
+
+    box-shadow:
+        0 0 18px rgba(77,168,255,.5);
+}
+
+.orbit-ring::before {
+
+    width: 6px;
+    height: 6px;
+
+    top: 17px;
+    left: 45px;
+}
+
+.orbit-ring::after {
+
+    width: 5px;
+    height: 5px;
+
+    right: 35px;
+    bottom: 45px;
+}
+
+.orbit-ring.second {
+
+    width: 190px;
+    height: 190px;
+
+    border-color:
+        rgba(82,217,255,.12);
+
+    animation-direction: reverse;
+
+    animation-duration: 12s;
+}
+
+@keyframes orbitSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.core {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid var(--border-blue);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(77,168,255,.15),
+            rgba(7,12,20,.96) 70%
+        );
+
+    box-shadow:
+        0 0 60px
+        rgba(77,168,255,.08);
+}
+
+.core-label {
+
+    color: var(--blue2);
+
+    font: 9px monospace;
+
+    letter-spacing: 1.5px;
+}
+
+.core-title {
+
+    margin-top: 5px;
+
+    font-size: 20px;
+
+    font-weight: 850;
+
+    letter-spacing: 1px;
+}
+
+.orbit-label {
+
+    position: absolute;
+
+    z-index: 6;
+
+    padding: 9px 11px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 7px;
+
+    background:
+        rgba(3,6,11,.82);
+
+    color: var(--muted);
+
+    font: 8px monospace;
+
+    letter-spacing: .5px;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.label-one {
+    top: 17%;
+    left: 9%;
+}
+
+.label-two {
+    top: 20%;
+    right: 8%;
+}
+
+.label-three {
+    bottom: 20%;
+    left: 8%;
+}
+
+.label-four {
+    bottom: 16%;
+    right: 8%;
+}
+
+
+/* =========================================================
+   SECTION HEAD
+========================================================= */
+
+.section-head {
+
+    width: 100%;
+    max-width: 780px;
+
+    margin-bottom: 55px;
+}
+
+.tag {
+
+    color: var(--blue);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+}
+
+h2 {
+
+    margin-top: 13px;
+
+    font-size:
+        clamp(36px, 4.5vw, 58px);
+
+    line-height: 1.03;
+
+    letter-spacing: -2.5px;
+
+    overflow-wrap: break-word;
+}
+
+.section-copy {
+
+    margin-top: 19px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   MODEL SELECTOR
+========================================================= */
+
+.models-section {
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(255,255,255,.008),
+            transparent
+        );
+}
+
+.model-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, .75fr)
+        minmax(0, 1.25fr);
+
+    gap: 18px;
+
+    min-width: 0;
+}
+
+.model-layout > * {
+    min-width: 0;
+}
+
+.model-menu {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.model-tab {
+
+    width: 100%;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        42px minmax(0, 1fr)
+        auto;
+
+    gap: 13px;
+
+    align-items: center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,.012);
+
+    text-align: left;
+
+    color: white;
+
+    transition:
+        .25s ease;
+}
+
+.model-tab:hover {
+
+    background:
+        rgba(255,255,255,.025);
+
+    border-color:
+        rgba(77,168,255,.15);
+}
+
+.model-tab.active {
+
+    border-color:
+        var(--border-blue);
+
+    background:
+        rgba(77,168,255,.055);
+
+    box-shadow:
+        inset 3px 0 0 var(--blue);
+}
+
+.model-number {
+
+    color: var(--blue);
+
+    font: 10px monospace;
+}
+
+.model-tab h3 {
+
+    font-size: 15px;
+}
+
+.model-tab p {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.model-arrow {
+
+    color: var(--dim);
+
+    font-size: 16px;
+
+    transition: transform .25s;
+}
+
+.model-tab.active .model-arrow {
+
+    color: var(--blue2);
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   MODEL DISPLAY
+========================================================= */
+
+.model-display {
+
+    min-height: 540px;
+
+    position: relative;
+
+    padding: 40px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 16px;
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(77,168,255,.10),
+            transparent 48%
+        ),
+        var(--bg3);
+
+    overflow: hidden;
+}
+
+.model-display::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    right: -230px;
+    bottom: -250px;
+
+    border:
+        1px solid
+        rgba(77,168,255,.08);
+
+    border-radius: 50%;
+}
+
+.model-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+}
+
+.model-display-number {
+
+    color: var(--blue);
+
+    font: 10px monospace;
+
+    letter-spacing: 1px;
+}
+
+.model-display-title {
+
+    margin-top: 13px;
+
+    font-size: 40px;
+
+    line-height: 1.05;
+
+    letter-spacing: -1.7px;
+}
+
+.model-display-subtitle {
+
+    margin-top: 12px;
+
+    color: var(--blue2);
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.model-display-description {
+
+    max-width: 680px;
+
+    margin-top: 20px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.85;
+}
+
+.model-pill {
+
+    display: inline-flex;
+
+    margin-top: 22px;
+
+    padding: 7px 10px;
+
+    border:
+        1px solid
+        rgba(82,223,145,.2);
+
+    border-radius: 6px;
+
+    color: var(--green);
+
+    background:
+        rgba(82,223,145,.035);
+
+    font: 9px monospace;
+}
+
+
+/* =========================================================
+   FLOW DIAGRAM
+========================================================= */
+
+.flow-title {
+
+    margin-top: 42px;
+
+    color: var(--dim);
+
+    font: 9px monospace;
+
+    letter-spacing: 1.2px;
+}
+
+.model-flow {
+
+    margin-top: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.flow-box {
+
+    min-width: 105px;
+
+    padding: 12px 13px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.065);
+
+    border-radius: 7px;
+
+    background:
+        rgba(255,255,255,.018);
+
+    color: #c6cfdd;
+
+    font: 9px monospace;
+
+    text-align: center;
+}
+
+.flow-box.aiats {
+
+    border-color:
+        rgba(77,168,255,.25);
+
+    color: var(--blue2);
+
+    background:
+        rgba(77,168,255,.05);
+}
+
+.flow-arrow {
+
+    color: var(--dim);
+
+    font: 12px monospace;
+}
+
+
+/* =========================================================
+   MODEL DETAILS
+========================================================= */
+
+.detail-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+.detail-card {
+
+    padding: 17px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,.012);
+}
+
+.detail-card-label {
+
+    color: var(--dim);
+
+    font: 8px monospace;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.detail-card-value {
+
+    margin-top: 8px;
+
+    color: #d9e1ec;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   DIFFERENCE SECTION
+========================================================= */
+
+.compare-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+    min-width: 0;
+}
+
+.compare-card {
+
+    min-width: 0;
+
+    padding: 35px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    background:
+        var(--bg3);
+}
+
+.compare-card.featured {
+
+    border-color:
+        rgba(77,168,255,.25);
+
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(77,168,255,.08),
+            transparent 55%
+        ),
+        var(--bg3);
+}
+
+.compare-number {
+
+    color: var(--blue);
+
+    font: 10px monospace;
+}
+
+.compare-card h3 {
+
+    margin-top: 17px;
+
+    font-size: 22px;
+
+    letter-spacing: -.5px;
+}
+
+.compare-card p {
+
+    margin-top: 14px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.compare-points {
+
+    margin-top: 23px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.compare-point {
+
+    display: flex;
+
+    gap: 9px;
+
+    color: #bbc5d3;
+
+    font-size: 12px;
+}
+
+.compare-point::before {
+
+    content: "✓";
+
+    color: var(--green);
+
+    flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   OPERATING PRINCIPLE
+========================================================= */
+
+.principle {
+
+    padding: 75px 55px;
+
+    border:
+        1px solid var(--border-blue);
+
+    border-radius: 18px;
+
+    background:
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(77,168,255,.10),
+            transparent 55%
+        ),
+        var(--bg3);
+}
+
+.principle-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, .85fr)
+        minmax(0, 1.15fr);
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+.principle-quote {
+
+    padding-left: 25px;
+
+    border-left:
+        2px solid var(--blue);
+}
+
+.principle-quote p {
+
+    font-size:
+        clamp(28px, 3.7vw, 46px);
+
+    line-height: 1.08;
+
+    letter-spacing: -1.8px;
+
+    font-weight: 750;
+}
+
+.principle-quote span {
+    color: var(--blue);
+}
+
+.principle-text p {
+
+    margin-bottom: 17px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.85;
+}
+
+.principle-text strong {
+    color: white;
+}
+
+
+/* =========================================================
+   CAPABILITY STRIP
+========================================================= */
+
+.capability-strip {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    background:
+        var(--bg3);
+}
+
+.capability-item {
+
+    min-height: 145px;
+
+    padding: 24px 20px;
+
+    border-right:
+        1px solid var(--border);
+}
+
+.capability-item:last-child {
+    border-right: none;
+}
+
+.capability-code {
+
+    color: var(--blue);
+
+    font: 9px monospace;
+}
+
+.capability-item h3 {
+
+    margin-top: 15px;
+
+    font-size: 15px;
+}
+
+.capability-item p {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+
+    width: 100%;
+    max-width: 100%;
+
+    padding: 95px 30px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(77,168,255,.2);
+
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle at center top,
+            rgba(77,168,255,.13),
+            transparent 65%
+        ),
+        var(--bg3);
+
+    overflow: hidden;
+}
+
+.cta h2 {
+
+    max-width: 760px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta p {
+
+    max-width: 620px;
+
+    margin: 20px auto 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.cta .actions {
+    justify-content: center;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    width: 100%;
+    max-width: 100%;
+
+    padding: 55px 0 30px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+.footer-main {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    min-width: 0;
+}
+
+.footer-brand {
+    min-width: 0;
+}
+
+.footer-brand strong {
+
+    letter-spacing: 1.5px;
+
+    overflow-wrap: break-word;
+}
+
+.footer-brand p {
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.footer-email {
+
+    color: var(--blue2);
+
+    font: 11px monospace;
+
+    overflow-wrap: anywhere;
+}
+
+.disclaimer {
+
+    margin-top: 32px;
+
+    padding-top: 23px;
+
+    border-top:
+        1px solid var(--border);
+
+    color: #4f5a6c;
+
+    font-size: 9px;
+
+    line-height: 1.8;
+}
+
+.copyright {
+
+    margin-top: 22px;
+
+    color: #3f4959;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .hero-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 50px;
+    }
+
+    .hero {
+
+        min-height: auto;
+    }
+
+    .model-layout {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .model-menu {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .model-display {
+
+        min-height: auto;
+    }
+
+    .principle-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 45px;
+    }
+
+    .capability-strip {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .capability-item:nth-child(2) {
+        border-right: none;
+    }
+
+    .capability-item:nth-child(-n+2) {
+        border-bottom:
+            1px solid var(--border);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    html,
+    body {
+
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: hidden;
+    }
+
+    .container {
+
+        width: calc(100% - 28px);
+
+        max-width: calc(100% - 28px);
+    }
+
+    section {
+
+        padding: 82px 0;
+    }
+
+
+    /* NAV */
+
+    .nav-inner {
+        width: 100%;
+    }
+
+    .nav-links {
+
+        display: none;
+
+        position: absolute;
+
+        top: 74px;
+        left: 0;
+
+        width: 100%;
+        max-width: 100%;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        background:
+            rgba(3,6,11,.98);
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+
+        display: block;
+
+        padding: 14px 0;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-contact {
+        margin-top: 8px;
+        text-align: center;
+    }
+
+    .menu {
+        display: block;
+    }
+
+
+    /* HERO */
+
+    .hero {
+
+        min-height: auto;
+
+        padding-top: 120px;
+        padding-bottom: 70px;
+    }
+
+    .hero-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 42px;
+    }
+
+    h1 {
+
+        max-width: 100%;
+
+        font-size:
+            clamp(43px, 13vw, 60px);
+
+        letter-spacing: -2.8px;
+    }
+
+    .hero-copy {
+
+        max-width: 100%;
+
+        font-size: 15px;
+
+        line-height: 1.75;
+    }
+
+    .eyebrow {
+
+        max-width: 100%;
+
+        font-size: 8px;
+
+        letter-spacing: .9px;
+
+        white-space: normal;
+
+        line-height: 1.4;
+    }
+
+    .actions {
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .btn {
+
+        width: 100%;
+
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    /* ORBIT */
+
+    .model-orbit {
+
+        min-height: 360px;
+
+        border-radius: 14px;
+    }
+
+    .orbit-ring {
+
+        width: 230px;
+        height: 230px;
+    }
+
+    .orbit-ring.second {
+
+        width: 155px;
+        height: 155px;
+    }
+
+    .core {
+
+        width: 120px;
+        height: 120px;
+    }
+
+    .core-title {
+        font-size: 16px;
+    }
+
+    .orbit-label {
+
+        font-size: 7px;
+
+        padding: 7px 8px;
+    }
+
+    .label-one {
+        top: 12%;
+        left: 5%;
+    }
+
+    .label-two {
+        top: 13%;
+        right: 5%;
+    }
+
+    .label-three {
+        bottom: 13%;
+        left: 5%;
+    }
+
+    .label-four {
+        bottom: 11%;
+        right: 5%;
+    }
+
+
+    /* HEADINGS */
+
+    h2 {
+
+        font-size:
+            clamp(34px, 10vw, 48px);
+
+        letter-spacing: -1.8px;
+    }
+
+
+    /* MODEL SELECTOR */
+
+    .model-menu {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+    .model-tab {
+
+        padding: 16px;
+
+        grid-template-columns:
+            34px minmax(0, 1fr)
+            auto;
+    }
+
+    .model-tab h3 {
+        font-size: 14px;
+    }
+
+    .model-tab p {
+        font-size: 9px;
+    }
+
+    .model-display {
+
+        padding: 26px 19px;
+
+        border-radius: 14px;
+    }
+
+    .model-display-title {
+
+        font-size: 30px;
+
+        letter-spacing: -1px;
+    }
+
+    .model-display-description {
+
+        font-size: 13px;
+
+        line-height: 1.75;
+    }
+
+    .flow-title {
+        margin-top: 30px;
+    }
+
+    .model-flow {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr;
+
+        gap: 5px;
+    }
+
+    .flow-box {
+
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .flow-arrow {
+
+        text-align: center;
+
+        transform: rotate(90deg);
+
+        height: 10px;
+    }
+
+    .detail-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 8px;
+
+        margin-top: 27px;
+    }
+
+
+    /* COMPARE */
+
+    .compare-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .compare-card {
+
+        padding: 26px 21px;
+    }
+
+
+    /* PRINCIPLE */
+
+    .principle {
+
+        padding: 45px 22px;
+
+        border-radius: 14px;
+    }
+
+    .principle-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 38px;
+    }
+
+    .principle-quote {
+
+        padding-left: 19px;
+    }
+
+    .principle-quote p {
+
+        font-size:
+            clamp(28px, 9vw, 40px);
+
+        letter-spacing: -1.5px;
+    }
+
+
+    /* CAPABILITIES */
+
+    .capability-strip {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .capability-item,
+    .capability-item:nth-child(2) {
+
+        border-right: none;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+    .capability-item:last-child {
+        border-bottom: none;
+    }
+
+
+    /* CTA */
+
+    .cta {
+
+        padding: 65px 20px;
+
+        border-radius: 15px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-main {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .container {
+
+        width: calc(100% - 22px);
+
+        max-width: calc(100% - 22px);
+    }
+
+    h1 {
+
+        font-size: 41px;
+
+        letter-spacing: -2.2px;
+    }
+
+    .hero {
+
+        padding-top: 110px;
+    }
+
+    .model-display {
+
+        padding: 23px 16px;
+    }
+
+    .model-display-title {
+
+        font-size: 28px;
+    }
+
+    .model-tab {
+
+        grid-template-columns:
+            29px minmax(0, 1fr)
+            auto;
+
+        padding: 14px 12px;
+    }
+
+    .model-tab h3 {
+        font-size: 13px;
+    }
+
+    .model-tab p {
+        font-size: 8px;
+    }
+
+    .model-number {
+        font-size: 8px;
+    }
+
+    .model-arrow {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 340px) {
+
+    .container {
+
+        width: calc(100% - 18px);
+
+        max-width: calc(100% - 18px);
+    }
+
+    h1 {
+        font-size: 37px;
+    }
+
+    .model-display-title {
+        font-size: 26px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="navbar">
+
+    <div class="container nav-inner">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-mark"></div>
+
+            <h2>AIATS</h2>
+
+        </a>
+
+
+        <button
+            class="menu"
+            id="menu"
+            aria-label="Open navigation">
+
+            ☰
+
+        </button>
+
+
+        <div
+            class="nav-links"
+            id="navLinks">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#architecture">
+                Architecture
+            </a>
+
+            <a href="index.html#technology">
+                Technology
+            </a>
+
+            <a href="index.html#performance">
+                Performance
+            </a>
+
+            <a
+                href="business-models.html"
+                class="active">
+
+                Business Models
+
+            </a>
+
+            <a
+                class="nav-contact"
+                href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Inquiry">
+
+                Contact
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+
+        <div class="reveal">
+
+            <div class="eyebrow">
+
+                <span class="pulse"></span>
+
+                AIATS Business Models
+
+            </div>
+
+
+            <h1>
+
+                One infrastructure.
+                <span class="gradient">
+                    Multiple ways to operate.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-copy">
+
+                AIATS is designed as a modular algorithmic
+                trading infrastructure that can support
+                different operating structures — from
+                individual portfolios and professional
+                managers to partners, companies and
+                investment organizations.
+
+            </p>
+
+
+            <div class="actions">
+
+                <a
+                    href="#models"
+                    class="btn btn-primary">
+
+                    Explore Business Models
+
+                </a>
+
+
+                <a
+                    href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Business%20Inquiry"
+                    class="btn btn-secondary">
+
+                    Discuss a Model
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="model-orbit reveal">
+
+            <div class="orbit-grid"></div>
+
+            <div class="orbit-ring"></div>
+
+            <div class="orbit-ring second"></div>
+
+
+            <div class="orbit-label label-one">
+                PORTFOLIO MANAGER
+            </div>
+
+            <div class="orbit-label label-two">
+                B2B COMPANY
+            </div>
+
+            <div class="orbit-label label-three">
+                INDIVIDUAL
+            </div>
+
+            <div class="orbit-label label-four">
+                B2B FUND
+            </div>
+
+
+            <div class="core">
+
+                <div class="core-label">
+                    AIATS
+                </div>
+
+                <div class="core-title">
+                    ENGINE
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     INTRO STRIP
+========================================================= -->
+
+<section
+    id="models"
+    class="models-section">
+
+    <div class="container">
+
+
+        <div class="section-head reveal">
+
+            <div class="tag">
+                Operating Structures
+            </div>
+
+
+            <h2>
+                Different participants.
+                One execution infrastructure.
+            </h2>
+
+
+            <p class="section-copy">
+
+                AIATS can be integrated into different
+                commercial and operational structures.
+                The infrastructure remains focused on
+                systematic strategy execution while the
+                surrounding responsibilities depend on
+                the selected model.
+
+            </p>
+
+        </div>
+
+
+        <div class="model-layout reveal">
+
+
+            <!-- MODEL MENU -->
+
+            <div class="model-menu">
+
+
+                <button
+                    class="model-tab active"
+                    data-model="manager">
+
+                    <div class="model-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Portfolio Manager
+                        </h3>
+
+                        <p>
+                            Professional capital management
+                        </p>
+
+                    </div>
+
+                    <div class="model-arrow">
+                        →
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="model-tab"
+                    data-model="partner">
+
+                    <div class="model-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            AIATS Partner
+                        </h3>
+
+                        <p>
+                            Client acquisition & referral
+                        </p>
+
+                    </div>
+
+                    <div class="model-arrow">
+                        →
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="model-tab"
+                    data-model="individual">
+
+                    <div class="model-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Individual Portfolio
+                        </h3>
+
+                        <p>
+                            Direct investor access
+                        </p>
+
+                    </div>
+
+                    <div class="model-arrow">
+                        →
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="model-tab"
+                    data-model="company">
+
+                    <div class="model-number">
+                        04
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            B2B Company
+                        </h3>
+
+                        <p>
+                            Infrastructure integration
+                        </p>
+
+                    </div>
+
+                    <div class="model-arrow">
+                        →
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="model-tab"
+                    data-model="fund">
+
+                    <div class="model-number">
+                        05
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            B2B Fund
+                        </h3>
+
+                        <p>
+                            Professional fund infrastructure
+                        </p>
+
+                    </div>
+
+                    <div class="model-arrow">
+                        →
+                    </div>
+
+                </button>
+
+            </div>
+
+
+            <!-- MODEL DISPLAY -->
+
+            <div class="model-display">
+
+
+                <div class="model-content">
+
+                    <div
+                        class="model-display-number"
+                        id="modelNumber">
+
+                        01 / PROFESSIONAL MODEL
+
+                    </div>
+
+
+                    <div
+                        class="model-display-title"
+                        id="modelTitle">
+
+                        Portfolio Manager
+
+                    </div>
+
+
+                    <div
+                        class="model-display-subtitle"
+                        id="modelSubtitle">
+
+                        Automated execution for professionally managed portfolios.
+
+                    </div>
+
+
+                    <div
+                        class="model-display-description"
+                        id="modelDescription">
+
+                        Designed for professionals managing capital
+                        for multiple clients within a managed
+                        portfolio. The manager's portfolio is
+                        connected to AIATS, which executes selected
+                        trading strategies automatically, while
+                        the manager remains responsible for client
+                        and portfolio management.
+
+                    </div>
+
+
+                    <div
+                        class="model-pill"
+                        id="modelPill">
+
+                        ● MANAGED PORTFOLIO INFRASTRUCTURE
+
+                    </div>
+
+
+                    <div class="flow-title">
+                        OPERATING FLOW
+                    </div>
+
+
+                    <div
+                        class="model-flow"
+                        id="modelFlow">
+
+                        <div class="flow-box">
+                            CLIENTS
+                        </div>
+
+                        <div class="flow-arrow">
+                            →
+                        </div>
+
+                        <div class="flow-box">
+                            PORTFOLIO MANAGER
+                        </div>
+
+                        <div class="flow-arrow">
+                            →
+                        </div>
+
+                        <div class="flow-box aiats">
+                            AIATS
+                        </div>
+
+                        <div class="flow-arrow">
+                            →
+                        </div>
+
+                        <div class="flow-box">
+                            EXECUTION
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="detail-grid"
+                        id="detailGrid">
+
+                        <div class="detail-card">
+
+                            <div class="detail-card-label">
+                                Capital Structure
+                            </div>
+
+                            <div class="detail-card-value">
+                                Managed portfolio structure
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-card">
+
+                            <div class="detail-card-label">
+                                AIATS Role
+                            </div>
+
+                            <div class="detail-card-value">
+                                Automated strategy execution
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-card">
+
+                            <div class="detail-card-label">
+                                Commercial Model
+                            </div>
+
+                            <div class="detail-card-value">
+                                Agreed fees / performance arrangements
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MANAGER VS PARTNER
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+
+        <div class="section-head reveal">
+
+            <div class="tag">
+                Important Distinction
+            </div>
+
+
+            <h2>
+                Portfolio Manager
+                is not the same as
+                AIATS Partner.
+            </h2>
+
+
+            <p class="section-copy">
+
+                Both models can involve multiple clients,
+                but the operational responsibility and
+                relationship with those clients are different.
+
+            </p>
+
+        </div>
+
+
+        <div class="compare-grid">
+
+
+            <div class="compare-card featured reveal">
+
+                <div class="compare-number">
+                    01 / PORTFOLIO MANAGER
+                </div>
+
+
+                <h3>
+                    Manages the portfolio.
+                </h3>
+
+
+                <p>
+
+                    The Portfolio Manager operates the
+                    client-facing portfolio relationship
+                    and remains responsible for portfolio
+                    management while AIATS provides the
+                    automated execution infrastructure.
+
+                </p>
+
+
+                <div class="compare-points">
+
+                    <div class="compare-point">
+                        Manages client portfolio structure
+                    </div>
+
+                    <div class="compare-point">
+                        Responsible for portfolio operations
+                    </div>
+
+                    <div class="compare-point">
+                        Connects managed portfolio to AIATS
+                    </div>
+
+                    <div class="compare-point">
+                        Commercial terms are agreed separately
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="compare-card reveal">
+
+                <div class="compare-number">
+                    02 / AIATS PARTNER
+                </div>
+
+
+                <h3>
+                    Introduces clients.
+                </h3>
+
+
+                <p>
+
+                    The AIATS Partner is designed for
+                    individuals or businesses with an
+                    existing network of clients or investors.
+                    Each client maintains their own trading
+                    account and connects directly to AIATS.
+
+                </p>
+
+
+                <div class="compare-points">
+
+                    <div class="compare-point">
+                        Introduces clients to the platform
+                    </div>
+
+                    <div class="compare-point">
+                        Each client maintains their own account
+                    </div>
+
+                    <div class="compare-point">
+                        AIATS handles the automated execution layer
+                    </div>
+
+                    <div class="compare-point">
+                        Partner economics are linked to referrals
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     OPERATING PRINCIPLE
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+
+        <div class="principle reveal">
+
+
+            <div class="principle-grid">
+
+
+                <div class="principle-quote">
+
+                    <p>
+
+                        The capital structure
+                        may change.
+
+                        <br><br>
+
+                        The execution
+                        infrastructure remains
+                        <span>
+                            systematic.
+                        </span>
+
+                    </p>
+
+                </div>
+
+
+                <div class="principle-text">
+
+                    <div class="tag">
+                        AIATS Operating Principle
+                    </div>
+
+
+                    <h2>
+                        Separation between
+                        capital ownership and
+                        execution infrastructure.
+                    </h2>
+
+
+                    <p>
+
+                        AIATS is designed to operate as an
+                        algorithmic trading technology layer.
+                        Depending on the selected structure,
+                        capital may remain within the relevant
+                        client's, manager's, company's or fund's
+                        trading environment.
+
+                    </p>
+
+
+                    <p>
+
+                        AIATS connects to the relevant trading
+                        environment and executes predefined
+                        strategies according to the configured
+                        operational model.
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            This separation allows the same
+                            underlying technology to support
+                            different business structures.
+                        </strong>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FIVE MODELS SUMMARY
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+
+        <div class="section-head reveal">
+
+            <div class="tag">
+                Five Operating Models
+            </div>
+
+
+            <h2>
+                Choose the structure
+                that fits the operation.
+            </h2>
+
+
+            <p class="section-copy">
+
+                Each model places AIATS at a different
+                point within the commercial and operational
+                structure while preserving the same core
+                execution philosophy.
+
+            </p>
+
+        </div>
+
+
+        <div class="capability-strip reveal">
+
+
+            <div class="capability-item">
+
+                <div class="capability-code">
+                    01
+                </div>
+
+                <h3>
+                    Portfolio Manager
+                </h3>
+
+                <p>
+                    Managed portfolio connected
+                    to automated execution.
+                </p>
+
+            </div>
+
+
+            <div class="capability-item">
+
+                <div class="capability-code">
+                    02
+                </div>
+
+                <h3>
+                    AIATS Partner
+                </h3>
+
+                <p>
+                    Client introduction and
+                    platform referral model.
+                </p>
+
+            </div>
+
+
+            <div class="capability-item">
+
+                <div class="capability-code">
+                    03
+                </div>
+
+                <h3>
+                    Individual
+                </h3>
+
+                <p>
+                    Direct connection of an
+                    investor's own trading account.
+                </p>
+
+            </div>
+
+
+            <div class="capability-item">
+
+                <div class="capability-code">
+                    04 / 05
+                </div>
+
+                <h3>
+                    B2B / Fund
+                </h3>
+
+                <p>
+                    Dedicated infrastructure for
+                    companies and professional funds.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section>
+
+    <div class="container">
+
+
+        <div class="cta reveal">
+
+
+            <div class="tag">
+                AIATS Technologies
+            </div>
+
+
+            <h2>
+                Build your operating model
+                around systematic execution.
+            </h2>
+
+
+            <p>
+
+                Whether you manage portfolios, operate a
+                client network, run a company or manage a
+                professional fund, AIATS can be evaluated
+                as an algorithmic execution infrastructure
+                layer.
+
+            </p>
+
+
+            <div class="actions">
+
+
+                <a
+                    class="btn btn-primary"
+                    href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Business%20Model%20Inquiry">
+
+                    Discuss Your Model
+
+                </a>
+
+
+                <a
+                    class="btn btn-secondary"
+                    href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Technical%20Brief%20Request">
+
+                    Request Technical Brief
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-main">
+
+
+            <div class="footer-brand">
+
+                <strong>
+                    AIATS Technologies
+                </strong>
+
+                <p>
+                    Automated Intelligence for Algorithmic Trading.
+                </p>
+
+            </div>
+
+
+            <a
+                class="footer-email"
+                href="mailto:aiatstechnologies@gmail.com">
+
+                aiatstechnologies@gmail.com
+
+            </a>
+
+        </div>
+
+
+        <div class="disclaimer">
+
+            AIATS is an algorithmic trading technology and
+            execution infrastructure.
+
+            The business models presented on this website
+            describe potential technology and commercial
+            structures and do not constitute an offer of
+            investment management, securities, financial
+            products or regulated investment services.
+
+            Availability of any model, service, account
+            structure, fee arrangement or performance-based
+            arrangement is subject to applicable law,
+            regulatory requirements, contractual terms and
+            the relevant operating environment.
+
+            Trading digital assets involves substantial risk,
+            including the potential loss of capital.
+
+            Historical performance does not guarantee future
+            results. Nothing on this website constitutes
+            financial advice, an investment recommendation,
+            an offer of securities, or a guarantee of future
+            returns.
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 AIATS Technologies.
+            All rights reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+const menu =
+    document.getElementById("menu");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+if (menu && navLinks) {
+
+    menu.addEventListener("click", () => {
+
+        navLinks.classList.toggle("open");
+
+    });
+
+
+    document
+        .querySelectorAll(".nav-links a")
+        .forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navLinks.classList.remove("open");
+
+            });
+
+        });
+
+}
+
+
+/* =========================================================
+   MOUSE BACKGROUND
+   DESKTOP ONLY
+========================================================= */
+
+if (
+    window.matchMedia("(min-width: 701px)").matches
+) {
+
+    document.addEventListener(
+        "mousemove",
+        event => {
+
+            const x =
+                (event.clientX /
+                window.innerWidth) * 100;
+
+            const y =
+                (event.clientY /
+                window.innerHeight) * 100;
+
+
+            document.documentElement
+                .style
+                .setProperty(
+                    "--mouse-x",
+                    x + "%"
+                );
+
+
+            document.documentElement
+                .style
+                .setProperty(
+                    "--mouse-y",
+                    y + "%"
+                );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target
+                        .classList
+                        .add("visible");
+
+
+                    revealObserver
+                        .unobserve(
+                            entry.target
+                        );
+
+                }
+
+            });
+
+        },
+        {
+            threshold: .10
+        }
+    );
+
+
+revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================================================
+   BUSINESS MODEL DATA
+========================================================= */
+
+const businessModels = {
+
+    manager: {
+
+        number:
+            "01 / PROFESSIONAL MODEL",
+
+        title:
+            "Portfolio Manager",
+
+        subtitle:
+            "Automated execution for professionally managed portfolios.",
+
+        description:
+            "Designed for professionals managing capital for multiple clients within a managed portfolio. The manager's portfolio is connected to AIATS, which executes selected trading strategies automatically, while the manager remains responsible for client and portfolio management.",
+
+        pill:
+            "● MANAGED PORTFOLIO INFRASTRUCTURE",
+
+        flow: [
+            "CLIENTS",
+            "PORTFOLIO MANAGER",
+            "AIATS",
+            "EXECUTION"
+        ],
+
+        details: [
+            [
+                "Capital Structure",
+                "Managed portfolio structure"
+            ],
+            [
+                "AIATS Role",
+                "Automated strategy execution"
+            ],
+            [
+                "Commercial Model",
+                "Agreed fees / performance arrangements"
+            ]
+        ]
+
+    },
+
+
+    partner: {
+
+        number:
+            "02 / PARTNER MODEL",
+
+        title:
+            "AIATS Partner",
+
+        subtitle:
+            "A referral and client-network model built around direct account connectivity.",
+
+        description:
+            "Designed for individuals or businesses with a network of clients or investors. Each client maintains their own trading account, which is connected directly to AIATS for automated trading. The partner receives a commercial share based on clients introduced to the platform, subject to the applicable agreement and requirements.",
+
+        pill:
+            "● PARTNER NETWORK MODEL",
+
+        flow: [
+            "PARTNER",
+            "CLIENT",
+            "AIATS",
+            "EXECUTION"
+        ],
+
+        details: [
+            [
+                "Capital Structure",
+                "Each client maintains their own account"
+            ],
+            [
+                "AIATS Role",
+                "Direct automated execution"
+            ],
+            [
+                "Commercial Model",
+                "Partner referral / revenue arrangement"
+            ]
+        ]
+
+    },
+
+
+    individual: {
+
+        number:
+            "03 / DIRECT MODEL",
+
+        title:
+            "Individual Portfolio",
+
+        subtitle:
+            "Direct access to AIATS for investors operating their own trading account.",
+
+        description:
+            "Designed for investors who want to use AIATS directly. The investor keeps their capital in their own trading account, connects that account to AIATS, and the system executes selected trading strategies automatically in exchange for agreed service fees and, where applicable, performance-based arrangements.",
+
+        pill:
+            "● DIRECT ACCOUNT CONNECTION",
+
+        flow: [
+            "INVESTOR",
+            "OWN ACCOUNT",
+            "AIATS",
+            "EXECUTION"
+        ],
+
+        details: [
+            [
+                "Capital Structure",
+                "Investor's own trading account"
+            ],
+            [
+                "AIATS Role",
+                "Automated strategy execution"
+            ],
+            [
+                "Commercial Model",
+                "Service fees / agreed performance arrangements"
+            ]
+        ]
+
+    },
+
+
+    company: {
+
+        number:
+            "04 / ENTERPRISE MODEL",
+
+        title:
+            "B2B Company",
+
+        subtitle:
+            "Algorithmic trading infrastructure for existing businesses and platforms.",
+
+        description:
+            "Designed for companies that want to add algorithmic trading capabilities to their existing business or infrastructure. The company or its customers' trading accounts can be connected to AIATS, with the system deployed either within the company's infrastructure or through an AIATS-managed environment.",
+
+        pill:
+            "● B2B INFRASTRUCTURE INTEGRATION",
+
+        flow: [
+            "COMPANY",
+            "ACCOUNTS",
+            "AIATS",
+            "EXECUTION"
+        ],
+
+        details: [
+            [
+                "Capital Structure",
+                "Company or customer accounts"
+            ],
+            [
+                "AIATS Role",
+                "Embedded or managed execution layer"
+            ],
+            [
+                "Commercial Model",
+                "B2B licensing / service agreement"
+            ]
+        ]
+
+    },
+
+
+    fund: {
+
+        number:
+            "05 / INSTITUTIONAL MODEL",
+
+        title:
+            "B2B Fund",
+
+        subtitle:
+            "Dedicated algorithmic execution infrastructure for professional investment organizations.",
+
+        description:
+            "Designed for funds and professional investment organizations seeking dedicated algorithmic trading infrastructure. The fund's trading account is connected to AIATS, which operates as an automated multi-strategy execution and trading infrastructure layer according to the fund's operational and investment structure.",
+
+        pill:
+            "● PROFESSIONAL FUND INFRASTRUCTURE",
+
+        flow: [
+            "FUND",
+            "TRADING ACCOUNT",
+            "AIATS",
+            "MULTI-STRATEGY EXECUTION"
+        ],
+
+        details: [
+            [
+                "Capital Structure",
+                "Fund-controlled trading environment"
+            ],
+            [
+                "AIATS Role",
+                "Dedicated multi-strategy execution layer"
+            ],
+            [
+                "Commercial Model",
+                "Institutional technology agreement"
+            ]
+        ]
+
+    }
+
+};
+
+
+/* =========================================================
+   MODEL SELECTOR
+========================================================= */
+
+const modelTabs =
+    document.querySelectorAll(".model-tab");
+
+
+const modelNumber =
+    document.getElementById("modelNumber");
+
+
+const modelTitle =
+    document.getElementById("modelTitle");
+
+
+const modelSubtitle =
+    document.getElementById("modelSubtitle");
+
+
+const modelDescription =
+    document.getElementById("modelDescription");
+
+
+const modelPill =
+    document.getElementById("modelPill");
+
+
+const modelFlow =
+    document.getElementById("modelFlow");
+
+
+const detailGrid =
+    document.getElementById("detailGrid");
+
+
+function renderModel(modelKey) {
+
+    const model =
+        businessModels[modelKey];
+
+
+    if (!model) {
+        return;
+    }
+
+
+    modelNumber.textContent =
+        model.number;
+
+
+    modelTitle.textContent =
+        model.title;
+
+
+    modelSubtitle.textContent =
+        model.subtitle;
+
+
+    modelDescription.textContent =
+        model.description;
+
+
+    modelPill.textContent =
+        model.pill;
+
+
+    /*
+       FLOW
+    */
+
+    modelFlow.innerHTML = "";
+
+
+    model.flow.forEach(
+        (item, index) => {
+
+            const box =
+                document.createElement("div");
+
+
+            box.className =
+                "flow-box";
+
+
+            if (
+                item === "AIATS" ||
+                item.includes("AIATS")
+            ) {
+
+                box.classList.add(
+                    "aiats"
+                );
+
+            }
+
+
+            box.textContent =
+                item;
+
+
+            modelFlow.appendChild(box);
+
+
+            if (
+                index <
+                model.flow.length - 1
+            ) {
+
+                const arrow =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                arrow.className =
+                    "flow-arrow";
+
+
+                arrow.textContent =
+                    "→";
+
+
+                modelFlow.appendChild(
+                    arrow
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+       DETAILS
+    */
+
+    detailGrid.innerHTML = "";
+
+
+    model.details.forEach(
+        detail => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "detail-card";
+
+
+            card.innerHTML = `
+
+                <div class="detail-card-label">
+                    ${detail[0]}
+                </div>
+
+                <div class="detail-card-value">
+                    ${detail[1]}
+                </div>
+
+            `;
+
+
+            detailGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+    /*
+       ANIMATION
+    */
+
+    const display =
+        document.querySelector(
+            ".model-display"
+        );
+
+
+    display.animate(
+        [
+            {
+                opacity: .65,
+                transform:
+                    "translateY(5px)"
+            },
+            {
+                opacity: 1,
+                transform:
+                    "translateY(0)"
+            }
+        ],
+        {
+            duration: 280,
+            easing: "ease-out"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MODEL TAB EVENTS
+========================================================= */
+
+modelTabs.forEach(tab => {
+
+    tab.addEventListener(
+        "click",
+        () => {
+
+            modelTabs.forEach(
+                item => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            tab.classList.add(
+                "active"
+            );
+
+
+            renderModel(
+                tab.dataset.model
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            navLinks
+        ) {
+
+            navLinks.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIAL MODEL
+========================================================= */
+
+renderModel("manager");
+
+</script>
+
+</body>
+</html>

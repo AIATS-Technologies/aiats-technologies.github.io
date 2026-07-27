@@ -272,8 +272,13 @@ section {
     letter-spacing: 2px;
 }
 
-.logo span {
-    color: var(--blue);
+.logo h2 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+    letter-spacing: 2px;
 }
 
 .logo-mark {
@@ -294,6 +299,10 @@ section {
     color: var(--blue);
 
     font: 11px monospace;
+}
+
+.logo-mark::after {
+    content: "AI";
 }
 
 .nav-links {
@@ -317,6 +326,10 @@ section {
 }
 
 .nav-links a:hover {
+    color: white;
+}
+
+.nav-links a.active {
     color: white;
 }
 
@@ -522,7 +535,8 @@ h1 {
 
     transition:
         transform .25s,
-        background .25s;
+        background .25s,
+        border-color .25s;
 }
 
 .btn:hover {
@@ -543,6 +557,21 @@ h1 {
 
     background:
         rgba(255,255,255,.025);
+}
+
+.btn-secondary:hover {
+    border-color: var(--border-blue);
+}
+
+.btn-blue {
+
+    background:
+        rgba(77,168,255,.1);
+
+    border:
+        1px solid var(--border-blue);
+
+    color: var(--blue2);
 }
 
 
@@ -1331,6 +1360,116 @@ h2 {
 
 
 /* =========================================================
+   BUSINESS MODELS PREVIEW
+========================================================= */
+
+.models-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+
+    min-width: 0;
+}
+
+.model-card {
+
+    position: relative;
+
+    min-width: 0;
+
+    min-height: 235px;
+
+    padding: 28px 24px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.008)
+        );
+
+    overflow: hidden;
+
+    transition:
+        transform .3s,
+        border-color .3s,
+        background .3s;
+}
+
+.model-card:hover {
+
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(77,168,255,.28);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(77,168,255,.055),
+            rgba(255,255,255,.008)
+        );
+}
+
+.model-number {
+
+    color: var(--blue);
+
+    font: 10px monospace;
+}
+
+.model-card h3 {
+
+    margin-top: 23px;
+
+    font-size: 19px;
+}
+
+.model-card p {
+
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.75;
+}
+
+.model-link {
+
+    position: absolute;
+
+    left: 24px;
+    bottom: 22px;
+
+    color: var(--blue2);
+
+    font: 10px monospace;
+
+    letter-spacing: .5px;
+}
+
+.models-footer {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 35px;
+}
+
+
+/* =========================================================
    CAPABILITIES
 ========================================================= */
 
@@ -1926,6 +2065,12 @@ footer {
             repeat(2, minmax(0, 1fr));
     }
 
+    .models-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
     .metrics-grid {
 
         grid-template-columns:
@@ -2230,7 +2375,8 @@ footer {
 
     .disciplines,
     .capabilities,
-    .philosophy {
+    .philosophy,
+    .models-grid {
 
         grid-template-columns:
             minmax(0, 1fr);
@@ -2273,6 +2419,20 @@ footer {
         font-size: 13px;
 
         line-height: 1.7;
+    }
+
+
+    /* MODELS */
+
+    .model-card {
+
+        min-height: 220px;
+
+        padding: 25px 21px;
+    }
+
+    .model-link {
+        left: 21px;
     }
 
 
@@ -2542,10 +2702,9 @@ footer {
 
     <div class="container nav-inner">
 
-        <a href="#" class="logo">
+        <a href="index.html" class="logo">
 
-            <div class="logo-mark">
-            </div>
+            <div class="logo-mark"></div>
 
             <h2>AIATS</h2>
 
@@ -2580,6 +2739,10 @@ footer {
 
             <a href="#performance">
                 Performance
+            </a>
+
+            <a href="business-models.html">
+                Business Models
             </a>
 
             <a
@@ -2651,10 +2814,10 @@ footer {
 
 
                 <a
-                    href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Technical%20Brief%20Request"
+                    href="business-models.html"
                     class="btn btn-secondary">
 
-                    Request Technical Brief
+                    Explore Business Models
 
                 </a>
 
@@ -3335,6 +3498,239 @@ footer {
 
 
 <!-- =========================================================
+     BUSINESS MODELS
+========================================================= -->
+
+<section id="business-models">
+
+    <div class="container">
+
+
+        <div class="section-head reveal">
+
+            <div class="tag">
+                AIATS Business Models
+            </div>
+
+
+            <h2>
+                One infrastructure.
+                Multiple ways to operate.
+            </h2>
+
+
+            <p class="section-copy">
+
+                AIATS can be deployed across different
+                operating structures, from individual
+                portfolios to professional managers,
+                partners, companies and investment
+                organizations.
+
+            </p>
+
+        </div>
+
+
+        <div class="models-grid">
+
+
+            <div class="model-card reveal">
+
+                <div class="model-number">
+                    01 / PROFESSIONAL
+                </div>
+
+                <h3>
+                    Portfolio Manager
+                </h3>
+
+                <p>
+
+                    Designed for professionals managing
+                    capital for multiple clients within
+                    a managed portfolio.
+
+                </p>
+
+                <a
+                    href="business-models.html#portfolio-manager"
+                    class="model-link">
+
+                    EXPLORE MODEL →
+
+                </a>
+
+            </div>
+
+
+            <div class="model-card reveal">
+
+                <div class="model-number">
+                    02 / NETWORK
+                </div>
+
+                <h3>
+                    AIATS Partner
+                </h3>
+
+                <p>
+
+                    Designed for individuals or businesses
+                    with a network of clients or investors,
+                    with each client maintaining their own
+                    trading account.
+
+                </p>
+
+                <a
+                    href="business-models.html#aiats-partner"
+                    class="model-link">
+
+                    EXPLORE MODEL →
+
+                </a>
+
+            </div>
+
+
+            <div class="model-card reveal">
+
+                <div class="model-number">
+                    03 / DIRECT
+                </div>
+
+                <h3>
+                    Individual Portfolio
+                </h3>
+
+                <p>
+
+                    Designed for investors who want to
+                    connect their own trading account
+                    directly to AIATS.
+
+                </p>
+
+                <a
+                    href="business-models.html#individual-portfolio"
+                    class="model-link">
+
+                    EXPLORE MODEL →
+
+                </a>
+
+            </div>
+
+
+            <div class="model-card reveal">
+
+                <div class="model-number">
+                    04 / CORPORATE
+                </div>
+
+                <h3>
+                    B2B Company
+                </h3>
+
+                <p>
+
+                    Designed for companies seeking to
+                    integrate algorithmic trading capabilities
+                    into their existing business or infrastructure.
+
+                </p>
+
+                <a
+                    href="business-models.html#b2b-company"
+                    class="model-link">
+
+                    EXPLORE MODEL →
+
+                </a>
+
+            </div>
+
+
+            <div class="model-card reveal">
+
+                <div class="model-number">
+                    05 / INSTITUTIONAL
+                </div>
+
+                <h3>
+                    B2B Fund
+                </h3>
+
+                <p>
+
+                    Dedicated algorithmic trading
+                    infrastructure for funds and professional
+                    investment organizations.
+
+                </p>
+
+                <a
+                    href="business-models.html#b2b-fund"
+                    class="model-link">
+
+                    EXPLORE MODEL →
+
+                </a>
+
+            </div>
+
+
+            <div class="model-card reveal">
+
+                <div class="model-number">
+                    AIATS / INFRASTRUCTURE
+                </div>
+
+                <h3>
+                    Built Around the Account
+                </h3>
+
+                <p>
+
+                    Across every model, AIATS operates as
+                    the algorithmic execution infrastructure
+                    while the account structure and commercial
+                    relationship remain clearly defined.
+
+                </p>
+
+                <a
+                    href="business-models.html"
+                    class="model-link">
+
+                    VIEW ALL MODELS →
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="models-footer reveal">
+
+            <a
+                href="business-models.html"
+                class="btn btn-blue">
+
+                Explore All AIATS Business Models
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
      TECHNOLOGY
 ========================================================= -->
 
@@ -3688,7 +4084,13 @@ footer {
                 </div>
 
 
+                <div class="performance-note">
 
+                    Results represent a specific historical
+                    reporting period and should not be interpreted
+                    as a projection or guarantee of future results.
+
+                </div>
 
             </div>
 
@@ -3892,9 +4294,10 @@ footer {
 
             <p>
 
-                For technical discussions, partnership
-                inquiries or access to the AIATS technical
-                brief, contact the AIATS technology team.
+                Explore how AIATS can be structured
+                for individual portfolios, professional
+                managers, partners, companies and
+                investment organizations.
 
             </p>
 
@@ -3904,6 +4307,15 @@ footer {
 
                 <a
                     class="btn btn-primary"
+                    href="business-models.html">
+
+                    Explore Business Models
+
+                </a>
+
+
+                <a
+                    class="btn btn-secondary"
                     href="mailto:aiatstechnologies@gmail.com?subject=AIATS%20Technical%20Brief%20Request">
 
                     Request Technical Brief
