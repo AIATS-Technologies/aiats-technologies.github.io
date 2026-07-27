@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Request Portfolio — AIATS Technologies</title>
+
+<meta
+    name="description"
+    content="Request portfolio infrastructure from AIATS Technologies."
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        min-width: 0;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", Arial, sans-serif;
+        background:
+            radial-gradient(
+                circle at 15% 0%,
+                rgba(44, 75, 120, 0.22),
+                transparent 34%
+            ),
+            #07111f;
+        color: #ffffff;
+        padding: 24px;
+    }
+
+    .page {
+        width: 100%;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 28px 0 60px;
+    }
+
+    /* BRAND */
+
+    .brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 38px;
+    }
+
+    .brand-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.10em;
+    }
+
+    .brand-mark {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255,255,255,0.20);
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+    .back-link {
+        color: #718399;
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    .back-link:hover {
+        color: #ffffff;
+    }
+
+    /* CARD */
+
+    .card {
+        background: rgba(10, 24, 40, 0.92);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 22px;
+        padding: 42px;
+        box-shadow:
+            0 30px 80px rgba(0,0,0,0.30);
+    }
+
+    .eyebrow {
+        color: #8fa9c5;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+    }
+
+    h1 {
+        margin: 11px 0 10px;
+        font-size: 34px;
+        line-height: 1.15;
+        letter-spacing: -0.04em;
+    }
+
+    .intro {
+        margin: 0 0 32px;
+        color: #8fa0b2;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    /* USER */
+
+    .user-strip {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+        padding: 13px 14px;
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 10px;
+        background: rgba(255,255,255,0.025);
+    }
+
+    .user-dot {
+        width: 8px;
+        height: 8px;
+        flex: 0 0 8px;
+        border-radius: 50%;
+        background: #9bc6a6;
+    }
+
+    .user-info {
+        min-width: 0;
+    }
+
+    .user-label {
+        color: #607186;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.10em;
+    }
+
+    .user-email {
+        margin-top: 4px;
+        color: #c7d2df;
+        font-size: 11px;
+        overflow-wrap: anywhere;
+    }
+
+    /* FORM */
+
+    .field {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #c7d2df;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .required {
+        color: #718399;
+        font-weight: 400;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        border: 1px solid rgba(255,255,255,0.11);
+        border-radius: 10px;
+        background: rgba(255,255,255,0.045);
+        color: #ffffff;
+        padding: 0 14px;
+        font: inherit;
+        font-size: 13px;
+        outline: none;
+    }
+
+    input,
+    select {
+        height: 48px;
+    }
+
+    textarea {
+        min-height: 120px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+        resize: vertical;
+        line-height: 1.6;
+    }
+
+    select option {
+        background: #0b1a2b;
+        color: #ffffff;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #506176;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: rgba(255,255,255,0.30);
+    }
+
+    .hint {
+        margin-top: 7px;
+        color: #506176;
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    /* TWO COLUMNS */
+
+    .form-grid {
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    /* INFO */
+
+    .info-box {
+        margin: 8px 0 25px;
+        padding: 16px;
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 11px;
+        background: rgba(255,255,255,0.025);
+    }
+
+    .info-title {
+        color: #c7d2df;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .info-text {
+        margin-top: 6px;
+        color: #718399;
+        font-size: 10px;
+        line-height: 1.6;
+    }
+
+    /* BUTTON */
+
+    .submit-button {
+        width: 100%;
+        min-height: 50px;
+        margin-top: 7px;
+        border: 0;
+        border-radius: 10px;
+        background: #ffffff;
+        color: #07111f;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        opacity: 0.92;
+    }
+
+    .submit-button:disabled {
+        opacity: 0.50;
+        cursor: not-allowed;
+    }
+
+    /* MESSAGE */
+
+    .message {
+        display: none;
+        margin-top: 20px;
+        padding: 14px;
+        border-radius: 10px;
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    .message.error {
+        display: block;
+        color: #efb0b0;
+        background: rgba(150,45,45,0.12);
+        border: 1px solid rgba(200,90,90,0.18);
+    }
+
+    .message.success {
+        display: block;
+        color: #b4d9bd;
+        background: rgba(45,120,70,0.12);
+        border: 1px solid rgba(90,170,110,0.18);
+    }
+
+    /* SUCCESS PANEL */
+
+    .success-panel {
+        display: none;
+        text-align: center;
+    }
+
+    .success-icon {
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 20px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(90,170,110,0.22);
+        border-radius: 15px;
+        background: rgba(45,120,70,0.10);
+        color: #b4d9bd;
+        font-size: 24px;
+    }
+
+    .success-panel h2 {
+        margin: 0;
+        font-size: 23px;
+        letter-spacing: -0.03em;
+    }
+
+    .success-panel p {
+        margin: 10px auto 24px;
+        max-width: 460px;
+        color: #718399;
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    .request-reference {
+        margin: 18px 0 24px;
+        padding: 14px;
+        border-radius: 9px;
+        background: rgba(255,255,255,0.035);
+        border: 1px solid rgba(255,255,255,0.07);
+        color: #c7d2df;
+        font-size: 11px;
+        overflow-wrap: anywhere;
+    }
+
+    .secondary-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 9px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.10);
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    /* FOOTER */
+
+    .footer {
+        margin-top: 28px;
+        text-align: center;
+        color: #506176;
+        font-size: 10px;
+    }
+
+    @media (max-width: 620px) {
+
+        body {
+            padding: 12px;
+        }
+
+        .page {
+            padding: 18px 0 45px;
+        }
+
+        .brand {
+            margin-bottom: 25px;
+        }
+
+        .card {
+            padding: 28px 20px;
+            border-radius: 17px;
+        }
+
+        h1 {
+            font-size: 29px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .brand-left {
+            gap: 9px;
+        }
+
+        .back-link {
+            font-size: 10px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<main class="page">
+
+```
+<div class="brand">
+
+    <div class="brand-left">
+
+        <div class="brand-mark">
+            A
+        </div>
+
+        <span>
+            AIATS
+        </span>
+
+    </div>
+
+    <a
+        href="dashboard.html"
+        class="back-link"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+<section class="card">
+
+    <div id="formView">
+
+        <div class="eyebrow">
+            Portfolio Infrastructure
+        </div>
+
+        <h1>
+            Request a portfolio
+        </h1>
+
+        <p class="intro">
+            Submit your portfolio requirements to AIATS.
+            Your request will be reviewed before the
+            portfolio infrastructure is activated.
+        </p>
+
+
+        <div class="user-strip">
+
+            <div class="user-dot"></div>
+
+            <div class="user-info">
+
+                <div class="user-label">
+                    Signed in as
+                </div>
+
+                <div
+                    id="userEmail"
+                    class="user-email"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <form id="portfolioForm">
+
+            <div class="field">
+
+                <label for="portfolioName">
+                    Portfolio Name
+                    <span class="required">
+                        — required
+                    </span>
+                </label>
+
+                <input
+                    id="portfolioName"
+                    type="text"
+                    maxlength="120"
+                    placeholder="e.g. AIATS Growth Portfolio"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="field">
+
+                    <label for="portfolioType">
+                        Portfolio Type
+                        <span class="required">
+                            — required
+                        </span>
+                    </label>
+
+                    <select
+                        id="portfolioType"
+                        required
+                    >
+
+                        <option
+                            value=""
+                            selected
+                            disabled
+                        >
+                            Select type
+                        </option>
+
+                        <option value="individual">
+                            Individual Portfolio
+                        </option>
+
+                        <option value="portfolio_manager">
+                            Portfolio Manager
+                        </option>
+
+                        <option value="portfolio_agent">
+                            Portfolio Agent
+                        </option>
+
+                        <option value="b2b_company">
+                            B2B Company
+                        </option>
+
+                        <option value="b2b_fund">
+                            B2B Fund
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="baseCurrency">
+                        Base Currency
+                    </label>
+
+                    <select
+                        id="baseCurrency"
+                    >
+
+                        <option
+                            value="USD"
+                            selected
+                        >
+                            USD — US Dollar
+                        </option>
+
+                        <option value="EUR">
+                            EUR — Euro
+                        </option>
+
+                        <option value="GBP">
+                            GBP — British Pound
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="exchange">
+                    Exchange
+                    <span class="required">
+                        — required
+                    </span>
+                </label>
+
+                <select
+                    id="exchange"
+                    required
+                >
+
+                    <option
+                        value=""
+                        selected
+                        disabled
+                    >
+                        Select exchange
+                    </option>
+
+                    <option value="binance">
+                        Binance
+                    </option>
+
+                    <option value="other">
+                        Other / To be configured
+                    </option>
+
+                </select>
+
+                <div class="hint">
+                    Additional exchange configuration can be
+                    completed during portfolio onboarding.
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="notes">
+                    Requirements / Notes
+                    <span class="required">
+                        — optional
+                    </span>
+                </label>
+
+                <textarea
+                    id="notes"
+                    maxlength="2000"
+                    placeholder="Describe any specific requirements, strategy configuration, account structure, or operational details."
+                ></textarea>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info-title">
+                    What happens after submission?
+                </div>
+
+                <div class="info-text">
+                    Your request will be recorded as
+                    <strong>Pending</strong>. AIATS will review
+                    the requested configuration before any
+                    portfolio is activated.
+                </div>
+
+            </div>
+
+
+            <button
+                id="submitButton"
+                class="submit-button"
+                type="submit"
+            >
+                Submit Portfolio Request
+            </button>
+
+
+            <div
+                id="message"
+                class="message"
+                role="alert"
+            ></div>
+
+        </form>
+
+    </div>
+
+
+    <div
+        id="successView"
+        class="success-panel"
+    >
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <div class="eyebrow">
+            Request received
+        </div>
+
+        <h2>
+            Portfolio request submitted
+        </h2>
+
+        <p>
+            Your request has been recorded successfully.
+            It is currently pending review by AIATS.
+        </p>
+
+        <div
+            id="requestReference"
+            class="request-reference"
+        ></div>
+
+        <a
+            href="dashboard.html"
+            class="secondary-button"
+        >
+            Return to Dashboard
+        </a>
+
+    </div>
+
+</section>
+
+
+<div class="footer">
+    AIATS Technologies —
+    Algorithmic Trading Infrastructure
+</div>
+```
+
+</main>
+
+<script type="module">
+
+    import { supabase }
+        from "./js/supabase-config.js";
+
+
+    const form =
+        document.getElementById(
+            "portfolioForm"
+        );
+
+    const submitButton =
+        document.getElementById(
+            "submitButton"
+        );
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+    const userEmail =
+        document.getElementById(
+            "userEmail"
+        );
+
+    const formView =
+        document.getElementById(
+            "formView"
+        );
+
+    const successView =
+        document.getElementById(
+            "successView"
+        );
+
+    const requestReference =
+        document.getElementById(
+            "requestReference"
+        );
+
+
+    let currentUser = null;
+
+
+    function showMessage(
+        text,
+        type
+    ) {
+
+        message.textContent =
+            text;
+
+        message.className =
+            "message " + type;
+
+    }
+
+
+    function formatId(id) {
+
+        if (!id) {
+            return "";
+        }
+
+        return "Request ID: " + id;
+
+    }
+
+
+    async function initialize() {
+
+        try {
+
+            const {
+                data: {
+                    user
+                },
+                error
+            } = await supabase.auth.getUser();
+
+
+            if (error) {
+                throw error;
+            }
+
+
+            if (!user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            if (!user.email_confirmed_at) {
+
+                window.location.href =
+                    "verified.html";
+
+                return;
+
+            }
+
+
+            currentUser = user;
+
+            userEmail.textContent =
+                user.email || "";
+
+
+            /*
+             * Check whether the user already has
+             * a pending request.
+             */
+
+            const {
+                data: existingRequests,
+                error: requestError
+            } = await supabase
+
+                .from("portfolio_requests")
+
+                .select(
+                    "id, portfolio_name, status, created_at"
+                )
+
+                .eq(
+                    "user_id",
+                    user.id
+                )
+
+                .eq(
+                    "status",
+                    "pending"
+                )
+
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                )
+                .limit(1);
+
+
+            if (requestError) {
+
+                /*
+                 * If RLS rejects the read,
+                 * the page should still allow submission.
+                 */
+
+                console.warn(
+                    "Existing request check:",
+                    requestError
+                );
+
+                return;
+
+            }
+
+
+            if (
+                existingRequests &&
+                existingRequests.length > 0
+            ) {
+
+                const existing =
+                    existingRequests[0];
+
+
+                showMessage(
+                    "You already have a pending portfolio request: " +
+                    (existing.portfolio_name ||
+                        "Unnamed Portfolio") +
+                    ". You can return to your dashboard to monitor its status.",
+                    "success"
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Initialization error:",
+                error
+            );
+
+            showMessage(
+                error.message ||
+                "Unable to initialize the portfolio request page.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    form.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            if (!currentUser) {
+
+                showMessage(
+                    "Your session has expired. Please sign in again.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            submitButton.disabled =
+                true;
+
+            submitButton.textContent =
+                "Submitting request...";
+
+
+            message.className =
+                "message";
+
+            message.textContent =
+                "";
+
+
+            const portfolioName =
+                document
+                    .getElementById(
+                        "portfolioName"
+                    )
+                    .value
+                    .trim();
+
+
+            const portfolioType =
+                document
+                    .getElementById(
+                        "portfolioType"
+                    )
+                    .value;
+
+
+            const baseCurrency =
+                document
+                    .getElementById(
+                        "baseCurrency"
+                    )
+                    .value;
+
+
+            const exchange =
+                document
+                    .getElementById(
+                        "exchange"
+                    )
+                    .value;
+
+
+            const notes =
+                document
+                    .getElementById(
+                        "notes"
+                    )
+                    .value
+                    .trim();
+
+
+            try {
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * user_id is taken directly from
+                 * the authenticated Supabase session.
+                 *
+                 * status is always pending.
+                 *
+                 * The browser cannot request an
+                 * approved portfolio.
+                 */
+
+                const {
+                    data,
+                    error
+                } = await supabase
+
+                    .from("portfolio_requests")
+
+                    .insert({
+
+                        user_id:
+                            currentUser.id,
+
+                        portfolio_name:
+                            portfolioName,
+
+                        portfolio_type:
+                            portfolioType,
+
+                        base_currency:
+                            baseCurrency,
+
+                        exchange:
+                            exchange,
+
+                        status:
+                            "pending",
+
+                        notes:
+                            notes || null
+
+                    })
+
+                    .select(
+                        "id"
+                    )
+                    .single();
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                formView.style.display =
+                    "none";
+
+                successView.style.display =
+                    "block";
+
+
+                requestReference.textContent =
+                    formatId(
+                        data?.id
+                    );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Portfolio request error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "Unable to submit your portfolio request.",
+                    "error"
+                );
+
+
+                submitButton.disabled =
+                    false;
+
+                submitButton.textContent =
+                    "Submit Portfolio Request";
+
+            }
+
+        }
+    );
+
+
+    initialize();
+
+</script>
+
+</body>
+</html>
