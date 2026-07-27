@@ -261,7 +261,18 @@
     </div>
 
     <section class="card">
-<h2>AIATS Client Login</h2>
+<div class="eyebrow">
+    Client Login
+</div>
+
+<h1>
+    Welcome back
+</h1>
+
+<p class="intro">
+    Sign in to access your AIATS client dashboard
+    and manage your trading environment.
+</p>
 <form id="loginForm">
 <input id="email" type="email" placeholder="Email" required>
 <div class="field">
@@ -298,18 +309,26 @@
 </form>
 <p><a href="register.html">Create account</a></p>
 <div id="msg"></div>
-</div>
+</section>
 <script type="module">
 import { supabase } from "./js/supabase-config.js";
-const pw=document.getElementById("password");
-toggle.onclick = () => {
+const pw = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+
+togglePassword.onclick = () => {
+
     if (pw.type === "password") {
+
         pw.type = "text";
-        toggle.textContent = "Hide";
+        togglePassword.textContent = "Hide";
+
     } else {
+
         pw.type = "password";
-        toggle.textContent = "Show";
+        togglePassword.textContent = "Show";
+
     }
+
 };
 const {data:{session}}=await supabase.auth.getSession();
 if(session) location.href="dashboard.html";
@@ -322,6 +341,5 @@ if(error){msg.textContent=error.message.includes("Invalid")?"Incorrect email or 
 location.href="dashboard.html";
 };
 </script>
-    </section>
 
 </main></body></html>
