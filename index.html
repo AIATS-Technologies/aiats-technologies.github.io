@@ -6,16 +6,82 @@
 
 <title>AIATS Technologies — Algorithmic Trading Infrastructure</title>
 
-<meta name="description"
-content="AIATS Technologies develops automated algorithmic trading infrastructure where mathematics, technology and engineering work together.">
+<meta
+    name="description"
+    content="AIATS Technologies develops automated algorithmic trading infrastructure where mathematics, technology and engineering work together."
+>
 
 <style>
 
 /* =========================================================
-   ROOT
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+
+    background: #03060b;
+    color: #f4f7fb;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    line-height: 1.6;
+}
+
+img,
+svg,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   VARIABLES
 ========================================================= */
 
 :root {
+
     --bg: #03060b;
     --bg2: #070c14;
     --bg3: #0b111b;
@@ -37,39 +103,15 @@ content="AIATS Technologies develops automated algorithmic trading infrastructur
 
 
 /* =========================================================
-   GLOBAL
+   BACKGROUND
 ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: var(--bg);
-    color: var(--text);
-
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    line-height: 1.6;
-
-    overflow-x: hidden;
-}
-
 body::before {
+
     content: "";
 
     position: fixed;
+
     inset: 0;
 
     pointer-events: none;
@@ -78,12 +120,12 @@ body::before {
 
     background-image:
         linear-gradient(
-            rgba(255,255,255,.018) 1px,
+            rgba(255,255,255,.016) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(255,255,255,.018) 1px,
+            rgba(255,255,255,.016) 1px,
             transparent 1px
         );
 
@@ -98,12 +140,13 @@ body::before {
 }
 
 body::after {
+
     content: "";
 
     position: fixed;
 
-    width: 450px;
-    height: 450px;
+    width: 420px;
+    height: 420px;
 
     left: var(--mouse-x, 50%);
     top: var(--mouse-y, 20%);
@@ -113,7 +156,7 @@ body::after {
     background:
         radial-gradient(
             circle,
-            rgba(77,168,255,.055),
+            rgba(77,168,255,.05),
             transparent 70%
         );
 
@@ -122,30 +165,46 @@ body::after {
     z-index: -1;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .container {
-    width:
-        min(
-            var(--container),
-            calc(100% - 40px)
-        );
 
-    margin: auto;
+    width: min(
+        var(--container),
+        calc(100% - 40px)
+    );
+
+    max-width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
 }
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 section {
-    padding: 125px 0;
+    width: 100%;
+    max-width: 100%;
+
+    padding: 120px 0;
 }
 
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
 .reveal {
+
     opacity: 0;
 
-    transform:
-        translateY(35px);
+    transform: translateY(30px);
 
     transition:
         opacity .8s ease,
@@ -153,10 +212,10 @@ section {
 }
 
 .reveal.visible {
+
     opacity: 1;
 
-    transform:
-        translateY(0);
+    transform: translateY(0);
 }
 
 
@@ -165,48 +224,67 @@ section {
 ========================================================= */
 
 .navbar {
+
     position: fixed;
 
     top: 0;
+    left: 0;
+
     width: 100%;
+    max-width: 100%;
 
     z-index: 1000;
 
     background:
-        rgba(3,6,11,.68);
+        rgba(3,6,11,.72);
 
     backdrop-filter:
-        blur(20px);
+        blur(18px);
 
     border-bottom:
         1px solid var(--border);
 }
 
 .nav-inner {
+
     height: 74px;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
+
+    min-width: 0;
 }
 
 .logo {
+
     display: flex;
+
     align-items: center;
 
-    gap: 11px;
+    gap: 10px;
+
+    flex-shrink: 0;
 
     font-weight: 850;
 
     letter-spacing: 2px;
 }
 
+.logo span {
+    color: var(--blue);
+}
+
 .logo-mark {
+
     width: 32px;
     height: 32px;
 
     display: grid;
     place-items: center;
+
+    flex-shrink: 0;
 
     border:
         1px solid var(--border-blue);
@@ -215,28 +293,27 @@ section {
 
     color: var(--blue);
 
-    font-family: monospace;
-
-    font-size: 11px;
-}
-
-.logo span {
-    color: var(--blue);
+    font: 11px monospace;
 }
 
 .nav-links {
+
     display: flex;
+
     align-items: center;
 
     gap: 28px;
+
+    min-width: 0;
 }
 
 .nav-links a {
+
     color: var(--muted);
 
     font-size: 12px;
 
-    transition: .25s;
+    transition: color .25s;
 }
 
 .nav-links a:hover {
@@ -244,6 +321,7 @@ section {
 }
 
 .nav-contact {
+
     padding: 8px 15px;
 
     border:
@@ -255,16 +333,16 @@ section {
 }
 
 .menu {
+
     display: none;
 
     border: 0;
-    background: none;
+
+    background: transparent;
 
     color: white;
 
     font-size: 23px;
-
-    cursor: pointer;
 }
 
 
@@ -273,55 +351,45 @@ section {
 ========================================================= */
 
 .hero {
+
     min-height: 100vh;
 
     padding-top: 145px;
-    padding-bottom: 100px;
+    padding-bottom: 90px;
 
     display: flex;
+
     align-items: center;
-
-    position: relative;
-}
-
-.hero::before {
-    content: "";
-
-    position: absolute;
-
-    width: 750px;
-    height: 750px;
-
-    top: -350px;
-    right: -220px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(77,168,255,.13),
-            transparent 68%
-        );
-
-    pointer-events: none;
 }
 
 .hero-grid {
+
     display: grid;
 
     grid-template-columns:
-        1.05fr
-        .95fr;
+        minmax(0, 1.05fr)
+        minmax(0, .95fr);
 
-    gap: 75px;
+    gap: 70px;
 
     align-items: center;
+
+    min-width: 0;
+}
+
+.hero-grid > * {
+    min-width: 0;
 }
 
 .eyebrow {
+
     display: inline-flex;
+
     align-items: center;
 
     gap: 9px;
+
+    max-width: 100%;
 
     padding: 7px 13px;
 
@@ -339,26 +407,23 @@ section {
 
     font-weight: 800;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1.3px;
 
     text-transform: uppercase;
 }
 
 .pulse {
+
     width: 7px;
     height: 7px;
 
+    flex: 0 0 7px;
+
     border-radius: 50%;
 
-    background:
-        var(--green);
+    background: var(--green);
 
-    box-shadow:
-        0 0 0 0
-        rgba(82,223,145,.5);
-
-    animation:
-        pulse 2s infinite;
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -380,23 +445,26 @@ section {
             0 0 0 0
             rgba(82,223,145,0);
     }
-
 }
 
 h1 {
+
+    max-width: 780px;
+
     margin-top: 25px;
 
-    max-width: 760px;
-
     font-size:
-        clamp(50px, 6.3vw, 82px);
+        clamp(48px, 6vw, 80px);
 
-    line-height: .96;
+    line-height: .97;
 
     letter-spacing: -4px;
+
+    overflow-wrap: break-word;
 }
 
 .gradient {
+
     background:
         linear-gradient(
             105deg,
@@ -410,6 +478,7 @@ h1 {
 }
 
 .hero-copy {
+
     max-width: 650px;
 
     margin-top: 28px;
@@ -422,16 +491,20 @@ h1 {
 }
 
 .actions {
+
     display: flex;
 
-    gap: 12px;
+    align-items: center;
 
     flex-wrap: wrap;
+
+    gap: 12px;
 
     margin-top: 34px;
 }
 
 .btn {
+
     min-height: 46px;
 
     display: inline-flex;
@@ -449,22 +522,22 @@ h1 {
 
     transition:
         transform .25s,
-        background .25s,
-        border .25s;
+        background .25s;
 }
 
 .btn:hover {
-    transform:
-        translateY(-3px);
+    transform: translateY(-3px);
 }
 
 .btn-primary {
+
     background: white;
 
     color: #03060b;
 }
 
 .btn-secondary {
+
     border:
         1px solid var(--border);
 
@@ -474,11 +547,15 @@ h1 {
 
 
 /* =========================================================
-   INTERACTIVE SYSTEM PANEL
+   SYSTEM PANEL
 ========================================================= */
 
 .system {
-    position: relative;
+
+    width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
 
     border:
         1px solid var(--border);
@@ -503,6 +580,7 @@ h1 {
 }
 
 .system-top {
+
     height: 44px;
 
     display: flex;
@@ -515,11 +593,16 @@ h1 {
 
     border-bottom:
         1px solid var(--border);
+
+    min-width: 0;
 }
 
 .dot {
+
     width: 7px;
     height: 7px;
+
+    flex: 0 0 7px;
 
     border-radius: 50%;
 
@@ -527,56 +610,91 @@ h1 {
 }
 
 .system-title {
+
+    min-width: 0;
+
     margin-left: 8px;
 
     color: var(--dim);
 
     font: 10px monospace;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
 }
 
 .system-content {
+
+    width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
+
     padding: 26px;
+
+    overflow: hidden;
 }
 
 .system-status {
+
     display: flex;
 
     justify-content: space-between;
+
+    gap: 15px;
 
     padding-bottom: 19px;
 
     border-bottom:
         1px solid var(--border);
+
+    min-width: 0;
+}
+
+.system-status span:first-child,
+.status {
+
+    font: 10px monospace;
 }
 
 .system-status span:first-child {
     color: var(--muted);
-
-    font: 10px monospace;
 }
 
 .status {
     color: var(--green);
-
-    font: 10px monospace;
+    white-space: nowrap;
 }
 
 .flow {
+
+    width: 100%;
+    max-width: 100%;
+
     margin-top: 25px;
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 7px;
+    min-width: 0;
 }
 
 .flow-node {
+
+    width: 100%;
+    max-width: 100%;
+
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
+
+    gap: 15px;
 
     padding: 14px 15px;
 
@@ -590,30 +708,40 @@ h1 {
         rgba(255,255,255,.018);
 
     transition: .3s;
+
+    min-width: 0;
 }
 
 .flow-node:hover,
 .flow-node.active {
+
     border-color:
         var(--border-blue);
 
     background:
         rgba(77,168,255,.055);
-
-    transform:
-        translateX(5px);
 }
 
 .flow-name {
+
+    min-width: 0;
+
     color: #c6cfdd;
 
     font: 10px monospace;
+
+    overflow-wrap: anywhere;
 }
 
 .flow-state {
+
+    flex-shrink: 0;
+
     color: var(--dim);
 
     font: 9px monospace;
+
+    white-space: nowrap;
 }
 
 .flow-node.active .flow-state {
@@ -621,8 +749,11 @@ h1 {
 }
 
 .connector {
+
     width: 1px;
     height: 15px;
+
+    flex: 0 0 1px;
 
     margin-left: 22px;
 
@@ -636,6 +767,10 @@ h1 {
 }
 
 .engine {
+
+    width: 100%;
+    max-width: 100%;
+
     margin-top: 23px;
 
     padding: 18px;
@@ -648,12 +783,17 @@ h1 {
 
     background:
         rgba(77,168,255,.035);
+
+    overflow: hidden;
 }
 
 .engine-title {
+
     display: flex;
 
     justify-content: space-between;
+
+    gap: 15px;
 
     color: var(--muted);
 
@@ -662,9 +802,11 @@ h1 {
 
 .engine-active {
     color: var(--green);
+    white-space: nowrap;
 }
 
 .engine-line {
+
     height: 1px;
 
     margin: 18px 0;
@@ -690,13 +832,19 @@ h1 {
     50% {
         opacity: 1;
     }
-
 }
 
 .execution {
+
     display: flex;
 
+    align-items: center;
+
     justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
 
     color: #657287;
 
@@ -709,10 +857,14 @@ h1 {
 
 
 /* =========================================================
-   TOP PERFORMANCE STRIP
+   METRICS
 ========================================================= */
 
 .metrics {
+
+    width: 100%;
+    max-width: 100%;
+
     border-top:
         1px solid var(--border);
 
@@ -724,14 +876,20 @@ h1 {
 }
 
 .metrics-grid {
+
     display: grid;
 
     grid-template-columns:
-        repeat(5,1fr);
+        repeat(5, minmax(0, 1fr));
+
+    min-width: 0;
 }
 
 .metric {
-    padding: 30px 15px;
+
+    min-width: 0;
+
+    padding: 30px 12px;
 
     text-align: center;
 
@@ -744,9 +902,12 @@ h1 {
 }
 
 .metric-number {
+
     font-size: 25px;
 
     font-weight: 850;
+
+    overflow-wrap: break-word;
 }
 
 .metric-number.green {
@@ -754,6 +915,7 @@ h1 {
 }
 
 .metric-label {
+
     margin-top: 5px;
 
     color: var(--dim);
@@ -773,12 +935,15 @@ h1 {
 ========================================================= */
 
 .section-head {
+
+    width: 100%;
     max-width: 760px;
 
     margin-bottom: 55px;
 }
 
 .tag {
+
     color: var(--blue);
 
     font-size: 10px;
@@ -791,17 +956,21 @@ h1 {
 }
 
 h2 {
+
     margin-top: 13px;
 
     font-size:
-        clamp(37px,4.5vw,58px);
+        clamp(36px, 4.5vw, 58px);
 
-    line-height: 1.02;
+    line-height: 1.03;
 
     letter-spacing: -2.5px;
+
+    overflow-wrap: break-word;
 }
 
 .section-copy {
+
     margin-top: 19px;
 
     color: var(--muted);
@@ -817,18 +986,26 @@ h2 {
 ========================================================= */
 
 .principle-grid {
+
     display: grid;
 
     grid-template-columns:
-        .9fr
-        1.1fr;
+        minmax(0, .9fr)
+        minmax(0, 1.1fr);
 
     gap: 80px;
 
     align-items: center;
+
+    min-width: 0;
+}
+
+.principle-grid > * {
+    min-width: 0;
 }
 
 .quote {
+
     padding-left: 28px;
 
     border-left:
@@ -836,8 +1013,9 @@ h2 {
 }
 
 .quote p {
+
     font-size:
-        clamp(31px,4vw,51px);
+        clamp(30px, 4vw, 51px);
 
     line-height: 1.08;
 
@@ -851,6 +1029,7 @@ h2 {
 }
 
 .principle-text p {
+
     margin-bottom: 20px;
 
     color: var(--muted);
@@ -870,15 +1049,21 @@ h2 {
 ========================================================= */
 
 .disciplines {
+
     display: grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        repeat(4, minmax(0, 1fr));
 
     gap: 15px;
+
+    min-width: 0;
 }
 
 .discipline {
+
+    min-width: 0;
+
     min-height: 225px;
 
     padding: 28px 23px;
@@ -901,26 +1086,29 @@ h2 {
 }
 
 .discipline:hover {
-    transform:
-        translateY(-7px);
+
+    transform: translateY(-7px);
 
     border-color:
         rgba(77,168,255,.28);
 }
 
 .discipline-number {
+
     color: var(--blue);
 
     font: 10px monospace;
 }
 
 .discipline h3 {
+
     margin-top: 27px;
 
     font-size: 19px;
 }
 
 .discipline p {
+
     margin-top: 11px;
 
     color: var(--muted);
@@ -934,24 +1122,39 @@ h2 {
 ========================================================= */
 
 .architecture-wrapper {
+
     display: grid;
 
     grid-template-columns:
-        .72fr
-        1.28fr;
+        minmax(0, .72fr)
+        minmax(0, 1.28fr);
 
     gap: 20px;
+
+    min-width: 0;
+}
+
+.architecture-wrapper > * {
+    min-width: 0;
 }
 
 .architecture-menu {
+
     display: flex;
 
     flex-direction: column;
 
     gap: 8px;
+
+    min-width: 0;
 }
 
 .architecture-tab {
+
+    width: 100%;
+
+    min-width: 0;
+
     padding: 19px;
 
     border:
@@ -973,6 +1176,7 @@ h2 {
 }
 
 .architecture-tab.active {
+
     border-color:
         var(--border-blue);
 
@@ -981,18 +1185,21 @@ h2 {
 }
 
 .architecture-tab-number {
+
     color: var(--blue);
 
     font: 9px monospace;
 }
 
 .architecture-tab h3 {
+
     margin-top: 7px;
 
     font-size: 15px;
 }
 
 .architecture-tab p {
+
     margin-top: 5px;
 
     color: var(--muted);
@@ -1001,17 +1208,21 @@ h2 {
 }
 
 .architecture-display {
-    min-height: 400px;
 
     position: relative;
+
+    width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
+
+    min-height: 400px;
 
     padding: 40px;
 
     display: flex;
 
-    flex-direction: column;
-
-    justify-content: center;
+    align-items: center;
 
     border:
         1px solid var(--border);
@@ -1030,6 +1241,7 @@ h2 {
 }
 
 .display-grid {
+
     position: absolute;
 
     inset: 0;
@@ -1051,26 +1263,37 @@ h2 {
 }
 
 .display-content {
+
     position: relative;
 
     z-index: 2;
+
+    width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
 }
 
 .display-number {
+
     color: var(--blue);
 
     font: 10px monospace;
 }
 
 .display-title {
+
     margin-top: 15px;
 
     font-size: 37px;
 
     letter-spacing: -1.5px;
+
+    overflow-wrap: break-word;
 }
 
 .display-description {
+
     max-width: 550px;
 
     margin-top: 16px;
@@ -1083,7 +1306,10 @@ h2 {
 }
 
 .display-pill {
+
     display: inline-flex;
+
+    max-width: 100%;
 
     margin-top: 25px;
 
@@ -1105,19 +1331,25 @@ h2 {
 
 
 /* =========================================================
-   TECHNOLOGY
+   CAPABILITIES
 ========================================================= */
 
 .capabilities {
+
     display: grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(3, minmax(0, 1fr));
 
     gap: 15px;
+
+    min-width: 0;
 }
 
 .capability {
+
+    min-width: 0;
+
     padding: 28px;
 
     border:
@@ -1132,14 +1364,15 @@ h2 {
 }
 
 .capability:hover {
-    transform:
-        translateY(-5px);
+
+    transform: translateY(-5px);
 
     border-color:
         rgba(77,168,255,.25);
 }
 
 .icon {
+
     width: 40px;
     height: 40px;
 
@@ -1160,12 +1393,14 @@ h2 {
 }
 
 .capability h3 {
+
     margin-top: 19px;
 
     font-size: 17px;
 }
 
 .capability p {
+
     margin-top: 9px;
 
     color: var(--muted);
@@ -1179,16 +1414,29 @@ h2 {
 ========================================================= */
 
 .performance-grid {
+
     display: grid;
 
     grid-template-columns:
-        1.15fr
-        .85fr;
+        minmax(0, 1.15fr)
+        minmax(0, .85fr);
 
     gap: 16px;
+
+    min-width: 0;
+}
+
+.performance-grid > * {
+    min-width: 0;
 }
 
 .performance-card {
+
+    width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
+
     padding: 30px;
 
     border:
@@ -1198,9 +1446,12 @@ h2 {
 
     background:
         var(--bg3);
+
+    overflow: hidden;
 }
 
 .performance-label {
+
     color: var(--dim);
 
     font-size: 9px;
@@ -1213,6 +1464,7 @@ h2 {
 }
 
 .performance-number {
+
     margin-top: 7px;
 
     font-size: 52px;
@@ -1227,28 +1479,34 @@ h2 {
 }
 
 .chart {
+
+    width: 100%;
+    max-width: 100%;
+
     height: 220px;
 
     margin-top: 28px;
 
-    position: relative;
+    overflow: hidden;
 }
 
 .chart svg {
+
     width: 100%;
     height: 100%;
+
+    max-width: 100%;
 }
 
 .chart-area {
-    fill:
-        rgba(77,168,255,.06);
+    fill: rgba(77,168,255,.06);
 }
 
 .chart-line {
+
     fill: none;
 
-    stroke:
-        var(--blue);
+    stroke: var(--blue);
 
     stroke-width: 2.5;
 
@@ -1270,17 +1528,25 @@ h2 {
 ========================================================= */
 
 .performance-list {
+
+    width: 100%;
+    max-width: 100%;
+
     margin-top: 18px;
 }
 
 .performance-row {
-    display: flex;
 
-    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+
+    display: flex;
 
     align-items: center;
 
-    gap: 20px;
+    justify-content: space-between;
+
+    gap: 15px;
 
     padding: 15px 0;
 
@@ -1288,6 +1554,8 @@ h2 {
         1px solid var(--border);
 
     font-size: 12px;
+
+    min-width: 0;
 }
 
 .performance-row:last-child {
@@ -1295,21 +1563,25 @@ h2 {
 }
 
 .performance-row span {
+
+    min-width: 0;
+
     color: var(--muted);
+
+    overflow-wrap: break-word;
 }
 
 .performance-row strong {
+
+    flex-shrink: 0;
+
     color: white;
 
     white-space: nowrap;
 }
 
-
-/* =========================================================
-   PERFORMANCE RATE BADGE
-========================================================= */
-
 .performance-note {
+
     margin-top: 22px;
 
     padding: 12px 14px;
@@ -1336,15 +1608,21 @@ h2 {
 ========================================================= */
 
 .philosophy {
+
     display: grid;
 
     grid-template-columns:
-        repeat(2,1fr);
+        repeat(2, minmax(0, 1fr));
 
     gap: 17px;
+
+    min-width: 0;
 }
 
 .philosophy-card {
+
+    min-width: 0;
+
     padding: 35px;
 
     border:
@@ -1357,6 +1635,7 @@ h2 {
 }
 
 .philosophy-card.featured {
+
     border-color:
         rgba(77,168,255,.24);
 
@@ -1370,10 +1649,14 @@ h2 {
 }
 
 .philosophy-card h3 {
+
     font-size: 22px;
+
+    overflow-wrap: break-word;
 }
 
 .philosophy-card p {
+
     margin-top: 17px;
 
     color: var(--muted);
@@ -1389,10 +1672,16 @@ h2 {
 ========================================================= */
 
 .formula {
+
     display: grid;
 
     grid-template-columns:
-        repeat(5,1fr);
+        repeat(5, minmax(0, 1fr));
+
+    width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
 
     border:
         1px solid var(--border);
@@ -1406,6 +1695,9 @@ h2 {
 }
 
 .formula-item {
+
+    min-width: 0;
+
     min-height: 145px;
 
     display: flex;
@@ -1413,13 +1705,14 @@ h2 {
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
+
+    padding: 15px;
+
+    text-align: center;
 
     border-right:
         1px solid var(--border);
-
-    transition: .3s;
 }
 
 .formula-item:last-child {
@@ -1432,19 +1725,21 @@ h2 {
 }
 
 .formula-symbol {
+
     color: var(--blue);
 
     font: 14px monospace;
 }
 
 .formula-label {
+
     margin-top: 7px;
 
     font-size: 13px;
 
     font-weight: 750;
 
-    text-align: center;
+    overflow-wrap: break-word;
 }
 
 
@@ -1453,6 +1748,10 @@ h2 {
 ========================================================= */
 
 .cta {
+
+    width: 100%;
+    max-width: 100%;
+
     padding: 95px 30px;
 
     text-align: center;
@@ -1470,15 +1769,20 @@ h2 {
             transparent 65%
         ),
         var(--bg3);
+
+    overflow: hidden;
 }
 
 .cta h2 {
+
     max-width: 760px;
 
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta p {
+
     max-width: 620px;
 
     margin: 20px auto 0;
@@ -1498,6 +1802,10 @@ h2 {
 ========================================================= */
 
 footer {
+
+    width: 100%;
+    max-width: 100%;
+
     padding: 55px 0 30px;
 
     border-top:
@@ -1505,18 +1813,31 @@ footer {
 }
 
 .footer-main {
+
     display: flex;
+
+    align-items: center;
 
     justify-content: space-between;
 
     gap: 30px;
+
+    min-width: 0;
+}
+
+.footer-brand {
+    min-width: 0;
 }
 
 .footer-brand strong {
+
     letter-spacing: 1.5px;
+
+    overflow-wrap: break-word;
 }
 
 .footer-brand p {
+
     margin-top: 5px;
 
     color: var(--muted);
@@ -1525,12 +1846,16 @@ footer {
 }
 
 .footer-email {
+
     color: var(--blue2);
 
     font: 11px monospace;
+
+    overflow-wrap: anywhere;
 }
 
 .disclaimer {
+
     margin-top: 32px;
 
     padding-top: 23px;
@@ -1546,6 +1871,7 @@ footer {
 }
 
 .copyright {
+
     margin-top: 22px;
 
     color: #3f4959;
@@ -1555,62 +1881,120 @@ footer {
 
 
 /* =========================================================
-   RESPONSIVE
+   TABLET
 ========================================================= */
 
-@media(max-width: 1000px) {
+@media (max-width: 1000px) {
 
-    .hero-grid,
-    .principle-grid,
-    .architecture-wrapper,
+    .hero-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 50px;
+    }
+
+    .principle-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 50px;
+    }
+
+    .architecture-wrapper {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
     .performance-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            minmax(0, 1fr);
     }
 
     .disciplines {
+
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, minmax(0, 1fr));
     }
 
     .capabilities {
+
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, minmax(0, 1fr));
     }
 
     .metrics-grid {
+
         grid-template-columns:
-            repeat(3,1fr);
+            repeat(3, minmax(0, 1fr));
     }
 
     .metric:nth-child(3) {
         border-right: none;
     }
+
 }
 
 
-@media(max-width: 700px) {
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    html,
+    body {
+
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: hidden;
+    }
 
     .container {
-        width:
-            calc(100% - 28px);
+
+        width: calc(100% - 28px);
+
+        max-width: calc(100% - 28px);
+    }
+
+    section {
+
+        padding: 82px 0;
+    }
+
+
+    /* NAV */
+
+    .nav-inner {
+        width: 100%;
     }
 
     .nav-links {
+
         display: none;
 
         position: absolute;
 
         top: 74px;
-
         left: 0;
-        right: 0;
+
+        width: 100%;
+        max-width: 100%;
 
         padding: 20px;
 
         flex-direction: column;
 
+        align-items: stretch;
+
+        gap: 0;
+
         background:
-            rgba(3,6,11,.97);
+            rgba(3,6,11,.98);
 
         border-bottom:
             1px solid var(--border);
@@ -1620,27 +2004,172 @@ footer {
         display: flex;
     }
 
+    .nav-links a {
+
+        display: block;
+
+        padding: 14px 0;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-contact {
+        margin-top: 8px;
+        text-align: center;
+    }
+
     .menu {
         display: block;
     }
 
-    section {
-        padding: 85px 0;
+
+    /* HERO */
+
+    .hero {
+
+        min-height: auto;
+
+        padding-top: 120px;
+        padding-bottom: 70px;
+    }
+
+    .hero-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 45px;
     }
 
     h1 {
-        font-size: 48px;
 
-        letter-spacing: -2.5px;
+        max-width: 100%;
+
+        font-size:
+            clamp(43px, 13vw, 60px);
+
+        letter-spacing: -2.8px;
     }
 
     .hero-copy {
+
+        max-width: 100%;
+
         font-size: 15px;
+
+        line-height: 1.75;
     }
 
+    .eyebrow {
+
+        max-width: 100%;
+
+        font-size: 8px;
+
+        letter-spacing: .9px;
+
+        white-space: normal;
+
+        line-height: 1.4;
+    }
+
+    .actions {
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .btn {
+
+        width: 100%;
+
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    /* SYSTEM */
+
+    .system {
+
+        transform: none !important;
+
+        border-radius: 14px;
+    }
+
+    .system-content {
+
+        padding: 18px 15px;
+    }
+
+    .system-title {
+
+        max-width: 190px;
+    }
+
+    .system-status {
+
+        align-items: flex-start;
+    }
+
+    .flow-node {
+
+        padding: 13px 12px;
+    }
+
+    .flow-name {
+
+        font-size: 9px;
+    }
+
+    .flow-state {
+
+        font-size: 8px;
+    }
+
+    .engine {
+
+        padding: 15px 12px;
+    }
+
+    .execution {
+
+        justify-content: center;
+
+        gap: 5px;
+    }
+
+    .execution span,
+    .execution strong {
+
+        font-size: 7px;
+    }
+
+
+    /* METRICS */
+
     .metrics-grid {
+
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .metric {
+
+        min-width: 0;
+
+        padding: 25px 8px;
+
+        border-bottom:
+            1px solid var(--border);
     }
 
     .metric:nth-child(odd) {
@@ -1652,58 +2181,257 @@ footer {
         border-right: none;
     }
 
+    .metric-number {
+        font-size: 22px;
+    }
+
+    .metric-label {
+        font-size: 8px;
+        letter-spacing: .7px;
+    }
+
+
+    /* HEADINGS */
+
+    h2 {
+
+        font-size:
+            clamp(34px, 10vw, 48px);
+
+        letter-spacing: -1.8px;
+    }
+
+
+    /* PRINCIPLE */
+
+    .principle-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+        gap: 45px;
+    }
+
+    .quote {
+
+        padding-left: 20px;
+    }
+
+    .quote p {
+
+        font-size:
+            clamp(29px, 9vw, 42px);
+
+        letter-spacing: -1.5px;
+    }
+
+
+    /* CARDS */
+
     .disciplines,
     .capabilities,
     .philosophy {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            minmax(0, 1fr);
     }
 
-    .formula {
+    .discipline {
+
+        min-height: auto;
+
+        padding: 25px 21px;
+    }
+
+
+    /* ARCHITECTURE */
+
+    .architecture-wrapper {
+
         grid-template-columns:
-            repeat(2,1fr);
+            minmax(0, 1fr);
+
+        gap: 14px;
+    }
+
+    .architecture-display {
+
+        min-height: 320px;
+
+        padding: 27px 20px;
+    }
+
+    .display-title {
+
+        font-size: 30px;
+
+        letter-spacing: -1px;
+    }
+
+    .display-description {
+
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+
+    /* PERFORMANCE */
+
+    .performance-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .performance-card {
+
+        padding: 24px 18px;
+    }
+
+    .performance-number {
+
+        font-size: 44px;
+    }
+
+    .chart {
+
+        height: 180px;
+
+        margin-top: 22px;
+    }
+
+    .performance-row {
+
+        gap: 10px;
+
+        font-size: 11px;
+    }
+
+    .performance-row strong {
+
+        font-size: 11px;
+    }
+
+
+    /* FORMULA */
+
+    .formula {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .formula-item {
+
+        min-height: 115px;
+
+        border-bottom:
+            1px solid var(--border);
     }
 
     .formula-item:nth-child(2n) {
         border-right: none;
     }
 
-    .formula-item {
-        border-bottom:
-            1px solid var(--border);
+    .formula-item:last-child {
+
+        grid-column:
+            1 / -1;
+
+        border-bottom: none;
     }
+
+
+    /* CTA */
+
+    .cta {
+
+        padding: 65px 20px;
+
+        border-radius: 15px;
+    }
+
+
+    /* FOOTER */
 
     .footer-main {
+
+        align-items: flex-start;
+
         flex-direction: column;
-    }
 
-    .architecture-display {
-        min-height: 350px;
-    }
-
-    .display-title {
-        font-size: 30px;
-    }
-
-    .performance-number {
-        font-size: 44px;
+        gap: 18px;
     }
 
 }
 
 
 /* =========================================================
-   EXTRA SMALL
+   SMALL PHONES
 ========================================================= */
 
-@media(max-width: 420px) {
+@media (max-width: 420px) {
+
+    .container {
+
+        width: calc(100% - 22px);
+
+        max-width: calc(100% - 22px);
+    }
+
+    h1 {
+
+        font-size: 41px;
+
+        letter-spacing: -2.2px;
+    }
+
+    .hero {
+
+        padding-top: 110px;
+    }
+
+    .system-content {
+
+        padding: 17px 12px;
+    }
+
+    .system-title {
+
+        max-width: 145px;
+    }
+
+    .flow-node {
+
+        gap: 8px;
+
+        padding: 12px 10px;
+    }
+
+    .flow-name {
+        font-size: 8px;
+    }
+
+    .flow-state {
+        font-size: 7px;
+    }
+
+    .execution span,
+    .execution strong {
+        font-size: 6.5px;
+    }
 
     .metrics-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            minmax(0, 1fr);
     }
 
     .metric,
     .metric:nth-child(odd),
     .metric:nth-child(even) {
+
         border-right: none;
 
         border-bottom:
@@ -1715,16 +2443,86 @@ footer {
     }
 
     .formula {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            minmax(0, 1fr);
     }
 
     .formula-item,
     .formula-item:nth-child(2n) {
+
+        grid-column: auto;
+
         border-right: none;
+
+        border-bottom:
+            1px solid var(--border);
     }
 
     .formula-item:last-child {
         border-bottom: none;
+    }
+
+    .performance-row {
+
+        align-items: flex-start;
+    }
+
+    .performance-row span {
+
+        max-width: 60%;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 340px) {
+
+    .container {
+
+        width: calc(100% - 18px);
+
+        max-width: calc(100% - 18px);
+    }
+
+    h1 {
+        font-size: 37px;
+    }
+
+    .system-status {
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .performance-number {
+        font-size: 39px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
     }
 
 }
@@ -1747,7 +2545,6 @@ footer {
         <a href="#" class="logo">
 
             <div class="logo-mark">
-                
             </div>
 
             <h2>AIATS</h2>
@@ -2005,33 +2802,19 @@ footer {
 
                     <div class="execution">
 
-                        <span>
-                            SIGNAL
-                        </span>
+                        <span>SIGNAL</span>
 
-                        <strong>
-                            →
-                        </strong>
+                        <strong>→</strong>
 
-                        <span>
-                            VALIDATE
-                        </span>
+                        <span>VALIDATE</span>
 
-                        <strong>
-                            →
-                        </strong>
+                        <strong>→</strong>
 
-                        <span>
-                            EXECUTE
-                        </span>
+                        <span>EXECUTE</span>
 
-                        <strong>
-                            →
-                        </strong>
+                        <strong>→</strong>
 
-                        <span>
-                            RECORD
-                        </span>
+                        <span>RECORD</span>
 
                     </div>
 
@@ -2075,9 +2858,7 @@ footer {
         <div class="metric">
 
             <div class="metric-number green">
-
                 +7.22%
-
             </div>
 
             <div class="metric-label">
@@ -2124,9 +2905,7 @@ footer {
         <div class="metric">
 
             <div class="metric-number">
-
                 +0.30%
-
             </div>
 
             <div class="metric-label">
@@ -2173,17 +2952,14 @@ footer {
 
         <div class="principle-text reveal">
 
-
             <div class="tag">
                 The Principle
             </div>
 
 
             <h2>
-
                 Markets are complex.
                 Systems can be disciplined.
-
             </h2>
 
 
@@ -2202,11 +2978,11 @@ footer {
                 Quantitative methods approach
                 the problem differently.
 
-                Mathematical rules define the
-                methodology. Technology makes
-                it executable. Engineering connects
-                the components. Automation makes
-                the process repeatable.
+                Mathematical rules define
+                the methodology. Technology
+                makes it executable. Engineering
+                connects the components. Automation
+                makes the process repeatable.
 
             </p>
 
@@ -2218,17 +2994,15 @@ footer {
                 </strong>
 
                 The objective is to build a system
-                capable of applying a defined
-                methodology systematically across
-                a large number of decisions.
+                capable of applying a defined methodology
+                systematically across a large number
+                of decisions.
 
             </p>
 
 
             <p>
-
                 That is the principle behind AIATS.
-
             </p>
 
         </div>
@@ -2255,10 +3029,8 @@ footer {
 
 
             <h2>
-
                 When the disciplines meet,
                 the system emerges.
-
             </h2>
 
 
@@ -2384,10 +3156,8 @@ footer {
 
 
             <h2>
-
                 From strategy
                 to measurable execution.
-
             </h2>
 
 
@@ -2515,7 +3285,6 @@ footer {
                     class="display-content"
                     id="architectureContent">
 
-
                     <div
                         class="display-number"
                         id="displayNumber">
@@ -2582,10 +3351,8 @@ footer {
 
 
             <h2>
-
                 Built as infrastructure,
                 not a single trading bot.
-
             </h2>
 
 
@@ -2745,15 +3512,13 @@ footer {
         <div class="section-head reveal">
 
             <div class="tag">
-                Historical System Snapshot
+                System Performance Snapshot
             </div>
 
 
             <h2>
-
                 When the system runs,
                 performance becomes measurable.
-
             </h2>
 
 
@@ -2772,10 +3537,7 @@ footer {
         <div class="performance-grid">
 
 
-            <!-- PERFORMANCE CHART -->
-
             <div class="performance-card reveal">
-
 
                 <div class="performance-label">
                     Reported System ROI
@@ -2783,9 +3545,7 @@ footer {
 
 
                 <div class="performance-number green">
-
                     +7.22%
-
                 </div>
 
 
@@ -2793,11 +3553,9 @@ footer {
                     class="chart"
                     id="chart">
 
-
                     <svg
                         viewBox="0 0 800 220"
                         preserveAspectRatio="none">
-
 
                         <path
                             class="chart-area"
@@ -2816,8 +3574,8 @@ footer {
                             L800 38
                             L800 220
                             L0 220 Z
-                            " />
-
+                            "
+                        />
 
                         <path
                             class="chart-line"
@@ -2834,26 +3592,28 @@ footer {
                             L630 91
                             L700 74
                             L800 38
-                            " />
+                            "
+                        />
 
                     </svg>
 
                 </div>
 
 
+                <div class="performance-note">
+
+                    Historical performance shown for a
+                    specific evaluation period.
+
+                </div>
 
             </div>
 
 
-            <!-- PERFORMANCE METRICS -->
-
             <div class="performance-card reveal">
 
-
                 <div class="performance-label">
-
-                   System Performance Snapshot
-
+                    System Performance Snapshot
                 </div>
 
 
@@ -2956,10 +3716,8 @@ footer {
 
 
             <h2>
-
                 Technology does not replace
                 the strategy. It amplifies it.
-
             </h2>
 
         </div>
@@ -2971,10 +3729,8 @@ footer {
             <div class="philosophy-card reveal">
 
                 <h3>
-
                     A human can identify
                     an opportunity.
-
                 </h3>
 
 
@@ -2996,10 +3752,8 @@ footer {
             <div class="philosophy-card featured reveal">
 
                 <h3>
-
                     Infrastructure can scale
                     the methodology.
-
                 </h3>
 
 
@@ -3015,10 +3769,8 @@ footer {
                     The goal is not one perfect trade.
 
                     <strong>
-
                         The goal is disciplined
                         execution at scale.
-
                     </strong>
 
                 </p>
@@ -3133,10 +3885,8 @@ footer {
 
 
             <h2>
-
                 Explore the infrastructure
                 behind systematic execution.
-
             </h2>
 
 
@@ -3259,91 +4009,98 @@ const menu =
 const navLinks =
     document.getElementById("navLinks");
 
+if (menu && navLinks) {
 
-menu.addEventListener("click", () => {
+    menu.addEventListener("click", () => {
 
-    navLinks.classList.toggle("open");
-
-});
-
-
-document
-    .querySelectorAll(".nav-links a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            navLinks.classList.remove("open");
-
-        });
+        navLinks.classList.toggle("open");
 
     });
 
 
+    document
+        .querySelectorAll(".nav-links a")
+        .forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navLinks.classList.remove("open");
+
+            });
+
+        });
+
+}
+
+
 /* =========================================================
-   MOUSE REACTIVE BACKGROUND
+   MOUSE BACKGROUND
+   Desktop only
 ========================================================= */
 
-document.addEventListener(
-    "mousemove",
-    event => {
+if (window.matchMedia("(min-width: 701px)").matches) {
 
-        const x =
-            (event.clientX /
+    document.addEventListener(
+        "mousemove",
+        event => {
+
+            const x =
+                (event.clientX /
                 window.innerWidth) * 100;
 
-        const y =
-            (event.clientY /
+            const y =
+                (event.clientY /
                 window.innerHeight) * 100;
 
 
-        document.documentElement
-            .style
-            .setProperty(
-                "--mouse-x",
-                x + "%"
-            );
+            document.documentElement
+                .style
+                .setProperty(
+                    "--mouse-x",
+                    x + "%"
+                );
 
 
-        document.documentElement
-            .style
-            .setProperty(
-                "--mouse-y",
-                y + "%"
-            );
+            document.documentElement
+                .style
+                .setProperty(
+                    "--mouse-y",
+                    y + "%"
+                );
 
-    }
-);
+        }
+    );
+
+}
 
 
 /* =========================================================
-   SYSTEM PANEL PARALLAX
+   SYSTEM PANEL 3D EFFECT
+   Desktop only
 ========================================================= */
 
 const systemPanel =
-    document.getElementById(
-        "systemPanel"
-    );
+    document.getElementById("systemPanel");
 
 
-if (systemPanel) {
+if (
+    systemPanel &&
+    window.matchMedia("(min-width: 701px)").matches
+) {
 
     systemPanel.addEventListener(
         "mousemove",
         event => {
 
             const rect =
-                systemPanel
-                    .getBoundingClientRect();
+                systemPanel.getBoundingClientRect();
 
 
             const x =
-                event.clientX -
-                rect.left;
+                event.clientX - rect.left;
 
             const y =
-                event.clientY -
-                rect.top;
+                event.clientY - rect.top;
 
 
             const rotateY =
@@ -3372,8 +4129,8 @@ if (systemPanel) {
             systemPanel.style.transform =
                 `
                 perspective(1000px)
-                rotateX(0)
-                rotateY(0)
+                rotateX(0deg)
+                rotateY(0deg)
                 `;
 
         }
@@ -3386,15 +4143,17 @@ if (systemPanel) {
    SCROLL REVEAL
 ========================================================= */
 
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
 const revealObserver =
     new IntersectionObserver(
         entries => {
 
             entries.forEach(entry => {
 
-                if (
-                    entry.isIntersecting
-                ) {
+                if (entry.isIntersecting) {
 
                     entry.target
                         .classList
@@ -3412,20 +4171,16 @@ const revealObserver =
 
         },
         {
-            threshold: .12
+            threshold: .10
         }
     );
 
 
-document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
+revealElements.forEach(element => {
 
-        revealObserver.observe(
-            element
-        );
+    revealObserver.observe(element);
 
-    });
+});
 
 
 /* =========================================================
@@ -3433,9 +4188,7 @@ document
 ========================================================= */
 
 const counters =
-    document.querySelectorAll(
-        ".counter"
-    );
+    document.querySelectorAll(".counter");
 
 
 const counterObserver =
@@ -3444,9 +4197,7 @@ const counterObserver =
 
             entries.forEach(entry => {
 
-                if (
-                    !entry.isIntersecting
-                ) {
+                if (!entry.isIntersecting) {
                     return;
                 }
 
@@ -3462,7 +4213,7 @@ const counterObserver =
 
 
                 const duration =
-                    1400;
+                    1300;
 
 
                 const start =
@@ -3487,19 +4238,13 @@ const counterObserver =
                         );
 
 
-                    const current =
+                    counter.textContent =
                         Math.floor(
                             target * eased
-                        );
+                        ).toLocaleString();
 
 
-                    counter.textContent =
-                        current.toLocaleString();
-
-
-                    if (
-                        progress < 1
-                    ) {
+                    if (progress < 1) {
 
                         requestAnimationFrame(
                             update
@@ -3516,24 +4261,20 @@ const counterObserver =
 
 
                 counterObserver
-                    .unobserve(
-                        counter
-                    );
+                    .unobserve(counter);
 
             });
 
         },
         {
-            threshold: .8
+            threshold: .6
         }
     );
 
 
 counters.forEach(counter => {
 
-    counterObserver.observe(
-        counter
-    );
+    counterObserver.observe(counter);
 
 });
 
@@ -3671,13 +4412,11 @@ tabs.forEach(tab => {
         "click",
         () => {
 
-
             tabs.forEach(item => {
 
-                item.classList
-                    .remove(
-                        "active"
-                    );
+                item.classList.remove(
+                    "active"
+                );
 
             });
 
@@ -3723,7 +4462,7 @@ tabs.forEach(tab => {
                     }
                 ],
                 {
-                    duration: 350,
+                    duration: 300,
                     easing: "ease-out"
                 }
             );
@@ -3739,45 +4478,43 @@ tabs.forEach(tab => {
 ========================================================= */
 
 const chart =
-    document.getElementById(
-        "chart"
-    );
+    document.getElementById("chart");
 
 
-const chartObserver =
-    new IntersectionObserver(
-        entries => {
+if (chart) {
 
-            entries.forEach(entry => {
+    const chartObserver =
+        new IntersectionObserver(
+            entries => {
 
-                if (
-                    entry.isIntersecting
-                ) {
+                entries.forEach(entry => {
 
-                    chart.classList.add(
-                        "visible"
-                    );
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-
-                    chartObserver
-                        .unobserve(
-                            chart
+                        chart.classList.add(
+                            "visible"
                         );
 
-                }
 
-            });
+                        chartObserver
+                            .unobserve(chart);
 
-        },
-        {
-            threshold: .4
-        }
-    );
+                    }
+
+                });
+
+            },
+            {
+                threshold: .3
+            }
+        );
 
 
-chartObserver.observe(
-    chart
-);
+    chartObserver.observe(chart);
+
+}
 
 
 /* =========================================================
@@ -3793,41 +4530,42 @@ const flowNodes =
 let flowIndex = 0;
 
 
-setInterval(() => {
+if (flowNodes.length) {
+
+    setInterval(() => {
+
+        flowNodes.forEach(node => {
+
+            node.classList.remove(
+                "active"
+            );
+
+        });
 
 
-    flowNodes.forEach(node => {
-
-        node.classList.remove(
-            "active"
-        );
-
-    });
+        flowNodes[flowIndex]
+            .classList.add("active");
 
 
-    flowNodes[flowIndex]
-        .classList.add(
-            "active"
-        );
+        flowIndex++;
 
 
-    flowIndex++;
+        if (
+            flowIndex >=
+            flowNodes.length
+        ) {
 
+            flowIndex = 0;
 
-    if (
-        flowIndex >=
-        flowNodes.length
-    ) {
+        }
 
-        flowIndex = 0;
+    }, 1700);
 
-    }
-
-}, 1700);
+}
 
 
 /* =========================================================
-   KEYBOARD ACCESSIBILITY
+   ESCAPE KEY
 ========================================================= */
 
 document.addEventListener(
@@ -3835,13 +4573,13 @@ document.addEventListener(
     event => {
 
         if (
-            event.key === "Escape"
+            event.key === "Escape" &&
+            navLinks
         ) {
 
-            navLinks.classList
-                .remove(
-                    "open"
-                );
+            navLinks.classList.remove(
+                "open"
+            );
 
         }
 
