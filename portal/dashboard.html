@@ -11,7 +11,7 @@ content="width=device-width, initial-scale=1.0"
 
 >
 
-<title id="userName">Client Dashboard — AIATS Technologies</title>
+<title id="userName_title">Client Dashboard — AIATS Technologies</title>
 
 <meta
 name="description"
@@ -714,7 +714,8 @@ Algorithmic Trading Infrastructure
     import { supabase }
         from "./js/supabase-config.js";
 
-
+    const userName_title =
+        document.getElementById("userName_title");
     const userName =
         document.getElementById("userName");
 
@@ -1157,7 +1158,9 @@ function renderRequests(rows) {
             userEmail.textContent =
                 user.email || "";
 
-
+            userName_title.textContent =
+                user.user_metadata?.full_name ||
+                "Client";
             userName.textContent =
                 user.user_metadata?.full_name ||
                 "Client";
