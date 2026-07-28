@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>Portfolio — AIATS Technologies</title>
+
+<meta
+name="description"
+content="AIATS Technologies portfolio details."
+
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        min-width: 0;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", Arial, sans-serif;
+        background:
+            radial-gradient(
+                circle at 10% 0%,
+                rgba(44, 75, 120, 0.20),
+                transparent 32%
+            ),
+            #07111f;
+        color: #ffffff;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    button,
+    a {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .shell {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 24px 60px;
+    }
+
+    /* HEADER */
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.10em;
+    }
+
+    .brand-mark {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255,255,255,0.20);
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .user-email {
+        color: #718399;
+        font-size: 11px;
+    }
+
+    .logout-button {
+        height: 38px;
+        padding: 0 15px;
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 9px;
+        background: rgba(255,255,255,0.035);
+        color: #c7d2df;
+        font: inherit;
+        font-size: 11px;
+        cursor: pointer;
+    }
+
+    .logout-button:hover {
+        background: rgba(255,255,255,0.07);
+    }
+
+    /* MAIN */
+
+    .main {
+        padding-top: 42px;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: #718399;
+        font-size: 11px;
+        margin-bottom: 30px;
+    }
+
+    .back-link:hover {
+        color: #c7d2df;
+    }
+
+    .eyebrow {
+        color: #8fa9c5;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+    }
+
+    .portfolio-heading {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 25px;
+        margin-top: 10px;
+    }
+
+    .portfolio-title {
+        margin: 0;
+        font-size: 38px;
+        line-height: 1.12;
+        letter-spacing: -0.04em;
+    }
+
+    .portfolio-type {
+        margin-top: 9px;
+        color: #718399;
+        font-size: 12px;
+    }
+
+    .portfolio-id {
+        margin-top: 8px;
+        color: #52657b;
+        font-family: monospace;
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .badge {
+        flex-shrink: 0;
+        padding: 7px 10px;
+        border-radius: 7px;
+        background: rgba(255,255,255,0.05);
+        color: #b7c3d0;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .badge.active {
+        color: #b4d9bd;
+        background: rgba(60,140,85,0.10);
+    }
+
+    .badge.pending {
+        color: #e4c78a;
+        background: rgba(180,145,65,0.10);
+    }
+
+    /* PRIMARY BALANCE */
+
+    .balance-card {
+        margin-top: 32px;
+        padding: 28px;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(16,34,55,0.92),
+                rgba(8,20,34,0.88)
+            );
+    }
+
+    .balance-label {
+        color: #718399;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .balance-value {
+        margin-top: 9px;
+        font-size: 36px;
+        line-height: 1.1;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+    }
+
+    .balance-sub {
+        margin-top: 9px;
+        color: #718399;
+        font-size: 11px;
+    }
+
+    /* METRICS */
+
+    .section {
+        margin-top: 40px;
+    }
+
+    .section-heading {
+        margin-bottom: 16px;
+    }
+
+    .section-title {
+        margin: 7px 0 0;
+        font-size: 20px;
+        letter-spacing: -0.025em;
+    }
+
+    .metrics-grid {
+        display: grid;
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .metric-card {
+        min-width: 0;
+        padding: 20px;
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 14px;
+        background: rgba(10,24,40,0.80);
+    }
+
+    .metric-label {
+        color: #607186;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.10em;
+    }
+
+    .metric-value {
+        margin-top: 8px;
+        color: #ffffff;
+        font-size: 17px;
+        font-weight: 600;
+        overflow-wrap: anywhere;
+    }
+
+    .metric-value.profit {
+        color: #b4d9bd;
+    }
+
+    .metric-value.payable {
+        color: #e4c78a;
+    }
+
+    /* INFORMATION */
+
+    .info-grid {
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .info-card {
+        padding: 20px;
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 14px;
+        background: rgba(10,24,40,0.80);
+    }
+
+    .info-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 13px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .info-row:first-child {
+        padding-top: 0;
+    }
+
+    .info-row:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+
+    .info-label {
+        color: #607186;
+        font-size: 10px;
+    }
+
+    .info-value {
+        color: #c7d2df;
+        font-size: 11px;
+        text-align: right;
+        overflow-wrap: anywhere;
+    }
+
+    /* LOADING */
+
+    .loading {
+        color: #718399;
+        font-size: 12px;
+        padding: 50px 0;
+        text-align: center;
+    }
+
+    .error {
+        display: none;
+        margin-top: 25px;
+        padding: 15px;
+        border: 1px solid rgba(200,90,90,0.18);
+        border-radius: 10px;
+        background: rgba(150,45,45,0.12);
+        color: #efb0b0;
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    /* FOOTER */
+
+    .footer {
+        margin-top: 60px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        color: #506176;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 720px) {
+
+        .shell {
+            padding:
+                18px
+                14px
+                45px;
+        }
+
+        .header {
+            align-items: flex-start;
+        }
+
+        .header-actions {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .user-email {
+            max-width: 170px;
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .main {
+            padding-top: 32px;
+        }
+
+        .portfolio-heading {
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .portfolio-title {
+            font-size: 31px;
+        }
+
+        .badge {
+            align-self: flex-start;
+        }
+
+        .balance-card {
+            padding: 23px;
+        }
+
+        .balance-value {
+            font-size: 30px;
+        }
+
+        .metrics-grid {
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .info-row {
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .info-value {
+            text-align: left;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="shell">
+
+<header class="header">
+
+
+<div class="brand">
+
+    <div class="brand-mark">
+        A
+    </div>
+
+    <span>
+        AIATS
+    </span>
+
+</div>
+
+<div class="header-actions">
+
+    <div
+        id="userEmail"
+        class="user-email"
+    >
+        Loading...
+    </div>
+
+    <button
+        id="logoutButton"
+        class="logout-button"
+        type="button"
+    >
+        Sign out
+    </button>
+
+</div>
+
+
+</header>
+
+<main class="main">
+
+
+<a
+    href="dashboard.html"
+    class="back-link"
+>
+    ← Back to Dashboard
+</a>
+
+
+<div
+    id="loadingState"
+    class="loading"
+>
+    Loading portfolio information...
+</div>
+
+
+<div
+    id="portfolioContent"
+    style="display:none;"
+>
+
+    <div class="eyebrow">
+        Portfolio Infrastructure
+    </div>
+
+
+    <div class="portfolio-heading">
+
+        <div>
+
+            <h1
+                id="portfolioName"
+                class="portfolio-title"
+            >
+                Portfolio
+            </h1>
+
+            <div
+                id="portfolioType"
+                class="portfolio-type"
+            >
+                —
+            </div>
+
+            <div
+                id="portfolioId"
+                class="portfolio-id"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <div
+            id="portfolioStatus"
+            class="badge active"
+        >
+            Active
+        </div>
+
+    </div>
+
+
+    <!-- CURRENT BALANCE -->
+
+    <div class="balance-card">
+
+        <div class="balance-label">
+            Current Balance
+        </div>
+
+        <div
+            id="currentBalance"
+            class="balance-value"
+        >
+            $0.00
+        </div>
+
+        <div class="balance-sub">
+
+            Base Currency:
+            <span id="baseCurrency">
+                USD
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- PERFORMANCE -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Financial Overview
+            </div>
+
+            <h2 class="section-title">
+                Portfolio Performance
+            </h2>
+
+        </div>
+
+
+        <div class="metrics-grid">
+
+
+            <div class="metric-card">
+
+                <div class="metric-label">
+                    Initial Balance
+                </div>
+
+                <div
+                    id="initialBalance"
+                    class="metric-value"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-label">
+                    Accrued Profit
+                </div>
+
+                <div
+                    id="accruedProfit"
+                    class="metric-value profit"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-label">
+                    Payable Profit
+                </div>
+
+                <div
+                    id="payableProfit"
+                    class="metric-value payable"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-label">
+                    Paid Profit
+                </div>
+
+                <div
+                    id="paidProfit"
+                    class="metric-value"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIVITY -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Trading Activity
+            </div>
+
+            <h2 class="section-title">
+                Operational Information
+            </h2>
+
+        </div>
+
+
+        <div class="metrics-grid">
+
+
+            <div class="metric-card">
+
+                <div class="metric-label">
+                    Total Operations
+                </div>
+
+                <div
+                    id="totalTrades"
+                    class="metric-value"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-label">
+                    Exchange
+                </div>
+
+                <div
+                    id="exchange"
+                    class="metric-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-label">
+                    Started
+                </div>
+
+                <div
+                    id="startedAt"
+                    class="metric-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-label">
+                    Last Activity
+                </div>
+
+                <div
+                    id="lastActivity"
+                    class="metric-value"
+                >
+                    —
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DETAILS -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Infrastructure Details
+            </div>
+
+            <h2 class="section-title">
+                Portfolio Information
+            </h2>
+
+        </div>
+
+
+        <div class="info-grid">
+
+
+            <div class="info-card">
+
+                <div class="info-row">
+
+                    <div class="info-label">
+                        Portfolio Name
+                    </div>
+
+                    <div
+                        id="infoName"
+                        class="info-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-label">
+                        Portfolio ID
+                    </div>
+
+                    <div
+                        id="infoPortfolioId"
+                        class="info-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-label">
+                        Portfolio Type
+                    </div>
+
+                    <div
+                        id="infoType"
+                        class="info-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-label">
+                        Base Currency
+                    </div>
+
+                    <div
+                        id="infoCurrency"
+                        class="info-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-row">
+
+                    <div class="info-label">
+                        Status
+                    </div>
+
+                    <div
+                        id="infoStatus"
+                        class="info-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-label">
+                        Created
+                    </div>
+
+                    <div
+                        id="createdAt"
+                        class="info-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-label">
+                        Started
+                    </div>
+
+                    <div
+                        id="infoStartedAt"
+                        class="info-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-label">
+                        Last Updated
+                    </div>
+
+                    <div
+                        id="updatedAt"
+                        class="info-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<div
+    id="errorBox"
+    class="error"
+></div>
+
+
+</main>
+
+<footer class="footer">
+
+
+AIATS Technologies —
+Algorithmic Trading Infrastructure
+
+
+</footer>
+
+</div>
+
+<script type="module">
+
+    import { supabase }
+        from "./js/supabase-config.js";
+
+
+    const userEmail =
+        document.getElementById("userEmail");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+    const loadingState =
+        document.getElementById("loadingState");
+
+    const portfolioContent =
+        document.getElementById(
+            "portfolioContent"
+        );
+
+    const errorBox =
+        document.getElementById("errorBox");
+
+
+    function showError(message) {
+
+        loadingState.style.display =
+            "none";
+
+        portfolioContent.style.display =
+            "none";
+
+        errorBox.textContent =
+            message;
+
+        errorBox.style.display =
+            "block";
+
+    }
+
+
+    function escapeHtml(value) {
+
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+    }
+
+
+    function formatAccountType(value) {
+
+        if (!value) {
+            return "Not specified";
+        }
+
+        return value
+            .replaceAll("_", " ")
+            .replace(/\b\w/g, letter =>
+                letter.toUpperCase()
+            );
+
+    }
+
+
+    function formatDate(value) {
+
+        if (!value) {
+            return "—";
+        }
+
+        const date =
+            new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return "—";
+        }
+
+        return date.toLocaleDateString(
+            "en-US",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    function formatMoney(
+        value,
+        currency = "USD"
+    ) {
+
+        const amount =
+            Number(value || 0);
+
+        try {
+
+            return new Intl.NumberFormat(
+                "en-US",
+                {
+                    style: "currency",
+                    currency: currency,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            ).format(amount);
+
+        } catch {
+
+            return `${currency} ${amount.toFixed(2)}`;
+
+        }
+
+    }
+
+
+    function formatNumber(value) {
+
+        return new Intl.NumberFormat(
+            "en-US"
+        ).format(
+            Number(value || 0)
+        );
+
+    }
+
+
+    async function loadPortfolio() {
+
+        try {
+
+            /*
+             * 1. Check authenticated user.
+             */
+
+            const {
+                data: {
+                    user
+                },
+                error: userError
+            } = await supabase.auth.getUser();
+
+
+            if (userError) {
+                throw userError;
+            }
+
+
+            if (!user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            userEmail.textContent =
+                user.email || "";
+
+
+            /*
+             * 2. Read portfolio ID
+             *    from URL.
+             */
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            const portfolioUuid =
+                params.get("id");
+
+
+            if (!portfolioUuid) {
+
+                showError(
+                    "No portfolio was specified."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * 3. Load only the portfolio
+             *    belonging to this user.
+             */
+
+            const {
+                data: portfolio,
+                error: portfolioError
+            } = await supabase
+
+                .from("portfolios")
+
+                .select(`
+                    id,
+                    portfolio_id,
+                    user_id,
+                    portfolio_name,
+                    portfolio_type,
+                    base_currency,
+                    status,
+                    initial_balance,
+                    current_balance,
+                    accrued_profit,
+                    payable_profit,
+                    paid_profit,
+                    started_at,
+                    last_activity_at,
+                    total_trades,
+                    created_at,
+                    updated_at
+                `)
+
+                .eq(
+                    "id",
+                    portfolioUuid
+                )
+
+                .eq(
+                    "user_id",
+                    user.id
+                )
+
+                .maybeSingle();
+
+
+            if (portfolioError) {
+                throw portfolioError;
+            }
+
+
+            if (!portfolio) {
+
+                showError(
+                    "Portfolio not found or you do not have permission to view it."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * 4. Populate page.
+             */
+
+            const currency =
+                portfolio.base_currency ||
+                "USD";
+
+
+            document.getElementById(
+                "portfolioName"
+            ).textContent =
+                portfolio.portfolio_name ||
+                "Unnamed Portfolio";
+
+
+            document.getElementById(
+                "portfolioType"
+            ).textContent =
+                formatAccountType(
+                    portfolio.portfolio_type
+                );
+
+
+            document.getElementById(
+                "portfolioId"
+            ).textContent =
+                portfolio.portfolio_id ||
+                "—";
+
+
+            const status =
+                portfolio.status ||
+                "active";
+
+
+            const statusElement =
+                document.getElementById(
+                    "portfolioStatus"
+                );
+
+
+            statusElement.textContent =
+                status;
+
+
+            statusElement.className =
+                `badge ${escapeHtml(status)}`;
+
+
+            document.getElementById(
+                "baseCurrency"
+            ).textContent =
+                currency;
+
+
+            document.getElementById(
+                "currentBalance"
+            ).textContent =
+                formatMoney(
+                    portfolio.current_balance,
+                    currency
+                );
+
+
+            document.getElementById(
+                "initialBalance"
+            ).textContent =
+                formatMoney(
+                    portfolio.initial_balance,
+                    currency
+                );
+
+
+            document.getElementById(
+                "accruedProfit"
+            ).textContent =
+                formatMoney(
+                    portfolio.accrued_profit,
+                    currency
+                );
+
+
+            document.getElementById(
+                "payableProfit"
+            ).textContent =
+                formatMoney(
+                    portfolio.payable_profit,
+                    currency
+                );
+
+
+            document.getElementById(
+                "paidProfit"
+            ).textContent =
+                formatMoney(
+                    portfolio.paid_profit,
+                    currency
+                );
+
+
+            document.getElementById(
+                "totalTrades"
+            ).textContent =
+                formatNumber(
+                    portfolio.total_trades
+                );
+
+
+            document.getElementById(
+                "exchange"
+            ).textContent =
+                "—";
+
+
+            document.getElementById(
+                "startedAt"
+            ).textContent =
+                formatDate(
+                    portfolio.started_at
+                );
+
+
+            document.getElementById(
+                "lastActivity"
+            ).textContent =
+                formatDate(
+                    portfolio.last_activity_at
+                );
+
+
+            document.getElementById(
+                "infoName"
+            ).textContent =
+                portfolio.portfolio_name ||
+                "—";
+
+
+            document.getElementById(
+                "infoPortfolioId"
+            ).textContent =
+                portfolio.portfolio_id ||
+                "—";
+
+
+            document.getElementById(
+                "infoType"
+            ).textContent =
+                formatAccountType(
+                    portfolio.portfolio_type
+                );
+
+
+            document.getElementById(
+                "infoCurrency"
+            ).textContent =
+                currency;
+
+
+            document.getElementById(
+                "infoStatus"
+            ).textContent =
+                formatAccountType(
+                    portfolio.status
+                );
+
+
+            document.getElementById(
+                "createdAt"
+            ).textContent =
+                formatDate(
+                    portfolio.created_at
+                );
+
+
+            document.getElementById(
+                "infoStartedAt"
+            ).textContent =
+                formatDate(
+                    portfolio.started_at
+                );
+
+
+            document.getElementById(
+                "updatedAt"
+            ).textContent =
+                formatDate(
+                    portfolio.updated_at
+                );
+
+
+            /*
+             * Exchange is not currently stored
+             * in public.portfolios.
+             *
+             * It remains "—" until we add it
+             * to this table.
+             */
+
+
+            loadingState.style.display =
+                "none";
+
+            portfolioContent.style.display =
+                "block";
+
+
+        } catch (error) {
+
+            console.error(
+                "Portfolio page error:",
+                error
+            );
+
+            showError(
+                error.message ||
+                "Unable to load portfolio information."
+            );
+
+        }
+
+    }
+
+
+    logoutButton.addEventListener(
+        "click",
+        async () => {
+
+            logoutButton.disabled =
+                true;
+
+            logoutButton.textContent =
+                "Signing out...";
+
+
+            const {
+                error
+            } = await supabase.auth.signOut();
+
+
+            if (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+                logoutButton.disabled =
+                    false;
+
+                logoutButton.textContent =
+                    "Sign out";
+
+                showError(
+                    error.message ||
+                    "Unable to sign out."
+                );
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+
+    loadPortfolio();
+
+</script>
+
+</body>
+</html>
