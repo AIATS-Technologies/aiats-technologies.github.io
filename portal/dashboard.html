@@ -617,7 +617,37 @@ content="AIATS Technologies client dashboard."
     </div>
 
 </section>
+<section class="section">
 
+    <div class="section-header">
+
+        <div>
+
+            <div class="eyebrow">
+                Portfolio Requests
+            </div>
+
+            <h2 class="section-title">
+                My Requests
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="requestContainer"
+        class="portfolio-list"
+    >
+
+        <div class="loading">
+            Loading requests...
+        </div>
+
+    </div>
+
+</section>
 
 <section class="section">
 
@@ -703,6 +733,10 @@ Algorithmic Trading Infrastructure
         document.getElementById(
             "portfolioContainer"
         );
+    const requestContainer =
+    document.getElementById(
+        "requestContainer"
+    );
 
     const errorBox =
         document.getElementById("errorBox");
@@ -815,7 +849,99 @@ Algorithmic Trading Infrastructure
         `;
 
     }
+function renderRequests(rows) {
 
+
+    if (!rows || rows.length === 0) {
+
+        requestContainer.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    No portfolio requests
+                </h3>
+
+                <p>
+                    You have no pending portfolio requests.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    requestContainer.innerHTML =
+        rows.map(row => `
+
+            <article class="portfolio-card">
+
+
+                <div class="portfolio-top">
+
+                    <div>
+
+                        <h3 class="portfolio-name">
+
+                            ${escapeHtml(
+                                row.portfolio_name
+                            )}
+
+                        </h3>
+
+
+                        <div class="portfolio-type">
+
+                            ${escapeHtml(
+                                formatAccountType(
+                                    row.portfolio_type
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="badge ${escapeHtml(
+                        row.status
+                    )}">
+
+                        ${escapeHtml(
+                            row.status
+                        )}
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="portfolio-footer">
+
+                    <div class="portfolio-date">
+
+                        Requested:
+                        ${escapeHtml(
+                            formatDate(
+                                row.created_at
+                            )
+                        )}
+
+                    </div>
+
+                </div>
+
+
+            </article>
+
+
+        `).join("");
+
+}
 
     function renderPortfolios(rows) {
 
@@ -1124,7 +1250,44 @@ Algorithmic Trading Infrastructure
              * This is intentionally different
              * from portfolio_requests.
              */
+const {
+    data: requests,
+    error: requestError
+} = await supabase
 
+    .from("portfolio_requests")
+
+    .select(`
+        id,
+        portfolio_name,
+        portfolio_type,
+        status,
+        created_at
+    `)
+
+    .eq(
+        "user_id",
+        user.id
+    )
+
+    .order(
+        "created_at",
+        {
+            ascending: false
+        }
+    );
+
+
+if (requestError) {
+
+    throw requestError;
+
+}
+
+
+renderRequests(
+    requests
+);
             const {
                 data: portfolios,
                 error: portfolioError
