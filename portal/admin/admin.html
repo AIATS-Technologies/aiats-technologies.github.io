@@ -1714,19 +1714,24 @@
                 .from("portfolio_requests")
 
                 .select(`
-                    id,
-                    user_id,
-                    portfolio_name,
-                    portfolio_type,
-                    base_currency,
-                    exchange,
-                    status,
-                    notes,
-                    created_at,
-                    updated_at,
-                    profiles (
-                        full_name,
-                        email
+        id,
+        user_id,
+        portfolio_name,
+        portfolio_type,
+        base_currency,
+        exchange,
+        status,
+        notes,
+        created_at,
+        updated_at,
+        profiles (
+            id,
+            full_name,
+            company_name,
+            country,
+            phone,
+            account_type,
+            status
                     )
                 `)
 
