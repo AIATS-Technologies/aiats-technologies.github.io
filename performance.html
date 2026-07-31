@@ -773,141 +773,176 @@ display:block;
 <body>
 
 
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
 <nav class="navbar">
 
-<div class="container nav-inner">
+    <div class="container nav-inner">
 
-<div class="logo">
-AIATS
-</div>
-
-
-<div class="nav-links">
-
-<a href="index.html">
-Home
-</a>
-
-<a href="index.html#architecture">
-Architecture
-</a>
-
-<a href="performance.html" class="active">
-Performance
-</a>
-
-<a href="business-models.html">
-Business Models
-</a>
-
-<a class="nav-contact"
-href="mailto:aiatstechnologies@gmail.com">
-Contact
-</a>
+        <a href="index.html" class="logo">
+            <h2>AIATS</h2>
+        </a>
 
 
-</div>
+        <button class="menu" aria-label="Open navigation">
+            ☰
+        </button>
 
 
-<button class="menu">
-☰
-</button>
+        <div class="nav-links">
 
+            <a href="index.html">
+                Home
+            </a>
 
-</div>
+            <a href="index.html#architecture">
+                Architecture
+            </a>
+
+            <a href="index.html#technology">
+                Technology
+            </a>
+
+            <a href="performance.html" class="active">
+                Performance
+            </a>
+
+            <a href="business-models.html">
+                Business Models
+            </a>
+
+            <a class="nav-contact"
+               href="mailto:aiatstechnologies@gmail.com">
+
+                Contact
+
+            </a>
+
+        </div>
+
+    </div>
 
 </nav>
 
 
 
-<section class="hero">
+<!-- =========================================================
+     HERO
+========================================================= -->
 
+<section class="hero">
 
 <div class="container hero-grid">
 
 
-<div>
+<div class="reveal">
 
 
 <div class="eyebrow">
-AIATS PERFORMANCE ENGINE
+
+<span class="pulse"></span>
+
+AIATS Performance Infrastructure
+
 </div>
+
 
 
 <h1>
 
 Measured execution.
 <span class="gradient">
-Transparent performance.
+Systematic performance.
 </span>
 
 </h1>
 
 
+
 <p class="hero-copy">
 
-AIATS performance reporting is based on
-real algorithmic execution data, measuring
-capital efficiency, trading activity,
-execution consistency and system behavior.
+AIATS performance metrics are generated from
+algorithmic execution activity, measuring system
+operations, strategy efficiency and trading
+consistency without depending on a predefined
+capital size.
 
 </p>
 
 
+
 <div class="actions">
 
-<a class="btn primary"
-href="#metrics">
+<a href="#metrics"
+class="btn btn-primary">
 
-View Metrics
-
-</a>
-
-
-<a class="btn secondary"
-href="mailto:aiatstechnologies@gmail.com">
-
-Request Report
+View Performance
 
 </a>
 
 
-</div>
+<a href="#calculator"
+class="btn btn-secondary">
+
+Calculate Scenario
+
+</a>
 
 
 </div>
 
 
-
-<div class="performance-core">
-
-
-<div class="node one">
-CAPITAL
 </div>
 
-<div class="node two">
-TRADES
+
+
+<!-- PERFORMANCE VISUAL -->
+
+<div class="model-orbit reveal">
+
+
+<div class="orbit-grid"></div>
+
+<div class="orbit-ring"></div>
+
+<div class="orbit-ring second"></div>
+
+
+
+<div class="orbit-label label-one">
+SIGNALS
 </div>
 
-<div class="node three">
-VOLUME
-</div>
 
-<div class="node four">
+<div class="orbit-label label-two">
 STRATEGIES
 </div>
 
 
-<div class="circle">
+<div class="orbit-label label-three">
+EXECUTION
+</div>
 
-<small>
-AIATS ROI
-</small>
 
-<strong id="roi">
-7.22%
-</strong>
+<div class="orbit-label label-four">
+ANALYTICS
+</div>
+
+
+
+<div class="core">
+
+<div class="core-label">
+AIATS
+</div>
+
+
+<div class="core-title">
+ENGINE
+</div>
+
 
 </div>
 
@@ -919,6 +954,13 @@ AIATS ROI
 
 </section>
 
+
+
+
+
+<!-- =========================================================
+     PERFORMANCE METRICS
+========================================================= -->
 
 
 <section id="metrics">
@@ -927,27 +969,327 @@ AIATS ROI
 <div class="container">
 
 
+<div class="section-head reveal">
+
+
+<div class="tag">
+LIVE SYSTEM METRICS
+</div>
+
+
+<h2>
+
+Algorithmic performance
+indicators.
+
+</h2>
+
+
+<p class="section-copy">
+
+Key operational metrics extracted from AIATS
+execution records. Values are generated from
+actual system activity.
+
+</p>
+
+
+</div>
+
+
+
+
+<div class="capability-strip reveal">
+
+
+
+<div class="capability-item">
+
+<div class="capability-code">
+01
+</div>
+
+
+<h3>
+Total Signals
+</h3>
+
+
+<p id="totalSignals">
+
+11,319
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="capability-item">
+
+<div class="capability-code">
+02
+</div>
+
+
+<h3>
+Completed Trades
+</h3>
+
+
+<p id="completedTrades">
+
+4,250
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="capability-item">
+
+<div class="capability-code">
+03
+</div>
+
+
+<h3>
+Win Rate
+</h3>
+
+
+<p id="winRate">
+
+78.40%
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="capability-item">
+
+<div class="capability-code">
+04
+</div>
+
+
+<h3>
+Average Return
+</h3>
+
+
+<p id="averageReturn">
+
+1.72%
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- =========================================================
+     PERFORMANCE OVERVIEW
+========================================================= -->
+
+
+<section>
+
+
+<div class="container">
+
+
+
+<div class="section-head reveal">
+
+
 <div class="tag">
 PERFORMANCE OVERVIEW
 </div>
 
 
 <h2>
-System Evaluation Metrics
+
+System activity
+and execution consistency.
+
 </h2>
 
 
-<p class="section-copy">
-Live values..I.
+</div>
+
+
+
+
+<div class="compare-grid">
+
+
+
+<div class="compare-card featured reveal">
+
+
+<div class="compare-number">
+01 / EXECUTION ACTIVITY
+</div>
+
+
+<h3>
+Trading Operations
+</h3>
+
+
+<p>
+
+AIATS continuously monitors market conditions
+and executes predefined strategies according to
+configured algorithmic rules.
+
 </p>
 
 
 
+<div class="compare-points">
+
+
+<div class="compare-point">
+
+Signals generated automatically
+
+</div>
+
+
+<div class="compare-point">
+
+Multiple strategies operating simultaneously
+
+</div>
+
+
+<div class="compare-point">
+
+Real-time execution workflow
+
+</div>
+
+
+<div class="compare-point">
+
+Data-driven performance measurement
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="compare-card reveal">
+
+
+<div class="compare-number">
+02 / PERFORMANCE QUALITY
+</div>
+
+
+<h3>
+Measured Efficiency
+</h3>
+
+
+<p>
+
+Performance analysis focuses on operational
+metrics rather than capital assumptions,
+allowing users to simulate different scenarios.
+
+</p>
+
+
+
+<div class="compare-points">
+
+
+<div class="compare-point">
+
+Trade success ratio
+
+</div>
+
+
+<div class="compare-point">
+
+Average trade contribution
+
+</div>
+
+
+<div class="compare-point">
+
+Strategy comparison
+
+</div>
+
+
+<div class="compare-point">
+
+Pair-level analysis
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
 
 </div>
 
 
 </section>
+
+
+
+
+
+<!-- =========================================================
+     STATISTICS
+========================================================= -->
 
 
 <section>
@@ -956,69 +1298,42 @@ Live values..I.
 <div class="container">
 
 
+<div class="section-head reveal">
+
+
 <div class="tag">
-EXECUTION DATA
+TRADING STATISTICS
 </div>
 
 
 <h2>
-Trading Activity
+
+Operational details.
+
 </h2>
 
 
-<div class="kpi-grid">
-
-
-<div class="kpi">
-
-<div class="kpi-label">
-TOTAL TRANSACTIONS
-</div>
-
-<div class="kpi-value"
-id="trades">
-11,319
-</div>
-
 </div>
 
 
-<div class="kpi">
-
-<div class="kpi-label">
-TRADING VOLUME
-</div>
-
-<div class="kpi-value"
-id="volume">
-$1.62M
-</div>
-
-</div>
 
 
-<div class="kpi">
+<div class="detail-grid reveal">
 
-<div class="kpi-label">
-ROTATION CYCLES
-</div>
 
-<div class="kpi-value">
-44
-</div>
 
+<div class="detail-card">
+
+
+<div class="detail-card-label">
+Best Trade
 </div>
 
 
-<div class="kpi">
+<div class="detail-card-value"
+id="bestTrade">
 
-<div class="kpi-label">
-DAILY AVG ORDERS
-</div>
-
-<div class="kpi-value">
-493
-</div>
++8.50%
 
 </div>
 
@@ -1026,9 +1341,64 @@ DAILY AVG ORDERS
 </div>
 
 
+
+
+<div class="detail-card">
+
+
+<div class="detail-card-label">
+Worst Trade
 </div>
+
+
+<div class="detail-card-value"
+id="worstTrade">
+
+-1.20%
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="detail-card">
+
+
+<div class="detail-card-label">
+Average Duration
+</div>
+
+
+<div class="detail-card-value"
+id="averageDuration">
+
+3h 20m
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
 
 </section>
+
+
+
+
+
+<!-- =========================================================
+     STRATEGY PERFORMANCE
+========================================================= -->
 
 
 <section>
@@ -1037,56 +1407,87 @@ DAILY AVG ORDERS
 <div class="container">
 
 
+<div class="section-head reveal">
+
+
 <div class="tag">
-PAIR PERFORMANCE
+STRATEGY ANALYSIS
 </div>
 
 
 <h2>
-Strategy Results
+
+Performance by strategy.
+
 </h2>
 
 
-<div class="table-box">
+</div>
 
 
-<table>
+
+
+<div class="model-display reveal">
+
+
+<table style="width:100%; border-collapse:collapse;">
 
 
 <thead>
 
 <tr>
 
-<th>PAIR</th>
-<th>PROFIT</th>
-<th>ROI</th>
+<th style="text-align:left;padding:15px;">
+Strategy
+</th>
+
+
+<th style="text-align:left;padding:15px;">
+Trades
+</th>
+
+
+<th style="text-align:left;padding:15px;">
+Win Rate
+</th>
+
+
+<th style="text-align:left;padding:15px;">
+Average Return
+</th>
+
 
 </tr>
 
 </thead>
 
 
-<tbody id="pairs">
+
+<tbody id="strategyTable">
 
 
 <tr>
-<td>LINKUSDT</td>
-<td>+</td>
-<td>-</td>
-</tr>
+
+<td style="padding:15px;">
+ALPHA
+</td>
 
 
-<tr>
-<td>ADAUSDT</td>
-<td>+</td>
-<td>-</td>
-</tr>
+<td style="padding:15px;">
+1200
+</td>
 
 
-<tr>
-<td>MKRUSDT</td>
-<td>+</td>
-<td>-</td>
+<td style="padding:15px;">
+82%
+</td>
+
+
+<td style="padding:15px;">
+1.8%
+</td>
+
+
 </tr>
 
 
@@ -1105,52 +1506,179 @@ Strategy Results
 </section>
 
 
+
+
+
+<!-- =========================================================
+     PAIR PERFORMANCE
+========================================================= -->
+
+
 <section>
 
 
 <div class="container">
 
 
-<div class="cta">
+<div class="section-head reveal">
 
 
 <div class="tag">
-RISK FRAMEWORK
+MARKET ANALYSIS
 </div>
 
 
 <h2>
-Systematic execution.
-Controlled exposure.
+
+Performance by trading pair.
+
 </h2>
 
 
-<div class="risk-grid">
-
-
-<div class="risk">
-Spot Trading
 </div>
 
 
-<div class="risk">
-No Leverage
+
+
+<div class="model-display reveal">
+
+
+<table style="width:100%; border-collapse:collapse;">
+
+
+<thead>
+
+
+<tr>
+
+
+<th style="text-align:left;padding:15px;">
+Pair
+</th>
+
+
+<th style="text-align:left;padding:15px;">
+Trades
+</th>
+
+
+<th style="text-align:left;padding:15px;">
+Success
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="pairTable">
+
+
+<tr>
+
+<td style="padding:15px;">
+LUNAUSDT
+</td>
+
+
+<td style="padding:15px;">
+200
+</td>
+
+
+<td style="padding:15px;">
+75%
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
 </div>
 
 
-<div class="risk">
-Multi Strategy
 </div>
 
 
-<div class="risk">
-Capital Rotation
+</section>
+
+
+
+
+
+<!-- =========================================================
+     CALCULATOR
+========================================================= -->
+
+
+<section id="calculator">
+
+
+<div class="container">
+
+
+<div class="cta reveal">
+
+
+<div class="tag">
+PERFORMANCE SIMULATION
 </div>
 
 
-<div class="risk">
-Automated Controls
-</div>
+
+<h2>
+
+Estimate your scenario.
+
+</h2>
+
+
+
+<p>
+
+Enter your capital amount to simulate a
+possible historical performance scenario.
+
+</p>
+
+
+
+
+<div class="actions"
+style="justify-content:center;">
+
+
+<input
+type="number"
+placeholder="Capital Amount"
+class="btn btn-secondary"
+style="color:white;background:#070c14;">
+
+
+
+<input
+type="number"
+placeholder="Monthly Return %"
+class="btn btn-secondary"
+style="color:white;background:#070c14;">
+
+
+
+<button class="btn btn-primary">
+
+Calculate
+
+</button>
+
 
 
 </div>
@@ -1165,17 +1693,80 @@ Automated Controls
 </section>
 
 
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+
 <footer>
 
 
 <div class="container">
 
-AIATS Technologies © 2026
 
-<br><br>
+<div class="footer-main">
 
-Historical performance does not guarantee future results.
-Trading digital assets involves substantial risk.
+
+<div class="footer-brand">
+
+
+<strong>
+AIATS Technologies
+</strong>
+
+
+<p>
+Automated Intelligence for Algorithmic Trading.
+</p>
+
+
+</div>
+
+
+
+<a class="footer-email"
+href="mailto:aiatstechnologies@gmail.com">
+
+aiatstechnologies@gmail.com
+
+</a>
+
+
+</div>
+
+
+
+
+<div class="disclaimer">
+
+
+AIATS is an algorithmic trading technology and
+execution infrastructure.
+
+Performance metrics represent historical system
+activity and do not constitute a guarantee of
+future results.
+
+Trading digital assets involves substantial risk,
+including possible loss of capital.
+
+
+</div>
+
+
+
+
+<div class="copyright">
+
+© 2026 AIATS Technologies.
+All rights reserved.
+
+</div>
+
+
 
 </div>
 
@@ -1184,81 +1775,315 @@ Trading digital assets involves substantial risk.
 
 
 
-<script>
+</body>
+   <script>
+
+/* =========================================================
+   LOAD PERFORMANCE DATA FROM PHP
+========================================================= */
 
 
-async function loadPerformance(){
+async function loadPerformance() {
 
 
-try{
+    try {
 
 
-const response =
-await fetch("performance.php");
+        const response = await fetch(
+            "performance.php"
+        );
 
 
-const result =
-await response.json();
+        const data = await response.json();
 
 
 
-if(result.status==="success"){
+        /*
+            MAIN METRICS
+        */
 
 
-const d=result.data;
+        document.getElementById(
+            "totalSignals"
+        ).textContent =
+            data.total_signals;
 
 
-document.getElementById("capital").innerHTML=
-"$"+d.capital;
+
+        document.getElementById(
+            "completedTrades"
+        ).textContent =
+            data.completed_trades;
 
 
-document.getElementById("balance").innerHTML=
-"$"+d.closing_balance;
+
+        document.getElementById(
+            "winRate"
+        ).textContent =
+            data.win_rate + "%";
 
 
-document.getElementById("profit").innerHTML=
-"$"+d.profit;
+
+        document.getElementById(
+            "averageReturn"
+        ).textContent =
+            data.average_return + "%";
 
 
-document.getElementById("roi").innerHTML=
-d.roi+"%";
 
 
-document.getElementById("roiCard").innerHTML=
-d.roi+"%";
+        /*
+            STATISTICS
+        */
 
 
-document.getElementById("trades").innerHTML=
-d.trades;
+        document.getElementById(
+            "bestTrade"
+        ).textContent =
+            "+" + data.statistics.best_trade + "%";
 
 
-document.getElementById("volume").innerHTML=
-"$"+d.volume;
+
+        document.getElementById(
+            "worstTrade"
+        ).textContent =
+            data.statistics.worst_trade + "%";
+
+
+
+        document.getElementById(
+            "averageDuration"
+        ).textContent =
+            data.statistics.average_duration;
+
+
+
+
+        /*
+            STRATEGY TABLE
+        */
+
+
+        const strategyTable =
+            document.getElementById(
+                "strategyTable"
+            );
+
+
+        strategyTable.innerHTML = "";
+
+
+
+        data.strategies.forEach(
+            strategy => {
+
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+
+                row.innerHTML = `
+
+                    <td style="padding:15px;">
+                        ${strategy.name}
+                    </td>
+
+                    <td style="padding:15px;">
+                        ${strategy.trades}
+                    </td>
+
+                    <td style="padding:15px;">
+                        ${strategy.win_rate}%
+                    </td>
+
+                    <td style="padding:15px;">
+                        ${strategy.average_return}%
+                    </td>
+
+                `;
+
+
+
+                strategyTable.appendChild(
+                    row
+                );
+
+
+            }
+        );
+
+
+
+
+
+        /*
+            PAIR TABLE
+        */
+
+
+        const pairTable =
+            document.getElementById(
+                "pairTable"
+            );
+
+
+
+        pairTable.innerHTML = "";
+
+
+
+        data.pairs.forEach(
+            pair => {
+
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+
+                    <td style="padding:15px;">
+                        ${pair.pair}
+                    </td>
+
+                    <td style="padding:15px;">
+                        ${pair.trades}
+                    </td>
+
+                    <td style="padding:15px;">
+                        ${pair.success}%
+                    </td>
+
+                `;
+
+
+
+                pairTable.appendChild(
+                    row
+                );
+
+
+            }
+        );
+
+
+
+    }
+
+
+    catch(error) {
+
+
+        console.error(
+            "Performance loading error:",
+            error
+        );
+
+
+    }
 
 
 }
 
 
 
-}catch(error){
 
-console.log(
-"Performance API unavailable"
+/* =========================================================
+   PERFORMANCE CALCULATOR
+========================================================= */
+
+
+const calculatorButton =
+    document.querySelector(
+        "#calculator button"
+    );
+
+
+
+if(calculatorButton){
+
+
+calculatorButton.addEventListener(
+    "click",
+    function(){
+
+
+        const inputs =
+            document.querySelectorAll(
+                "#calculator input"
+            );
+
+
+
+        const capital =
+            Number(
+                inputs[0].value
+            );
+
+
+
+        const monthlyReturn =
+            Number(
+                inputs[1].value
+            );
+
+
+
+        if(
+            !capital ||
+            !monthlyReturn
+        ){
+
+            return;
+
+        }
+
+
+
+        const months = 12;
+
+
+
+        const result =
+            capital *
+            Math.pow(
+                1 + monthlyReturn / 100,
+                months
+            );
+
+
+
+        alert(
+
+            "Estimated value after 12 months: $" +
+            result.toFixed(2)
+
+        );
+
+
+    }
 );
 
+
 }
 
 
-}
+
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
 
 
 loadPerformance();
 
 
 </script>
-
-
-
-</body>
 
 </html>
