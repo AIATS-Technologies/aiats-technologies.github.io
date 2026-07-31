@@ -1,1 +1,1325 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+AIATS Performance — Algorithmic Trading Infrastructure
+</title>
+
+<meta
+name="description"
+content="AIATS algorithmic trading performance metrics, execution statistics and system evaluation results."
+>
+
+
+<style>
+
+/* =========================================================
+   CORE
+========================================================= */
+
+*,
+*::before,
+*::after{
+
+box-sizing:border-box;
+margin:0;
+padding:0;
+
+}
+
+
+body{
+
+background:#03060b;
+
+color:#f4f7fb;
+
+font-family:
+Inter,
+Segoe UI,
+Arial,
+sans-serif;
+
+line-height:1.6;
+
+overflow-x:hidden;
+
+}
+
+
+:root{
+
+--bg:#03060b;
+
+--card:#0b111b;
+
+--blue:#4da8ff;
+
+--blue2:#8acbff;
+
+--green:#52df91;
+
+--muted:#8490a3;
+
+--border:
+rgba(255,255,255,.08);
+
+}
+
+
+.container{
+
+width:min(1180px,calc(100% - 40px));
+
+margin:auto;
+
+}
+
+
+/* GRID BACKGROUND */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+z-index:-1;
+
+background-image:
+
+linear-gradient(
+rgba(255,255,255,.02) 1px,
+transparent 1px
+),
+
+linear-gradient(
+90deg,
+rgba(255,255,255,.02) 1px,
+transparent 1px
+);
+
+background-size:70px 70px;
+
+}
+
+
+
+/* =========================================================
+NAV
+========================================================= */
+
+
+.navbar{
+
+position:fixed;
+
+top:0;
+
+width:100%;
+
+z-index:100;
+
+background:
+rgba(3,6,11,.8);
+
+backdrop-filter:blur(15px);
+
+border-bottom:1px solid var(--border);
+
+}
+
+
+.nav-inner{
+
+height:74px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+
+.logo{
+
+font-weight:900;
+
+letter-spacing:3px;
+
+font-size:20px;
+
+}
+
+
+.nav-links{
+
+display:flex;
+
+gap:28px;
+
+align-items:center;
+
+}
+
+
+.nav-links a{
+
+color:var(--muted);
+
+font-size:13px;
+
+text-decoration:none;
+
+}
+
+
+.nav-links a.active{
+
+color:var(--blue2);
+
+}
+
+
+.nav-contact{
+
+padding:8px 15px;
+
+border:
+1px solid rgba(77,168,255,.3);
+
+border-radius:7px;
+
+}
+
+
+.menu{
+
+display:none;
+
+background:none;
+
+border:0;
+
+color:white;
+
+font-size:25px;
+
+}
+
+
+/* =========================================================
+ HERO
+========================================================= */
+
+
+.hero{
+
+padding-top:150px;
+
+padding-bottom:90px;
+
+}
+
+
+.hero-grid{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:70px;
+
+align-items:center;
+
+}
+
+
+.eyebrow{
+
+display:inline-flex;
+
+padding:7px 14px;
+
+border:
+1px solid rgba(77,168,255,.3);
+
+border-radius:50px;
+
+color:var(--blue2);
+
+font-size:11px;
+
+}
+
+
+h1{
+
+margin-top:25px;
+
+font-size:
+clamp(45px,6vw,80px);
+
+line-height:1;
+
+letter-spacing:-3px;
+
+}
+
+
+.gradient{
+
+background:
+linear-gradient(
+90deg,
+white,
+var(--blue2)
+);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+}
+
+
+.hero-copy{
+
+margin-top:25px;
+
+color:var(--muted);
+
+font-size:17px;
+
+max-width:600px;
+
+}
+
+
+.actions{
+
+margin-top:35px;
+
+display:flex;
+
+gap:15px;
+
+}
+
+
+.btn{
+
+padding:13px 22px;
+
+border-radius:8px;
+
+font-size:12px;
+
+font-weight:800;
+
+text-decoration:none;
+
+}
+
+
+.primary{
+
+background:white;
+
+color:#03060b;
+
+}
+
+
+.secondary{
+
+border:1px solid var(--border);
+
+}
+
+
+
+/* =========================================================
+ PERFORMANCE CORE
+========================================================= */
+
+
+.performance-core{
+
+height:430px;
+
+border:
+1px solid var(--border);
+
+border-radius:20px;
+
+background:
+
+radial-gradient(
+circle,
+rgba(77,168,255,.12),
+transparent 60%
+),
+
+var(--card);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+position:relative;
+
+}
+
+
+.circle{
+
+width:170px;
+
+height:170px;
+
+border-radius:50%;
+
+border:
+1px solid rgba(77,168,255,.4);
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+box-shadow:
+0 0 80px rgba(77,168,255,.15);
+
+}
+
+
+.circle small{
+
+font-size:10px;
+
+color:var(--blue2);
+
+}
+
+
+.circle strong{
+
+font-size:38px;
+
+}
+
+
+
+.node{
+
+position:absolute;
+
+padding:10px 15px;
+
+border:
+1px solid var(--border);
+
+border-radius:8px;
+
+background:#050914;
+
+font-size:10px;
+
+color:var(--muted);
+
+}
+
+
+.node.one{
+
+top:20%;
+
+left:15%;
+
+}
+
+
+.node.two{
+
+top:20%;
+
+right:15%;
+
+}
+
+
+.node.three{
+
+bottom:20%;
+
+left:20%;
+
+}
+
+
+.node.four{
+
+bottom:20%;
+
+right:20%;
+
+}
+
+
+/* =========================================================
+SECTIONS
+========================================================= */
+
+
+section{
+
+padding:100px 0;
+
+}
+
+
+.tag{
+
+color:var(--blue);
+
+font-size:11px;
+
+letter-spacing:2px;
+
+font-weight:bold;
+
+}
+
+
+h2{
+
+margin-top:15px;
+
+font-size:
+clamp(35px,4vw,55px);
+
+letter-spacing:-2px;
+
+}
+
+
+.section-copy{
+
+margin-top:20px;
+
+color:var(--muted);
+
+}
+
+
+
+/* =========================================================
+ KPI
+========================================================= */
+
+
+.kpi-grid{
+
+margin-top:50px;
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:15px;
+
+}
+
+
+.kpi{
+
+padding:30px;
+
+border:
+1px solid var(--border);
+
+border-radius:14px;
+
+background:var(--card);
+
+}
+
+
+.kpi-label{
+
+color:var(--muted);
+
+font-size:11px;
+
+}
+
+
+.kpi-value{
+
+margin-top:10px;
+
+font-size:32px;
+
+font-weight:800;
+
+color:white;
+
+}
+
+
+
+/* =========================================================
+TABLE
+========================================================= */
+
+
+.table-box{
+
+margin-top:40px;
+
+overflow:auto;
+
+border:
+1px solid var(--border);
+
+border-radius:15px;
+
+}
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+th,
+td{
+
+padding:18px;
+
+text-align:left;
+
+border-bottom:
+1px solid var(--border);
+
+}
+
+
+th{
+
+color:var(--blue2);
+
+font-size:12px;
+
+}
+
+
+td{
+
+color:#ccd5e2;
+
+}
+
+
+
+/* =========================================================
+RISK
+========================================================= */
+
+
+.risk-grid{
+
+margin-top:40px;
+
+display:grid;
+
+grid-template-columns:
+repeat(5,1fr);
+
+gap:15px;
+
+}
+
+
+.risk{
+
+padding:25px;
+
+background:var(--card);
+
+border:
+1px solid var(--border);
+
+border-radius:12px;
+
+color:#ccd5e2;
+
+font-size:13px;
+
+}
+
+
+
+/* =========================================================
+CTA
+========================================================= */
+
+
+.cta{
+
+text-align:center;
+
+padding:80px 30px;
+
+border:
+1px solid rgba(77,168,255,.25);
+
+border-radius:20px;
+
+background:var(--card);
+
+}
+
+
+
+/* FOOTER */
+
+
+footer{
+
+padding:40px 0;
+
+border-top:
+1px solid var(--border);
+
+color:var(--muted);
+
+font-size:12px;
+
+}
+
+
+
+/* MOBILE */
+
+
+@media(max-width:900px){
+
+.hero-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.kpi-grid{
+
+grid-template-columns:
+1fr 1fr;
+
+}
+
+
+.risk-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.nav-links{
+
+display:none;
+
+}
+
+
+.menu{
+
+display:block;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="container nav-inner">
+
+<div class="logo">
+AIATS
+</div>
+
+
+<div class="nav-links">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="index.html#architecture">
+Architecture
+</a>
+
+<a href="performance.html" class="active">
+Performance
+</a>
+
+<a href="business-models.html">
+Business Models
+</a>
+
+<a class="nav-contact"
+href="mailto:aiatstechnologies@gmail.com">
+Contact
+</a>
+
+
+</div>
+
+
+<button class="menu">
+☰
+</button>
+
+
+</div>
+
+</nav>
+
+
+
+<section class="hero">
+
+
+<div class="container hero-grid">
+
+
+<div>
+
+
+<div class="eyebrow">
+AIATS PERFORMANCE ENGINE
+</div>
+
+
+<h1>
+
+Measured execution.
+<span class="gradient">
+Transparent performance.
+</span>
+
+</h1>
+
+
+<p class="hero-copy">
+
+AIATS performance reporting is based on
+real algorithmic execution data, measuring
+capital efficiency, trading activity,
+execution consistency and system behavior.
+
+</p>
+
+
+<div class="actions">
+
+<a class="btn primary"
+href="#metrics">
+
+View Metrics
+
+</a>
+
+
+<a class="btn secondary"
+href="mailto:aiatstechnologies@gmail.com">
+
+Request Report
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="performance-core">
+
+
+<div class="node one">
+CAPITAL
+</div>
+
+<div class="node two">
+TRADES
+</div>
+
+<div class="node three">
+VOLUME
+</div>
+
+<div class="node four">
+STRATEGIES
+</div>
+
+
+<div class="circle">
+
+<small>
+AIATS ROI
+</small>
+
+<strong id="roi">
+7.22%
+</strong>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section id="metrics">
+
+
+<div class="container">
+
+
+<div class="tag">
+PERFORMANCE OVERVIEW
+</div>
+
+
+<h2>
+System Evaluation Metrics
+</h2>
+
+
+<p class="section-copy">
+Live values will be loaded from performance.php JSON API.
+</p>
+
+
+
+<div class="kpi-grid">
+
+
+<div class="kpi">
+
+<div class="kpi-label">
+INITIAL CAPITAL
+</div>
+
+<div class="kpi-value"
+id="capital">
+$38,530
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-label">
+CLOSING BALANCE
+</div>
+
+<div class="kpi-value"
+id="balance">
+$41,310
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-label">
+NET PROFIT
+</div>
+
+<div class="kpi-value"
+id="profit">
+$2,780
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-label">
+ROI
+</div>
+
+<div class="kpi-value"
+id="roiCard">
+7.22%
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<section>
+
+
+<div class="container">
+
+
+<div class="tag">
+EXECUTION DATA
+</div>
+
+
+<h2>
+Trading Activity
+</h2>
+
+
+<div class="kpi-grid">
+
+
+<div class="kpi">
+
+<div class="kpi-label">
+TOTAL TRANSACTIONS
+</div>
+
+<div class="kpi-value"
+id="trades">
+11,319
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-label">
+TRADING VOLUME
+</div>
+
+<div class="kpi-value"
+id="volume">
+$1.62M
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-label">
+ROTATION CYCLES
+</div>
+
+<div class="kpi-value">
+44
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-label">
+DAILY AVG ORDERS
+</div>
+
+<div class="kpi-value">
+493
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<section>
+
+
+<div class="container">
+
+
+<div class="tag">
+PAIR PERFORMANCE
+</div>
+
+
+<h2>
+Strategy Results
+</h2>
+
+
+<div class="table-box">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>PAIR</th>
+<th>PROFIT</th>
+<th>ROI</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="pairs">
+
+
+<tr>
+<td>LINKUSDT</td>
+<td>+</td>
+<td>-</td>
+</tr>
+
+
+<tr>
+<td>ADAUSDT</td>
+<td>+</td>
+<td>-</td>
+</tr>
+
+
+<tr>
+<td>MKRUSDT</td>
+<td>+</td>
+<td>-</td>
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<section>
+
+
+<div class="container">
+
+
+<div class="cta">
+
+
+<div class="tag">
+RISK FRAMEWORK
+</div>
+
+
+<h2>
+Systematic execution.
+Controlled exposure.
+</h2>
+
+
+<div class="risk-grid">
+
+
+<div class="risk">
+Spot Trading
+</div>
+
+
+<div class="risk">
+No Leverage
+</div>
+
+
+<div class="risk">
+Multi Strategy
+</div>
+
+
+<div class="risk">
+Capital Rotation
+</div>
+
+
+<div class="risk">
+Automated Controls
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+
+<div class="container">
+
+AIATS Technologies © 2026
+
+<br><br>
+
+Historical performance does not guarantee future results.
+Trading digital assets involves substantial risk.
+
+</div>
+
+
+</footer>
+
+
+
+<script>
+
+
+async function loadPerformance(){
+
+
+try{
+
+
+const response =
+await fetch("performance.php");
+
+
+const result =
+await response.json();
+
+
+
+if(result.status==="success"){
+
+
+const d=result.data;
+
+
+document.getElementById("capital").innerHTML=
+"$"+d.capital;
+
+
+document.getElementById("balance").innerHTML=
+"$"+d.closing_balance;
+
+
+document.getElementById("profit").innerHTML=
+"$"+d.profit;
+
+
+document.getElementById("roi").innerHTML=
+d.roi+"%";
+
+
+document.getElementById("roiCard").innerHTML=
+d.roi+"%";
+
+
+document.getElementById("trades").innerHTML=
+d.trades;
+
+
+document.getElementById("volume").innerHTML=
+"$"+d.volume;
+
+
+}
+
+
+
+}catch(error){
+
+console.log(
+"Performance API unavailable"
+);
+
+}
+
+
+}
+
+
+loadPerformance();
+
+
+</script>
+
+
+
+</body>
+
+</html>
