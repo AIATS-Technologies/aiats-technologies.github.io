@@ -1307,10 +1307,12 @@ function updateMetrics(trades){
 
     // TOTAL OPERATIONS
 
-    document
-    .getElementById("totalTrades")
-    .textContent =
-    trades.length;
+    const totalTrades =
+    document.getElementById("totalTrades");
+
+    if(totalTrades){
+        totalTrades.textContent = trades.length;
+    }
 
 
 
@@ -1326,10 +1328,12 @@ function updateMetrics(trades){
     ];
 
 
-    document
-    .getElementById("totalPairs")
-    .textContent =
-    pairs.length;
+    const totalPairs =
+    document.getElementById("totalPairs");
+
+    if(totalPairs){
+        totalPairs.textContent = pairs.length;
+    }
 
 
 
@@ -1338,15 +1342,16 @@ function updateMetrics(trades){
     const buys =
     trades.filter(
         t =>
-        t.t_type.toUpperCase()
-        === "BUY"
+        t.t_type.toUpperCase() === "BUY"
     ).length;
 
 
-    document
-    .getElementById("buySignals")
-    .textContent =
-    buys;
+    const buySignals =
+    document.getElementById("buySignals");
+
+    if(buySignals){
+        buySignals.textContent = buys;
+    }
 
 
 
@@ -1355,20 +1360,20 @@ function updateMetrics(trades){
     const sells =
     trades.filter(
         t =>
-        t.t_type.toUpperCase()
-        === "SELL"
+        t.t_type.toUpperCase() === "SELL"
     ).length;
 
 
-    document
-    .getElementById("sellSignals")
-    .textContent =
-    sells;
+    const sellSignals =
+    document.getElementById("sellSignals");
+
+    if(sellSignals){
+        sellSignals.textContent = sells;
+    }
+
 
 
 }
-
-
 
 loadPerformance();
 
