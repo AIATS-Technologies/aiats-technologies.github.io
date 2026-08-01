@@ -1256,7 +1256,35 @@ font-size:42px;
 </body>
 
 
-<script type="module" src="portal/js/supabase-config.js"></script>
+<script type="module">
+
+import { supabase } from "./js/supabase-config.js";
+
+
+async function loadPerformance(){
+
+    const { data, error } = await supabase
+        .from("aiats_trades")
+        .select("*")
+        .order("t_timestamp", { ascending:false });
+
+
+    if(error){
+
+        console.error("Supabase Error:", error);
+        return;
+
+    }
+
+
+    console.log(data);
+
+}
+
+
+loadPerformance();
+
+</script>
 <script>
 async function loadPerformance(){
 
