@@ -1300,7 +1300,7 @@ async function loadPerformance(){
 
 
     analyzePerformance(data);
-
+   loadRecentActivity(data);
 
 }
 
@@ -1771,7 +1771,79 @@ function updateDashboard(stats){
 }
 
 
+function loadRecentActivity(trades){
 
+
+    const table =
+    document.getElementById(
+        "recentTrades"
+    );
+
+
+    if(!table)
+        return;
+
+
+
+    table.innerHTML = "";
+
+
+
+    trades
+    .slice(0,5)
+    .forEach(
+        trade => {
+
+
+            const row =
+            document.createElement(
+                "tr"
+            );
+
+
+            row.innerHTML = `
+
+            <td>
+                ${new Date(
+                    trade.t_timestamp
+                ).toLocaleString()}
+            </td>
+
+
+            <td>
+                ${trade.t_pair}
+            </td>
+
+
+            <td>
+                ${trade.t_strategy}
+            </td>
+
+
+            <td class="${trade.t_type.toLowerCase()}">
+
+                ${trade.t_type}
+
+            </td>
+
+
+            <td>
+                ${Number(
+                    trade.t_price
+                ).toFixed(6)}
+            </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+
+        }
+    );
+
+
+}
 
 
 
