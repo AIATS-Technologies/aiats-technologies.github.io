@@ -1263,37 +1263,12 @@ import { supabase } from "/portal/js/supabase-config.js";
 
 async function loadPerformance(){
 
-    const { data, error } = await supabase
-        .from("aiats_trades")
-        .select("*")
-        .order("t_timestamp", { ascending:false });
-
-
-    if(error){
-
-        console.error("Supabase Error:", error);
-        return;
-
-    }
-
-
-    console.log(data);
-
-}
-
-
-loadPerformance();
-
-</script>
-<script>
-async function loadPerformance(){
-
 
     const {
         data,
         error
     } = await supabase
-        .from("aiats_trades")
+        .from("aiats_trading_activity")
         .select("*")
         .order(
             "t_timestamp",
@@ -1323,7 +1298,6 @@ async function loadPerformance(){
 
     updateMetrics(data);
 
-
 }
 
 
@@ -1331,22 +1305,16 @@ async function loadPerformance(){
 function updateMetrics(trades){
 
 
-    /*
-    TOTAL OPERATIONS
-    */
+    // TOTAL OPERATIONS
 
     document
-    .getElementById(
-        "totalTrades"
-    )
+    .getElementById("totalTrades")
     .textContent =
     trades.length;
 
 
 
-    /*
-    UNIQUE PAIRS
-    */
+    // UNIQUE PAIRS
 
     const pairs =
     [
@@ -1359,17 +1327,13 @@ function updateMetrics(trades){
 
 
     document
-    .getElementById(
-        "totalPairs"
-    )
+    .getElementById("totalPairs")
     .textContent =
     pairs.length;
 
 
 
-    /*
-    BUY SIGNALS
-    */
+    // BUY SIGNALS
 
     const buys =
     trades.filter(
@@ -1380,17 +1344,13 @@ function updateMetrics(trades){
 
 
     document
-    .getElementById(
-        "buySignals"
-    )
+    .getElementById("buySignals")
     .textContent =
     buys;
 
 
 
-    /*
-    SELL SIGNALS
-    */
+    // SELL SIGNALS
 
     const sells =
     trades.filter(
@@ -1401,9 +1361,7 @@ function updateMetrics(trades){
 
 
     document
-    .getElementById(
-        "sellSignals"
-    )
+    .getElementById("sellSignals")
     .textContent =
     sells;
 
@@ -1413,6 +1371,8 @@ function updateMetrics(trades){
 
 
 loadPerformance();
+
+
 </script>
 
 
