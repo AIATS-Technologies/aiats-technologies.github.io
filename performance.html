@@ -1267,8 +1267,11 @@ async function loadPerformance(){
         data,
         error
     } = await supabase
+
         .from("aiats_trading_activity")
+
         .select("*")
+
         .order(
             "t_timestamp",
             {
@@ -1295,90 +1298,342 @@ async function loadPerformance(){
     );
 
 
-    updateMetrics(data);
+    analyzePerformance(data);
+
 
 }
 
 
 
-function updateMetrics(trades){
+function analyzePerformance(trades){
 
 
-    // TOTAL OPERATIONS
+    if(!trades || trades.length===0)
+        return;
+
+
+
+    /*
+    ==========================
+    BASIC EXECUTION
+    ==========================
+    */
+
 
     const totalTrades =
-    document.getElementById("totalTrades");
-
-    if(totalTrades){
-        totalTrades.textContent = trades.length;
-    }
+        trades.length;
 
 
 
-    // UNIQUE PAIRS
+    const buys =
+        trades.filter(
+            t =>
+            t.t_type.toUpperCase()
+            === "BUY"
+        ).length;
+
+
+
+    const sells =
+        trades.filter(
+            t =>
+            t.t_type.toUpperCase()
+            === "SELL"
+        ).length;
+
+
+
+    /*
+    ==========================
+    MARKETS
+    ==========================
+    */
+
 
     const pairs =
     [
         ...new Set(
             trades.map(
-                t => t.t_pair
+                t=>t.t_pair
             )
         )
     ];
 
 
-    const totalPairs =
-    document.getElementById("totalPairs");
 
-    if(totalPairs){
-        totalPairs.textContent = pairs.length;
+    /*
+    ==========================
+    STRATEGIES
+    ==========================
+    */
+
+
+    const strategies = {};
+
+
+
+    trades.forEach(t=>{
+
+
+        if(!strategies[t.t_strategy]){
+
+            strategies[t.t_strategy]=0;
+
+        }
+
+
+        strategies[t.t_strategy]++;
+
+
+    });
+
+
+
+    /*
+    ==========================
+    TIME ANALYSIS
+    ==========================
+    */
+
+
+    const dates =
+    trades.map(
+        t =>
+        new Date(
+            t.t_timestamp
+        )
+    );
+
+
+
+    const firstDate =
+        new Date(
+            Math.min(
+                ...dates
+            )
+        );
+
+
+    const lastDate =
+        new Date(
+            Math.max(
+                ...dates
+            )
+        );
+
+
+
+    const runningTime =
+        lastDate-firstDate;
+
+
+
+    const hours =
+        runningTime /
+        (1000*60*60);
+
+
+
+    const signalPerHour =
+        hours > 0
+        ?
+        (
+            totalTrades /
+            hours
+        ).toFixed(2)
+
+        :
+
+        totalTrades;
+
+
+
+    /*
+    SEND DATA TO UI
+    */
+
+
+    updateDashboard({
+
+        totalTrades,
+
+        buys,
+
+        sells,
+
+        pairs,
+
+        strategies,
+
+        firstDate,
+
+        lastDate,
+
+        signalPerHour
+
+    });
+
+
+
+}
+
+
+
+
+
+function updateDashboard(stats){
+
+
+
+    // KPI
+
+
+    setValue(
+        "totalTrades",
+        stats.totalTrades
+    );
+
+
+    setValue(
+        "buySignals",
+        stats.buys
+    );
+
+
+    setValue(
+        "sellSignals",
+        stats.sells
+    );
+
+
+    setValue(
+        "totalPairs",
+        stats.pairs.length
+    );
+
+
+
+    /*
+    TIME
+    */
+
+
+    setValue(
+        "signalFrequency",
+        stats.signalPerHour
+    );
+
+
+
+    if(
+        document.getElementById(
+            "firstSignal"
+        )
+    ){
+
+        document.getElementById(
+            "firstSignal"
+        ).textContent =
+        stats.firstDate
+        .toLocaleString();
+
     }
 
 
 
-    // BUY SIGNALS
+    if(
+        document.getElementById(
+            "lastSignal"
+        )
+    ){
 
-    const buys =
-    trades.filter(
-        t =>
-        t.t_type.toUpperCase() === "BUY"
-    ).length;
+        document.getElementById(
+            "lastSignal"
+        ).textContent =
+        stats.lastDate
+        .toLocaleString();
 
-
-    const buySignals =
-    document.getElementById("buySignals");
-
-    if(buySignals){
-        buySignals.textContent = buys;
     }
 
 
 
-    // SELL SIGNALS
-
-    const sells =
-    trades.filter(
-        t =>
-        t.t_type.toUpperCase() === "SELL"
-    ).length;
+    /*
+    STRATEGIES
+    */
 
 
-    const sellSignals =
-    document.getElementById("sellSignals");
+    const strategyBox =
+    document.getElementById(
+        "strategyList"
+    );
 
-    if(sellSignals){
-        sellSignals.textContent = sells;
+
+    if(strategyBox){
+
+
+        strategyBox.innerHTML="";
+
+
+        Object.entries(
+            stats.strategies
+        )
+        .forEach(
+            ([name,count])=>{
+
+
+                strategyBox.innerHTML += `
+
+                <div class="strategy-item">
+
+                    <strong>${name}</strong>
+
+                    <span>
+                    ${count} Signals
+                    </span>
+
+                </div>
+
+                `;
+
+
+            }
+        );
+
+
     }
 
 
 
 }
 
+
+
+
+
+function setValue(id,value){
+
+
+    const el =
+    document.getElementById(id);
+
+
+    if(el){
+
+        el.textContent=value;
+
+    }
+
+
+}
+
+
+
+
+
 loadPerformance();
 
 
 </script>
-
 
 
 </html>
