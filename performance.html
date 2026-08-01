@@ -783,7 +783,15 @@ color:var(--muted);
 
 }
 
+.chart-box{
 
+    width:320px;
+
+    height:320px;
+
+    margin:auto;
+
+}
 
 /* =========================================================
 FOOTER
@@ -1926,6 +1934,7 @@ function loadPairsChart(trades){
 
                 responsive:true,
 
+    maintainAspectRatio:false,
 
                 plugins:{
 
@@ -1933,10 +1942,58 @@ function loadPairsChart(trades){
                     legend:{
 
 
-                        position:"bottom"
+                        position:"bottom",
+                       labels:{
+
+                font:{
+
+                    size:12
+
+                }
+
+            }
+ },
 
 
-                    }
+        tooltip:{
+
+
+            callbacks:{
+
+
+                label:function(context){
+
+
+                    const total =
+                    context.dataset.data
+                    .reduce(
+                        (a,b)=>a+b,
+                        0
+                    );
+
+
+                    const value =
+                    context.raw;
+
+
+                    const percentage =
+                    (
+                        value /
+                        total *
+                        100
+                    ).toFixed(1);
+
+
+
+                    return (
+                        context.label
+                        +
+                        ": "
+                        +
+                        percentage
+                        +
+                        "%"
+                    );
 
 
                 }
@@ -1946,7 +2003,9 @@ function loadPairsChart(trades){
 
 
         }
-    );
+
+
+    }
 
 
 }
