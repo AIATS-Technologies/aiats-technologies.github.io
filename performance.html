@@ -2023,7 +2023,10 @@ function setValue(
 
 
 }
-
+const {data,error}=await supabase
+.from("aiats_performance_status")
+.select("*")
+.single();
 
 
 
