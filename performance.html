@@ -1267,7 +1267,58 @@ font-size:42px;
 
 import { supabase } from "/portal/js/supabase-config.js";
 
+async function loadLastUpdate(){
 
+    const {
+        data,
+        error
+    } = await supabase
+        .from("aiats_performance_status")
+        .select("*")
+        .single();
+
+
+
+    if(error){
+
+        console.error(
+            "Performance Status Error:",
+            error
+        );
+
+        return;
+
+    }
+
+
+
+    console.log(
+        "Performance Status:",
+        data
+    );
+
+
+
+    const element =
+    document.getElementById(
+        "lastUpdate"
+    );
+
+
+
+    if(element && data.last_update){
+
+
+        element.textContent =
+        new Date(
+            data.last_update
+        ).toLocaleString();
+
+
+    }
+
+
+}
 
 async function loadPerformance(){
 
@@ -1774,9 +1825,6 @@ function updateDashboard(stats){
         "strategyCount",
         strategyCount
     );
-
-
-
 }
 
 
@@ -2023,16 +2071,10 @@ function setValue(
 
 
 }
-const {data,error}=await supabase
-.from("aiats_performance_status")
-.select("*")
-.single();
-
-
 
 
 loadPerformance();
-
+loadLastUpdate();
 
 
 </script>
