@@ -1264,7 +1264,7 @@ async function loadPerformance(){
     const {
         data,
         error
-    } = await supabaseClient
+    } = await supabase
         .from("aiats_trades")
         .select("*")
         .order(
