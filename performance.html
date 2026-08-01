@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -954,7 +953,19 @@ font-size:42px;
             </div>
 
             <div class="live-status">
+               <div class="status-card">
 
+                    <span class="status-label">
+                        Win Rate
+                    </span>
+
+                    <strong id="winRate">
+                        --
+                    </strong>
+
+                </div>
+
+               
                 <div class="status-card">
 
                     <span class="status-label">
@@ -1288,7 +1299,25 @@ async function loadLastUpdate(){
 
         return;
 
-    }
+    } else if (data) {
+
+    // Last Update
+    setValue(
+        "lastUpdate",
+        data.last_update
+            ? new Date(data.last_update).toLocaleString()
+            : "--"
+    );
+
+    // Win Rate
+    setValue(
+        "winRate",
+        data.win_rate != null
+            ? Number(data.win_rate).toFixed(2) + "%"
+            : "--"
+    );
+
+}
 
 
 
