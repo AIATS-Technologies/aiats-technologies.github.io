@@ -1192,20 +1192,20 @@ font-size:42px;
         <!-- ==========================================
              PAIRS
         =========================================== -->
+<section class="chart-section">
 
-        <section class="pairs-section">
+    <h3>
+        Trading Pairs Distribution
+    </h3>
 
-            <h3>
-                Trading Pairs
-            </h3>
 
-            <div
-                class="pairs-grid"
-                id="pairsGrid">
+    <div class="chart-box">
 
-            </div>
+        <canvas id="pairsChart"></canvas>
 
-        </section>
+    </div>
+
+</section>
 
 
         <!-- ==========================================
@@ -1254,7 +1254,7 @@ font-size:42px;
 
 </body>
 
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module">
 
 import { supabase } from "/portal/js/supabase-config.js";
@@ -1301,6 +1301,7 @@ async function loadPerformance(){
 
     analyzePerformance(data);
    loadRecentActivity(data);
+   loadPairsChart(data);
 
 }
 
@@ -1844,7 +1845,111 @@ function loadRecentActivity(trades){
 
 
 }
+let pairsChart;
 
+
+function loadPairsChart(trades){
+
+
+    const pairStats = {};
+
+
+
+    trades.forEach(
+        trade => {
+
+
+            if(!pairStats[trade.t_pair]){
+
+                pairStats[trade.t_pair] = 0;
+
+            }
+
+
+            pairStats[trade.t_pair]++;
+
+        }
+    );
+
+
+
+    const labels =
+    Object.keys(pairStats);
+
+
+
+    const values =
+    Object.values(pairStats);
+
+
+
+    const ctx =
+    document
+    .getElementById(
+        "pairsChart"
+    );
+
+
+
+    if(pairsChart){
+
+        pairsChart.destroy();
+
+    }
+
+
+
+    pairsChart =
+    new Chart(
+        ctx,
+        {
+
+            type:"pie",
+
+
+            data:{
+
+                labels:labels,
+
+
+                datasets:[{
+
+                    data:values
+
+                }]
+
+            },
+
+
+            options:{
+
+
+                responsive:true,
+
+
+                plugins:{
+
+
+                    legend:{
+
+
+                        position:"bottom"
+
+
+                    }
+
+
+                }
+
+
+            }
+
+
+        }
+    );
+
+
+}
 
 
 function setValue(
