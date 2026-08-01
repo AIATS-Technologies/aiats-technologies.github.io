@@ -1561,43 +1561,17 @@ function updateDashboard(stats){
     STRATEGIES
     */
 
-
-    const strategyBox =
-    document.getElementById(
-        "strategyList"
-    );
-
-
-    if(strategyBox){
+const strategyCount =
+Object.keys(
+    stats.strategies
+).length;
 
 
-        strategyBox.innerHTML="";
-
-
-        Object.entries(
-            stats.strategies
-        )
-        .forEach(
-            ([name,count])=>{
-
-
-                strategyBox.innerHTML += `
-
-                <div class="strategy-item">
-
-                    <strong>${name}</strong>
-
-                    <span>
-                    ${count} Signals
-                    </span>
-
-                </div>
-
-                `;
-
-
-            }
-        );
+setValue(
+    "strategyCount",
+    strategyCount
+);
+   
 
 
     }
