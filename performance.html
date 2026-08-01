@@ -11,16 +11,11 @@
 AIATS Performance — Algorithmic Trading Infrastructure
 </title>
 
-<meta
-name="description"
-content="AIATS algorithmic trading performance metrics, execution statistics and system evaluation results."
->
-
-
+<meta name="description" content="AIATS algorithmic trading performance metrics, execution statistics and system evaluation results.">
 <style>
 
 /* =========================================================
-   CORE
+   RESET
 ========================================================= */
 
 *,
@@ -59,16 +54,25 @@ overflow-x:hidden;
 
 --card:#0b111b;
 
+--card2:#070c14;
+
 --blue:#4da8ff;
 
 --blue2:#8acbff;
 
+--cyan:#52d9ff;
+
 --green:#52df91;
+
+--red:#ff6b6b;
 
 --muted:#8490a3;
 
 --border:
-rgba(255,255,255,.08);
+rgba(255,255,255,.075);
+
+--border-blue:
+rgba(77,168,255,.25);
 
 }
 
@@ -82,7 +86,11 @@ margin:auto;
 }
 
 
-/* GRID BACKGROUND */
+
+/* =========================================================
+BACKGROUND
+========================================================= */
+
 
 body::before{
 
@@ -92,158 +100,93 @@ position:fixed;
 
 inset:0;
 
-z-index:-1;
+z-index:-2;
 
 background-image:
 
 linear-gradient(
-rgba(255,255,255,.02) 1px,
+rgba(255,255,255,.016) 1px,
 transparent 1px
 ),
 
 linear-gradient(
 90deg,
-rgba(255,255,255,.02) 1px,
+rgba(255,255,255,.016) 1px,
 transparent 1px
 );
 
-background-size:70px 70px;
+background-size:
+70px 70px;
+
+
+mask-image:
+linear-gradient(
+to bottom,
+black,
+transparent 90%
+);
 
 }
 
 
 
-/* =========================================================
-NAV
-========================================================= */
+body::after{
 
-
-.navbar{
+content:"";
 
 position:fixed;
 
-top:0;
+width:450px;
 
-width:100%;
+height:450px;
 
-z-index:100;
+top:20%;
+
+right:10%;
+
+z-index:-1;
+
 
 background:
-rgba(3,6,11,.8);
 
-backdrop-filter:blur(15px);
+radial-gradient(
+circle,
+rgba(77,168,255,.08),
+transparent 70%
+);
 
-border-bottom:1px solid var(--border);
 
 }
 
-
-.nav-inner{
-
-height:74px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-}
-
-
-.logo{
-
-font-weight:900;
-
-letter-spacing:3px;
-
-font-size:20px;
-
-}
-
-
-.nav-links{
-
-display:flex;
-
-gap:28px;
-
-align-items:center;
-
-}
-
-
-.nav-links a{
-
-color:var(--muted);
-
-font-size:13px;
-
-text-decoration:none;
-
-}
-
-
-.nav-links a.active{
-
-color:var(--blue2);
-
-}
-
-
-.nav-contact{
-
-padding:8px 15px;
-
-border:
-1px solid rgba(77,168,255,.3);
-
-border-radius:7px;
-
-}
-
-
-.menu{
-
-display:none;
-
-background:none;
-
-border:0;
-
-color:white;
-
-font-size:25px;
-
-}
 
 
 /* =========================================================
- HERO
+PAGE HEADER
 ========================================================= */
 
 
-.hero{
+.performance-page{
 
-padding-top:150px;
-
-padding-bottom:90px;
+padding:90px 0;
 
 }
 
 
-.hero-grid{
 
-display:grid;
+.page-header{
 
-grid-template-columns:
-1fr 1fr;
+display:flex;
 
-gap:70px;
+justify-content:space-between;
 
 align-items:center;
 
+gap:40px;
+
+margin-bottom:60px;
+
 }
+
 
 
 .eyebrow{
@@ -253,15 +196,33 @@ display:inline-flex;
 padding:7px 14px;
 
 border:
-1px solid rgba(77,168,255,.3);
 
-border-radius:50px;
+1px solid var(--border-blue);
+
+border-radius:100px;
 
 color:var(--blue2);
 
-font-size:11px;
+font-size:10px;
+
+letter-spacing:1.5px;
+
+font-weight:800;
+
+background:
+
+rgba(77,168,255,.04);
 
 }
+
+
+
+.eyebrow::first-letter{
+
+color:var(--green);
+
+}
+
 
 
 h1{
@@ -269,47 +230,30 @@ h1{
 margin-top:25px;
 
 font-size:
-clamp(45px,6vw,80px);
 
-line-height:1;
+clamp(42px,6vw,70px);
 
 letter-spacing:-3px;
 
-}
-
-
-.gradient{
-
-background:
-linear-gradient(
-90deg,
-white,
-var(--blue2)
-);
-
--webkit-background-clip:text;
-
-color:transparent;
+line-height:1;
 
 }
 
 
-.hero-copy{
 
-margin-top:25px;
+.page-title p{
+
+margin-top:20px;
 
 color:var(--muted);
 
-font-size:17px;
-
-max-width:600px;
+font-size:16px;
 
 }
 
 
-.actions{
 
-margin-top:35px;
+.live-status{
 
 display:flex;
 
@@ -318,127 +262,30 @@ gap:15px;
 }
 
 
-.btn{
 
-padding:13px 22px;
+.status-card{
 
-border-radius:8px;
+padding:22px;
 
-font-size:12px;
-
-font-weight:800;
-
-text-decoration:none;
-
-}
-
-
-.primary{
-
-background:white;
-
-color:#03060b;
-
-}
-
-
-.secondary{
-
-border:1px solid var(--border);
-
-}
-
-
-
-/* =========================================================
- PERFORMANCE CORE
-========================================================= */
-
-
-.performance-core{
-
-height:430px;
-
-border:
-1px solid var(--border);
-
-border-radius:20px;
+min-width:170px;
 
 background:
 
-radial-gradient(
-circle,
-rgba(77,168,255,.12),
-transparent 60%
-),
-
-var(--card);
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-position:relative;
-
-}
-
-
-.circle{
-
-width:170px;
-
-height:170px;
-
-border-radius:50%;
+rgba(255,255,255,.02);
 
 border:
-1px solid rgba(77,168,255,.4);
 
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-box-shadow:
-0 0 80px rgba(77,168,255,.15);
-
-}
-
-
-.circle small{
-
-font-size:10px;
-
-color:var(--blue2);
-
-}
-
-
-.circle strong{
-
-font-size:38px;
-
-}
-
-
-
-.node{
-
-position:absolute;
-
-padding:10px 15px;
-
-border:
 1px solid var(--border);
 
-border-radius:8px;
+border-radius:14px;
 
-background:#050914;
+}
+
+
+
+.status-label{
+
+display:block;
 
 font-size:10px;
 
@@ -447,40 +294,130 @@ color:var(--muted);
 }
 
 
-.node.one{
 
-top:20%;
+.status-card strong{
 
-left:15%;
+display:block;
 
-}
+margin-top:8px;
 
-
-.node.two{
-
-top:20%;
-
-right:15%;
+color:var(--blue2);
 
 }
 
 
-.node.three{
 
-bottom:20%;
+/* =========================================================
+KPI
+========================================================= */
 
-left:20%;
+
+.kpi-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(6,1fr);
+
+gap:14px;
 
 }
 
 
-.node.four{
 
-bottom:20%;
+.kpi-card{
 
-right:20%;
+padding:25px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(14,25,42,.9),
+rgba(5,9,16,.95)
+);
+
+border:
+
+1px solid var(--border);
+
+border-radius:14px;
+
+
+transition:.3s;
+
+position:relative;
+
+overflow:hidden;
 
 }
+
+
+
+.kpi-card::before{
+
+content:"";
+
+position:absolute;
+
+width:120px;
+
+height:120px;
+
+right:-50px;
+
+top:-50px;
+
+
+background:
+
+radial-gradient(
+circle,
+rgba(77,168,255,.15),
+transparent 70%
+);
+
+}
+
+
+
+.kpi-card:hover{
+
+transform:translateY(-6px);
+
+border-color:
+
+var(--border-blue);
+
+}
+
+
+
+.kpi-card span{
+
+font-size:10px;
+
+color:var(--muted);
+
+text-transform:uppercase;
+
+letter-spacing:1px;
+
+}
+
+
+
+.kpi-card h2{
+
+margin-top:12px;
+
+font-size:34px;
+
+color:white;
+
+}
+
 
 
 /* =========================================================
@@ -490,58 +427,40 @@ SECTIONS
 
 section{
 
-padding:100px 0;
+margin-top:90px;
 
 }
 
 
-.tag{
 
-color:var(--blue);
+section h3{
 
 font-size:11px;
 
 letter-spacing:2px;
 
-font-weight:bold;
+color:var(--blue);
 
-}
+text-transform:uppercase;
 
-
-h2{
-
-margin-top:15px;
-
-font-size:
-clamp(35px,4vw,55px);
-
-letter-spacing:-2px;
-
-}
-
-
-.section-copy{
-
-margin-top:20px;
-
-color:var(--muted);
+margin-bottom:25px;
 
 }
 
 
 
 /* =========================================================
- KPI
+STATISTICS
 ========================================================= */
 
 
-.kpi-grid{
-
-margin-top:50px;
+.statistics-grid,
+.system-grid{
 
 display:grid;
 
 grid-template-columns:
+
 repeat(4,1fr);
 
 gap:15px;
@@ -549,38 +468,137 @@ gap:15px;
 }
 
 
-.kpi{
 
-padding:30px;
+.stat-card,
+.system-card{
+
+padding:25px;
+
+background:
+
+var(--card);
 
 border:
+
 1px solid var(--border);
 
 border-radius:14px;
 
-background:var(--card);
+
+transition:.3s;
 
 }
 
 
-.kpi-label{
 
-color:var(--muted);
+.stat-card:hover,
+.system-card:hover{
+
+border-color:
+
+var(--border-blue);
+
+transform:translateY(-4px);
+
+}
+
+
+
+.stat-card span,
+.system-card span{
 
 font-size:11px;
 
+color:var(--muted);
+
 }
 
 
-.kpi-value{
+
+.stat-card strong,
+.system-card strong{
+
+display:block;
 
 margin-top:10px;
 
-font-size:32px;
+font-size:28px;
 
-font-weight:800;
+color:var(--blue2);
 
-color:white;
+}
+
+
+
+/* =========================================================
+LIVE STATUS
+========================================================= */
+
+
+#feedStatus,
+#webhookStatus,
+#databaseStatus,
+#signalFeedStatus{
+
+color:var(--green);
+
+}
+
+
+
+#feedStatus::before{
+
+content:"";
+
+display:inline-block;
+
+width:7px;
+
+height:7px;
+
+background:var(--green);
+
+border-radius:50%;
+
+margin-right:8px;
+
+box-shadow:
+
+0 0 15px var(--green);
+
+animation:pulse 2s infinite;
+
+}
+
+
+
+@keyframes pulse{
+
+0%{
+
+box-shadow:
+0 0 0 0
+rgba(82,223,145,.6);
+
+}
+
+
+70%{
+
+box-shadow:
+0 0 0 12px
+rgba(82,223,145,0);
+
+}
+
+
+100%{
+
+box-shadow:
+0 0 0 0
+rgba(82,223,145,0);
+
+}
 
 }
 
@@ -591,18 +609,22 @@ TABLE
 ========================================================= */
 
 
-.table-box{
-
-margin-top:40px;
+.table-wrapper{
 
 overflow:auto;
 
 border:
+
 1px solid var(--border);
 
-border-radius:15px;
+border-radius:16px;
+
+background:
+
+var(--card);
 
 }
+
 
 
 table{
@@ -614,104 +636,168 @@ border-collapse:collapse;
 }
 
 
-th,
-td{
+
+th{
 
 padding:18px;
 
 text-align:left;
 
+font-size:11px;
+
+color:var(--blue2);
+
 border-bottom:
+
 1px solid var(--border);
 
 }
 
 
-th{
 
-color:var(--blue2);
+td{
 
-font-size:12px;
+padding:16px;
+
+color:#ccd5e2;
+
+font-size:13px;
+
+border-bottom:
+
+1px solid var(--border);
 
 }
 
 
-td{
 
-color:#ccd5e2;
+tbody tr{
+
+transition:.25s;
+
+}
+
+
+
+tbody tr:hover{
+
+background:
+
+rgba(77,168,255,.05);
+
+}
+
+
+
+/* BUY / SELL COLORS */
+
+.buy{
+
+color:var(--green);
+
+}
+
+
+
+.sell{
+
+color:var(--red);
 
 }
 
 
 
 /* =========================================================
-RISK
+PAIRS & STRATEGIES
 ========================================================= */
 
 
-.risk-grid{
-
-margin-top:40px;
+.pairs-grid,
+.strategies-grid{
 
 display:grid;
 
 grid-template-columns:
-repeat(5,1fr);
+
+repeat(4,1fr);
 
 gap:15px;
 
 }
 
 
-.risk{
 
-padding:25px;
+.pair-card,
+.strategy-card{
 
-background:var(--card);
+padding:22px;
+
+background:
+
+var(--card);
 
 border:
+
 1px solid var(--border);
 
 border-radius:12px;
 
-color:#ccd5e2;
+transition:.3s;
 
-font-size:13px;
+}
+
+
+
+.pair-card:hover,
+.strategy-card:hover{
+
+transform:translateY(-5px);
+
+border-color:
+
+var(--border-blue);
+
+}
+
+
+
+.pair-card strong,
+.strategy-card strong{
+
+font-size:22px;
+
+}
+
+
+
+.pair-card span,
+.strategy-card span{
+
+display:block;
+
+margin-top:8px;
+
+font-size:12px;
+
+color:var(--muted);
 
 }
 
 
 
 /* =========================================================
-CTA
+FOOTER
 ========================================================= */
-
-
-.cta{
-
-text-align:center;
-
-padding:80px 30px;
-
-border:
-1px solid rgba(77,168,255,.25);
-
-border-radius:20px;
-
-background:var(--card);
-
-}
-
-
-
-/* FOOTER */
 
 
 footer{
 
-padding:40px 0;
+margin-top:100px;
+
+padding-top:35px;
 
 border-top:
+
 1px solid var(--border);
 
 color:var(--muted);
@@ -722,14 +808,31 @@ font-size:12px;
 
 
 
-/* MOBILE */
+footer p{
+
+color:white;
+
+font-weight:800;
+
+letter-spacing:1px;
+
+}
 
 
-@media(max-width:900px){
 
-.hero-grid{
+/* =========================================================
+MOBILE
+========================================================= */
 
-grid-template-columns:1fr;
+
+@media(max-width:1000px){
+
+
+.page-header{
+
+flex-direction:column;
+
+align-items:flex-start;
 
 }
 
@@ -737,1353 +840,553 @@ grid-template-columns:1fr;
 .kpi-grid{
 
 grid-template-columns:
-1fr 1fr;
+
+repeat(3,1fr);
 
 }
 
 
-.risk-grid{
+.statistics-grid,
+.system-grid{
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+}
+
+
+.pairs-grid,
+.strategies-grid{
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+}
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+.container{
+
+width:
+calc(100% - 28px);
+
+}
+
+
+.kpi-grid{
 
 grid-template-columns:1fr;
 
 }
 
 
-.nav-links{
+.statistics-grid,
+.system-grid,
+.pairs-grid,
+.strategies-grid{
 
-display:none;
+grid-template-columns:1fr;
+
+}
+
+
+.live-status{
+
+width:100%;
+
+flex-direction:column;
 
 }
 
 
-.menu{
+h1{
 
-display:block;
-
-}
+font-size:42px;
 
 }
 
+
+}
 
 </style>
-
-</head>
-
-
 <body>
 
+<section class="performance-page">
 
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
+    <div class="container">
 
-<nav class="navbar">
+        <!-- ==========================================
+             HEADER
+        =========================================== -->
 
-    <div class="container nav-inner">
+        <header class="page-header">
 
-        <a href="index.html" class="logo">
-            <h2>AIATS</h2>
-        </a>
+            <div class="page-title">
+
+                <div class="eyebrow">
+                    ● LIVE PERFORMANCE
+                </div>
+
+                <h1>
+                    AIATS Performance Dashboard
+                </h1>
+
+                <p>
+                    Real-time algorithmic trading activity and execution statistics.
+                </p>
+
+            </div>
+
+            <div class="live-status">
+
+                <div class="status-card">
+
+                    <span class="status-label">
+                        Last Update
+                    </span>
+
+                    <strong id="lastUpdate">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="status-card">
+
+                    <span class="status-label">
+                        Feed Status
+                    </span>
+
+                    <strong id="feedStatus">
+                        LIVE
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </header>
 
 
-        <button class="menu" aria-label="Open navigation">
-            ☰
-        </button>
+        <!-- ==========================================
+             KPI CARDS
+        =========================================== -->
+
+        <section class="kpi-grid">
+
+            <div class="kpi-card">
+
+                <span>Total Signals</span>
+
+                <h2 id="totalSignals">0</h2>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <span>Buy Orders</span>
+
+                <h2 id="buySignals">0</h2>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <span>Sell Orders</span>
+
+                <h2 id="sellSignals">0</h2>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <span>Trading Pairs</span>
+
+                <h2 id="pairCount">0</h2>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <span>Strategies</span>
+
+                <h2 id="strategyCount">0</h2>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <span>Last Signal</span>
+
+                <h2 id="lastSignal">--</h2>
+
+            </div>
+
+        </section>
 
 
-        <div class="nav-links">
+        <!-- ==========================================
+             EXECUTION STATISTICS
+        =========================================== -->
 
-            <a href="index.html">
-                Home
-            </a>
+        <section class="statistics-section">
 
-            <a href="index.html#architecture">
-                Architecture
-            </a>
+            <h3>
+                Execution Statistics
+            </h3>
 
-            <a href="index.html#technology">
-                Technology
-            </a>
+            <div class="statistics-grid">
 
-            <a href="performance.html" class="active">
-                Performance
-            </a>
+                <div class="stat-card">
 
-            <a href="business-models.html">
-                Business Models
-            </a>
+                    <span>Buy Ratio</span>
 
-            <a class="nav-contact"
-               href="mailto:aiatstechnologies@gmail.com">
+                    <strong id="buyRatio">
+                        0%
+                    </strong>
 
-                Contact
+                </div>
 
-            </a>
+                <div class="stat-card">
 
-        </div>
+                    <span>Sell Ratio</span>
+
+                    <strong id="sellRatio">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Signals Today</span>
+
+                    <strong id="signalsToday">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Average Daily Signals</span>
+
+                    <strong id="averageSignals">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             SYSTEM STATUS
+        =========================================== -->
+
+        <section class="system-section">
+
+            <h3>
+                System Status
+            </h3>
+
+            <div class="system-grid">
+
+                <div class="system-card">
+
+                    <span>Webhook</span>
+
+                    <strong id="webhookStatus">
+                        Online
+                    </strong>
+
+                </div>
+
+                <div class="system-card">
+
+                    <span>Database</span>
+
+                    <strong id="databaseStatus">
+                        Connected
+                    </strong>
+
+                </div>
+
+                <div class="system-card">
+
+                    <span>Signal Feed</span>
+
+                    <strong id="signalFeedStatus">
+                        Active
+                    </strong>
+
+                </div>
+
+                <div class="system-card">
+
+                    <span>Processing Engine</span>
+
+                    <strong id="engineStatus">
+                        Normal
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             RECENT ACTIVITY
+        =========================================== -->
+
+        <section class="table-section">
+
+            <h3>
+                Recent Trading Activity
+            </h3>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Time</th>
+
+                            <th>Pair</th>
+
+                            <th>Strategy</th>
+
+                            <th>Type</th>
+
+                            <th>Price</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentTrades">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             PAIRS
+        =========================================== -->
+
+        <section class="pairs-section">
+
+            <h3>
+                Trading Pairs
+            </h3>
+
+            <div
+                class="pairs-grid"
+                id="pairsGrid">
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             STRATEGIES
+        =========================================== 
+
+        <section class="strategies-section">
+
+            <h3>
+                Active Strategies
+            </h3>
+
+            <div
+                class="strategies-grid"
+                id="strategiesGrid">
+
+            </div>
+
+        </section>
+
+-->
+        <!-- ==========================================
+             FOOTER
+        =========================================== -->
+
+        <footer>
+
+            <p>
+
+                AIATS Technologies
+
+            </p>
+
+            <small>
+
+                Live execution activity.
+                Data updates automatically.
+
+            </small>
+
+        </footer>
 
     </div>
 
-</nav>
-
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section class="hero">
-
-<div class="container hero-grid">
-
-
-<div class="reveal">
-
-
-<div class="eyebrow">
-
-<span class="pulse"></span>
-
-AIATS Performance Infrastructure
-
-</div>
-
-
-
-<h1>
-
-Measured execution.
-<span class="gradient">
-Systematic performance.
-</span>
-
-</h1>
-
-
-
-<p class="hero-copy">
-
-AIATS performance metrics are generated from
-algorithmic execution activity, measuring system
-operations, strategy efficiency and trading
-consistency without depending on a predefined
-capital size.
-
-</p>
-
-
-
-<div class="actions">
-
-<a href="#metrics"
-class="btn btn-primary">
-
-View Performance
-
-</a>
-
-
-<a href="#calculator"
-class="btn btn-secondary">
-
-Calculate Scenario
-
-</a>
-
-
-</div>
-
-
-</div>
-
-
-
-<!-- PERFORMANCE VISUAL -->
-
-<div class="model-orbit reveal">
-
-
-<div class="orbit-grid"></div>
-
-<div class="orbit-ring"></div>
-
-<div class="orbit-ring second"></div>
-
-
-
-<div class="orbit-label label-one">
-SIGNALS
-</div>
-
-
-<div class="orbit-label label-two">
-STRATEGIES
-</div>
-
-
-<div class="orbit-label label-three">
-EXECUTION
-</div>
-
-
-<div class="orbit-label label-four">
-ANALYTICS
-</div>
-
-
-
-<div class="core">
-
-<div class="core-label">
-AIATS
-</div>
-
-
-<div class="core-title">
-ENGINE
-</div>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
 </section>
-
-
-
-
-
-<!-- =========================================================
-     PERFORMANCE METRICS
-========================================================= -->
-
-
-<section id="metrics">
-
-
-<div class="container">
-
-
-<div class="section-head reveal">
-
-
-<div class="tag">
-LIVE SYSTEM METRICS
-</div>
-
-
-<h2>
-
-Algorithmic performance
-indicators.
-
-</h2>
-
-
-<p class="section-copy">
-
-Key operational metrics extracted from AIATS
-execution records. Values are generated from
-actual system activity.
-
-</p>
-
-
-</div>
-
-
-
-
-<div class="capability-strip reveal">
-
-
-
-<div class="capability-item">
-
-<div class="capability-code">
-01
-</div>
-
-
-<h3>
-Total Signals
-</h3>
-
-
-<p id="totalSignals">
-
-11,319
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="capability-item">
-
-<div class="capability-code">
-02
-</div>
-
-
-<h3>
-Completed Trades
-</h3>
-
-
-<p id="completedTrades">
-
-4,250
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="capability-item">
-
-<div class="capability-code">
-03
-</div>
-
-
-<h3>
-Win Rate
-</h3>
-
-
-<p id="winRate">
-
-78.40%
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="capability-item">
-
-<div class="capability-code">
-04
-</div>
-
-
-<h3>
-Average Return
-</h3>
-
-
-<p id="averageReturn">
-
-1.72%
-
-</p>
-
-
-</div>
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- =========================================================
-     PERFORMANCE OVERVIEW
-========================================================= -->
-
-
-<section>
-
-
-<div class="container">
-
-
-
-<div class="section-head reveal">
-
-
-<div class="tag">
-PERFORMANCE OVERVIEW
-</div>
-
-
-<h2>
-
-System activity
-and execution consistency.
-
-</h2>
-
-
-</div>
-
-
-
-
-<div class="compare-grid">
-
-
-
-<div class="compare-card featured reveal">
-
-
-<div class="compare-number">
-01 / EXECUTION ACTIVITY
-</div>
-
-
-<h3>
-Trading Operations
-</h3>
-
-
-<p>
-
-AIATS continuously monitors market conditions
-and executes predefined strategies according to
-configured algorithmic rules.
-
-</p>
-
-
-
-<div class="compare-points">
-
-
-<div class="compare-point">
-
-Signals generated automatically
-
-</div>
-
-
-<div class="compare-point">
-
-Multiple strategies operating simultaneously
-
-</div>
-
-
-<div class="compare-point">
-
-Real-time execution workflow
-
-</div>
-
-
-<div class="compare-point">
-
-Data-driven performance measurement
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="compare-card reveal">
-
-
-<div class="compare-number">
-02 / PERFORMANCE QUALITY
-</div>
-
-
-<h3>
-Measured Efficiency
-</h3>
-
-
-<p>
-
-Performance analysis focuses on operational
-metrics rather than capital assumptions,
-allowing users to simulate different scenarios.
-
-</p>
-
-
-
-<div class="compare-points">
-
-
-<div class="compare-point">
-
-Trade success ratio
-
-</div>
-
-
-<div class="compare-point">
-
-Average trade contribution
-
-</div>
-
-
-<div class="compare-point">
-
-Strategy comparison
-
-</div>
-
-
-<div class="compare-point">
-
-Pair-level analysis
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- =========================================================
-     STATISTICS
-========================================================= -->
-
-
-<section>
-
-
-<div class="container">
-
-
-<div class="section-head reveal">
-
-
-<div class="tag">
-TRADING STATISTICS
-</div>
-
-
-<h2>
-
-Operational details.
-
-</h2>
-
-
-</div>
-
-
-
-
-<div class="detail-grid reveal">
-
-
-
-<div class="detail-card">
-
-
-<div class="detail-card-label">
-Best Trade
-</div>
-
-
-<div class="detail-card-value"
-id="bestTrade">
-
-+8.50%
-
-</div>
-
-
-</div>
-
-
-
-
-<div class="detail-card">
-
-
-<div class="detail-card-label">
-Worst Trade
-</div>
-
-
-<div class="detail-card-value"
-id="worstTrade">
-
--1.20%
-
-</div>
-
-
-</div>
-
-
-
-
-<div class="detail-card">
-
-
-<div class="detail-card-label">
-Average Duration
-</div>
-
-
-<div class="detail-card-value"
-id="averageDuration">
-
-3h 20m
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- =========================================================
-     STRATEGY PERFORMANCE
-========================================================= -->
-
-
-<section>
-
-
-<div class="container">
-
-
-<div class="section-head reveal">
-
-
-<div class="tag">
-STRATEGY ANALYSIS
-</div>
-
-
-<h2>
-
-Performance by strategy.
-
-</h2>
-
-
-</div>
-
-
-
-
-<div class="model-display reveal">
-
-
-<table style="width:100%; border-collapse:collapse;">
-
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;padding:15px;">
-Strategy
-</th>
-
-
-<th style="text-align:left;padding:15px;">
-Trades
-</th>
-
-
-<th style="text-align:left;padding:15px;">
-Win Rate
-</th>
-
-
-<th style="text-align:left;padding:15px;">
-Average Return
-</th>
-
-
-</tr>
-
-</thead>
-
-
-
-<tbody id="strategyTable">
-
-
-<tr>
-
-<td style="padding:15px;">
-ALPHA
-</td>
-
-
-<td style="padding:15px;">
-1200
-</td>
-
-
-<td style="padding:15px;">
-82%
-</td>
-
-
-<td style="padding:15px;">
-1.8%
-</td>
-
-
-</tr>
-
-
-</tbody>
-
-
-</table>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- =========================================================
-     PAIR PERFORMANCE
-========================================================= -->
-
-
-<section>
-
-
-<div class="container">
-
-
-<div class="section-head reveal">
-
-
-<div class="tag">
-MARKET ANALYSIS
-</div>
-
-
-<h2>
-
-Performance by trading pair.
-
-</h2>
-
-
-</div>
-
-
-
-
-<div class="model-display reveal">
-
-
-<table style="width:100%; border-collapse:collapse;">
-
-
-<thead>
-
-
-<tr>
-
-
-<th style="text-align:left;padding:15px;">
-Pair
-</th>
-
-
-<th style="text-align:left;padding:15px;">
-Trades
-</th>
-
-
-<th style="text-align:left;padding:15px;">
-Success
-</th>
-
-
-</tr>
-
-
-</thead>
-
-
-
-<tbody id="pairTable">
-
-
-<tr>
-
-<td style="padding:15px;">
-LUNAUSDT
-</td>
-
-
-<td style="padding:15px;">
-200
-</td>
-
-
-<td style="padding:15px;">
-75%
-</td>
-
-
-</tr>
-
-
-</tbody>
-
-
-</table>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- =========================================================
-     CALCULATOR
-========================================================= -->
-
-
-<section id="calculator">
-
-
-<div class="container">
-
-
-<div class="cta reveal">
-
-
-<div class="tag">
-PERFORMANCE SIMULATION
-</div>
-
-
-
-<h2>
-
-Estimate your scenario.
-
-</h2>
-
-
-
-<p>
-
-Enter your capital amount to simulate a
-possible historical performance scenario.
-
-</p>
-
-
-
-
-<div class="actions"
-style="justify-content:center;">
-
-
-<input
-type="number"
-placeholder="Capital Amount"
-class="btn btn-secondary"
-style="color:white;background:#070c14;">
-
-
-
-<input
-type="number"
-placeholder="Monthly Return %"
-class="btn btn-secondary"
-style="color:white;background:#070c14;">
-
-
-
-<button class="btn btn-primary">
-
-Calculate
-
-</button>
-
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-
-<footer>
-
-
-<div class="container">
-
-
-<div class="footer-main">
-
-
-<div class="footer-brand">
-
-
-<strong>
-AIATS Technologies
-</strong>
-
-
-<p>
-Automated Intelligence for Algorithmic Trading.
-</p>
-
-
-</div>
-
-
-
-<a class="footer-email"
-href="mailto:aiatstechnologies@gmail.com">
-
-aiatstechnologies@gmail.com
-
-</a>
-
-
-</div>
-
-
-
-
-<div class="disclaimer">
-
-
-AIATS is an algorithmic trading technology and
-execution infrastructure.
-
-Performance metrics represent historical system
-activity and do not constitute a guarantee of
-future results.
-
-Trading digital assets involves substantial risk,
-including possible loss of capital.
-
-
-</div>
-
-
-
-
-<div class="copyright">
-
-© 2026 AIATS Technologies.
-All rights reserved.
-
-</div>
-
-
-
-</div>
-
-
-</footer>
-
-
 
 </body>
-   <script>
-
-/* =========================================================
-   LOAD PERFORMANCE DATA FROM PHP
-========================================================= */
 
 
-async function loadPerformance() {
+<script src="js/config.js"></script>
+<script>
+async function loadPerformance(){
 
 
-    try {
-
-
-        const response = await fetch(
-            "performance.php"
-        );
-
-
-        const data = await response.json();
-
-
-
-        /*
-            MAIN METRICS
-        */
-
-
-        document.getElementById(
-            "totalSignals"
-        ).textContent =
-            data.total_signals;
-
-
-
-        document.getElementById(
-            "completedTrades"
-        ).textContent =
-            data.completed_trades;
-
-
-
-        document.getElementById(
-            "winRate"
-        ).textContent =
-            data.win_rate + "%";
-
-
-
-        document.getElementById(
-            "averageReturn"
-        ).textContent =
-            data.average_return + "%";
-
-
-
-
-        /*
-            STATISTICS
-        */
-
-
-        document.getElementById(
-            "bestTrade"
-        ).textContent =
-            "+" + data.statistics.best_trade + "%";
-
-
-
-        document.getElementById(
-            "worstTrade"
-        ).textContent =
-            data.statistics.worst_trade + "%";
-
-
-
-        document.getElementById(
-            "averageDuration"
-        ).textContent =
-            data.statistics.average_duration;
-
-
-
-
-        /*
-            STRATEGY TABLE
-        */
-
-
-        const strategyTable =
-            document.getElementById(
-                "strategyTable"
-            );
-
-
-        strategyTable.innerHTML = "";
-
-
-
-        data.strategies.forEach(
-            strategy => {
-
-
-                const row =
-                    document.createElement(
-                        "tr"
-                    );
-
-
-
-                row.innerHTML = `
-
-                    <td style="padding:15px;">
-                        ${strategy.name}
-                    </td>
-
-                    <td style="padding:15px;">
-                        ${strategy.trades}
-                    </td>
-
-                    <td style="padding:15px;">
-                        ${strategy.win_rate}%
-                    </td>
-
-                    <td style="padding:15px;">
-                        ${strategy.average_return}%
-                    </td>
-
-                `;
-
-
-
-                strategyTable.appendChild(
-                    row
-                );
-
-
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("aiats_trades")
+        .select("*")
+        .order(
+            "t_timestamp",
+            {
+                ascending:false
             }
         );
 
 
-
-
-
-        /*
-            PAIR TABLE
-        */
-
-
-        const pairTable =
-            document.getElementById(
-                "pairTable"
-            );
-
-
-
-        pairTable.innerHTML = "";
-
-
-
-        data.pairs.forEach(
-            pair => {
-
-
-                const row =
-                    document.createElement(
-                        "tr"
-                    );
-
-
-                row.innerHTML = `
-
-                    <td style="padding:15px;">
-                        ${pair.pair}
-                    </td>
-
-                    <td style="padding:15px;">
-                        ${pair.trades}
-                    </td>
-
-                    <td style="padding:15px;">
-                        ${pair.success}%
-                    </td>
-
-                `;
-
-
-
-                pairTable.appendChild(
-                    row
-                );
-
-
-            }
-        );
-
-
-
-    }
-
-
-    catch(error) {
-
+    if(error){
 
         console.error(
-            "Performance loading error:",
+            "Supabase Error:",
             error
         );
 
+        return;
 
     }
 
 
-}
-
-
-
-
-/* =========================================================
-   PERFORMANCE CALCULATOR
-========================================================= */
-
-
-const calculatorButton =
-    document.querySelector(
-        "#calculator button"
+    console.log(
+        "Trades:",
+        data
     );
 
 
-
-if(calculatorButton){
-
-
-calculatorButton.addEventListener(
-    "click",
-    function(){
-
-
-        const inputs =
-            document.querySelectorAll(
-                "#calculator input"
-            );
-
-
-
-        const capital =
-            Number(
-                inputs[0].value
-            );
-
-
-
-        const monthlyReturn =
-            Number(
-                inputs[1].value
-            );
-
-
-
-        if(
-            !capital ||
-            !monthlyReturn
-        ){
-
-            return;
-
-        }
-
-
-
-        const months = 12;
-
-
-
-        const result =
-            capital *
-            Math.pow(
-                1 + monthlyReturn / 100,
-                months
-            );
-
-
-
-        alert(
-
-            "Estimated value after 12 months: $" +
-            result.toFixed(2)
-
-        );
-
-
-    }
-);
+    updateMetrics(data);
 
 
 }
 
 
 
+function updateMetrics(trades){
 
 
-/* =========================================================
-   INITIAL LOAD
-========================================================= */
+    /*
+    TOTAL OPERATIONS
+    */
+
+    document
+    .getElementById(
+        "totalTrades"
+    )
+    .textContent =
+    trades.length;
+
+
+
+    /*
+    UNIQUE PAIRS
+    */
+
+    const pairs =
+    [
+        ...new Set(
+            trades.map(
+                t => t.t_pair
+            )
+        )
+    ];
+
+
+    document
+    .getElementById(
+        "totalPairs"
+    )
+    .textContent =
+    pairs.length;
+
+
+
+    /*
+    BUY SIGNALS
+    */
+
+    const buys =
+    trades.filter(
+        t =>
+        t.t_type.toUpperCase()
+        === "BUY"
+    ).length;
+
+
+    document
+    .getElementById(
+        "buySignals"
+    )
+    .textContent =
+    buys;
+
+
+
+    /*
+    SELL SIGNALS
+    */
+
+    const sells =
+    trades.filter(
+        t =>
+        t.t_type.toUpperCase()
+        === "SELL"
+    ).length;
+
+
+    document
+    .getElementById(
+        "sellSignals"
+    )
+    .textContent =
+    sells;
+
+
+}
+
 
 
 loadPerformance();
-
-
 </script>
+
+
 
 </html>
