@@ -1260,6 +1260,7 @@ font-size:42px;
 import { supabase } from "/portal/js/supabase-config.js";
 
 
+
 async function loadPerformance(){
 
 
@@ -1305,11 +1306,16 @@ async function loadPerformance(){
 
 
 
+
+
 function analyzePerformance(trades){
 
 
-    if(!trades || trades.length===0)
-        return;
+    if(
+        !trades ||
+        trades.length === 0
+    )
+    return;
 
 
 
@@ -1321,25 +1327,60 @@ function analyzePerformance(trades){
 
 
     const totalTrades =
-        trades.length;
+    trades.length;
 
 
 
     const buys =
-        trades.filter(
-            t =>
-            t.t_type.toUpperCase()
-            === "BUY"
-        ).length;
+    trades.filter(
+        t =>
+        t.t_type.toUpperCase()
+        === "BUY"
+    ).length;
 
 
 
     const sells =
-        trades.filter(
-            t =>
-            t.t_type.toUpperCase()
-            === "SELL"
-        ).length;
+    trades.filter(
+        t =>
+        t.t_type.toUpperCase()
+        === "SELL"
+    ).length;
+
+
+
+    /*
+    ==========================
+    RATIOS
+    ==========================
+    */
+
+
+    const buyRatio =
+    totalTrades > 0
+    ?
+    (
+        (buys / totalTrades)
+        * 100
+    ).toFixed(1)
+
+    :
+    0;
+
+
+
+    const sellRatio =
+    totalTrades > 0
+    ?
+    (
+        (sells / totalTrades)
+        * 100
+    ).toFixed(1)
+
+    :
+    0;
+
+
 
 
 
@@ -1354,10 +1395,13 @@ function analyzePerformance(trades){
     [
         ...new Set(
             trades.map(
-                t=>t.t_pair
+                t =>
+                t.t_pair
             )
         )
     ];
+
+
 
 
 
@@ -1372,20 +1416,27 @@ function analyzePerformance(trades){
 
 
 
-    trades.forEach(t=>{
+    trades.forEach(
+        t => {
 
 
-        if(!strategies[t.t_strategy]){
+            if(
+                !strategies[t.t_strategy]
+            ){
 
-            strategies[t.t_strategy]=0;
+                strategies[t.t_strategy]=0;
+
+            }
+
+
+            strategies[t.t_strategy]++;
+
 
         }
+    );
 
 
-        strategies[t.t_strategy]++;
 
-
-    });
 
 
 
@@ -1407,49 +1458,112 @@ function analyzePerformance(trades){
 
 
     const firstDate =
-        new Date(
-            Math.min(
-                ...dates
-            )
-        );
+    new Date(
+        Math.min(
+            ...dates
+        )
+    );
+
 
 
     const lastDate =
-        new Date(
-            Math.max(
-                ...dates
-            )
-        );
+    new Date(
+        Math.max(
+            ...dates
+        )
+    );
 
 
 
     const runningTime =
-        lastDate-firstDate;
+    lastDate - firstDate;
 
 
 
     const hours =
-        runningTime /
-        (1000*60*60);
+    runningTime /
+    (1000*60*60);
 
 
 
     const signalPerHour =
-        hours > 0
-        ?
-        (
-            totalTrades /
-            hours
-        ).toFixed(2)
+    hours > 0
 
-        :
+    ?
 
-        totalTrades;
+    (
+        totalTrades /
+        hours
+    ).toFixed(2)
+
+    :
+
+    totalTrades;
+
+
+
 
 
 
     /*
-    SEND DATA TO UI
+    ==========================
+    DAILY ACTIVITY
+    ==========================
+    */
+
+
+    const today =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+
+    const signalsToday =
+    trades.filter(
+        t =>
+        t.t_timestamp.startsWith(
+            today
+        )
+    ).length;
+
+
+
+    const activeDays =
+    [
+        ...new Set(
+            trades.map(
+                t =>
+                t.t_timestamp.split(" ")[0]
+            )
+        )
+    ].length;
+
+
+
+    const averageDailySignals =
+    activeDays > 0
+
+    ?
+
+    (
+        totalTrades /
+        activeDays
+    ).toFixed(1)
+
+    :
+
+    0;
+
+
+
+
+
+
+    /*
+    ==========================
+    SEND TO UI
+    ==========================
     */
 
 
@@ -1460,6 +1574,14 @@ function analyzePerformance(trades){
         buys,
 
         sells,
+
+        buyRatio,
+
+        sellRatio,
+
+        signalsToday,
+
+        averageDailySignals,
 
         pairs,
 
@@ -1481,11 +1603,17 @@ function analyzePerformance(trades){
 
 
 
+
+
 function updateDashboard(stats){
 
 
 
-    // KPI
+    /*
+    ==========================
+    KPI
+    ==========================
+    */
 
 
     setValue(
@@ -1494,16 +1622,19 @@ function updateDashboard(stats){
     );
 
 
+
     setValue(
         "buySignals",
         stats.buys
     );
 
 
+
     setValue(
         "sellSignals",
         stats.sells
     );
+
 
 
     setValue(
@@ -1513,8 +1644,61 @@ function updateDashboard(stats){
 
 
 
+
+
+
     /*
+    ==========================
+    RATIOS
+    ==========================
+    */
+
+
+    setValue(
+        "buyRatio",
+        stats.buyRatio + "%"
+    );
+
+
+
+    setValue(
+        "sellRatio",
+        stats.sellRatio + "%"
+    );
+
+
+
+
+
+
+    /*
+    ==========================
+    DAILY
+    ==========================
+    */
+
+
+    setValue(
+        "signalsToday",
+        stats.signalsToday
+    );
+
+
+
+    setValue(
+        "averageDailySignals",
+        stats.averageDailySignals
+    );
+
+
+
+
+
+
+    /*
+    ==========================
     TIME
+    ==========================
     */
 
 
@@ -1522,6 +1706,7 @@ function updateDashboard(stats){
         "signalFrequency",
         stats.signalPerHour
     );
+
 
 
 
@@ -1541,6 +1726,8 @@ function updateDashboard(stats){
 
 
 
+
+
     if(
         document.getElementById(
             "lastSignal"
@@ -1557,36 +1744,53 @@ function updateDashboard(stats){
 
 
 
+
+
+
     /*
-    STRATEGIES
+    ==========================
+    STRATEGIES COUNT ONLY
+    ==========================
     */
 
-const strategyCount =
-Object.keys(
-    stats.strategies
-).length;
+
+    const strategyCount =
+    Object.keys(
+        stats.strategies
+    ).length;
 
 
-setValue(
-    "strategyCount",
-    strategyCount
-);
-   
+
+    setValue(
+        "strategyCount",
+        strategyCount
+    );
 
 
-    }
+
+}
 
 
-function setValue(id,value){
+
+
+
+
+function setValue(
+    id,
+    value
+){
 
 
     const el =
-    document.getElementById(id);
+    document.getElementById(
+        id
+    );
 
 
     if(el){
 
-        el.textContent=value;
+        el.textContent =
+        value;
 
     }
 
@@ -1600,7 +1804,7 @@ function setValue(id,value){
 loadPerformance();
 
 
-</script>
 
+</script>
 
 </html>
