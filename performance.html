@@ -1594,61 +1594,52 @@ function analyzePerformance(trades){
 
 
 
-    /*
-    ==========================
-    DAILY ACTIVITY
-    ==========================
-    */
+ /*
+==========================
+DAILY ACTIVITY
+==========================
+*/
 
 
-    const today =
-    new Date()
+const today =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+const signalsToday =
+trades.filter(
+    t =>
+    new Date(t.t_timestamp)
     .toISOString()
-    .split("T")[0];
+    .split("T")[0] === today
+).length;
 
 
 
-    const signalsToday =
-    trades.filter(
-        t =>
-        t.t_timestamp.startsWith(
-            today
+const activeDays =
+[
+    ...new Set(
+        trades.map(
+            t =>
+            new Date(t.t_timestamp)
+            .toISOString()
+            .split("T")[0]
         )
-    ).length;
+    )
+].length;
 
 
 
-    const activeDays =
-    [
-        ...new Set(
-            trades.map(
-                t =>
-                t.t_timestamp.split(" ")[0]
-            )
-        )
-    ].length;
-
-
-
-    const averageDailySignals =
-    activeDays > 0
-
-    ?
-
-    (
-        totalTrades /
-        activeDays
-    ).toFixed(1)
-
-    :
-
-    0;
-
-
-
-
-
-
+const averageDailySignals =
+activeDays > 0
+?
+(
+    totalTrades /
+    activeDays
+).toFixed(0)
+:
+0;
     /*
     ==========================
     SEND TO UI
