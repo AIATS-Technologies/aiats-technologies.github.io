@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="AIATS Portfolio Manager — Connect your trading account to an automated trading system while keeping your account and capital under your control.">
+
+    <meta name="keywords"
+          content="AIATS, Portfolio Manager, Automated Trading, Trading System, Brokerage, Digital Assets, FinTech">
+
+    <title>Portfolio Manager | AIATS Technologies</title>
+
+    <style>
+
+        /* =========================================================
+           AIATS PORTFOLIO MANAGER
+           Premium FinTech Landing Page
+        ========================================================= */
+
+        :root {
+            --bg: #05080d;
+            --bg-soft: #0a0f16;
+            --panel: #0d141d;
+            --panel-light: #111a25;
+
+            --text: #f5f7fa;
+            --muted: #8d9aaa;
+
+            --line: rgba(255,255,255,0.08);
+
+            --accent: #65e6c1;
+            --accent-soft: rgba(101,230,193,0.12);
+
+            --blue: #78a9ff;
+
+            --max-width: 1200px;
+        }
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(101,230,193,0.08),
+                    transparent 38%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            line-height: 1.6;
+        }
+
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        .container {
+            width: min(
+                calc(100% - 40px),
+                var(--max-width)
+            );
+
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                rgba(5,8,13,0.82);
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid var(--line);
+        }
+
+
+        .nav-inner {
+            width: min(
+                calc(100% - 40px),
+                var(--max-width)
+            );
+
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            letter-spacing: 0.18em;
+        }
+
+
+        .brand-mark {
+            width: 30px;
+            height: 30px;
+
+            border: 1px solid
+                rgba(101,230,193,0.45);
+
+            border-radius: 9px;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(101,230,193,0.18),
+                    rgba(101,230,193,0.03)
+                );
+
+            color: var(--accent);
+
+            font-size: 12px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        .nav-links a {
+            transition: 0.25s ease;
+        }
+
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+
+        .nav-cta {
+            padding: 10px 17px;
+
+            border: 1px solid
+                rgba(101,230,193,0.35);
+
+            border-radius: 8px;
+
+            color: var(--accent);
+
+            background:
+                rgba(101,230,193,0.06);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 760px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 620px;
+            height: 620px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(101,230,193,0.08),
+                    transparent 68%
+                );
+
+            top: -240px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            pointer-events: none;
+        }
+
+
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.15fr
+                0.85fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 7px 12px;
+
+            border: 1px solid var(--line);
+
+            border-radius: 999px;
+
+            color: var(--accent);
+
+            background:
+                rgba(101,230,193,0.05);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.16em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 24px;
+        }
+
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+
+            box-shadow:
+                0 0 12px
+                rgba(101,230,193,0.8);
+        }
+
+
+        h1 {
+            font-size:
+                clamp(48px, 7vw, 82px);
+
+            line-height: 0.98;
+
+            letter-spacing: -0.055em;
+
+            max-width: 850px;
+
+            margin-bottom: 30px;
+        }
+
+
+        h1 span {
+            color: var(--accent);
+        }
+
+
+        .hero-text {
+            max-width: 650px;
+
+            color: var(--muted);
+
+            font-size: 18px;
+
+            line-height: 1.8;
+
+            margin-bottom: 38px;
+        }
+
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding:
+                0 22px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.04em;
+
+            transition:
+                transform .2s ease,
+                background .2s ease;
+        }
+
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .btn-primary {
+            color: #03100c;
+
+            background: var(--accent);
+        }
+
+
+        .btn-secondary {
+            color: var(--text);
+
+            border: 1px solid var(--line);
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+
+        /* =========================================================
+           HERO CARD
+        ========================================================= */
+
+        .hero-card {
+            position: relative;
+
+            padding: 28px;
+
+            min-height: 430px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17,26,37,0.95),
+                    rgba(8,13,19,0.96)
+                );
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,0.35);
+        }
+
+
+        .card-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding-bottom: 20px;
+
+            border-bottom:
+                1px solid var(--line);
+
+            margin-bottom: 24px;
+        }
+
+
+        .card-label {
+            color: var(--muted);
+
+            font-size: 10px;
+
+            letter-spacing: 0.15em;
+
+            text-transform: uppercase;
+        }
+
+
+        .live {
+            color: var(--accent);
+
+            font-size: 11px;
+        }
+
+
+        .portfolio-name {
+            font-size: 25px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+
+        .portfolio-sub {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        .chart {
+            height: 145px;
+
+            margin:
+                30px 0;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .metric-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 12px;
+        }
+
+
+        .metric {
+            padding: 17px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.02);
+        }
+
+
+        .metric small {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            margin-bottom: 7px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.08em;
+        }
+
+
+        .metric strong {
+            font-size: 18px;
+        }
+
+
+        /* =========================================================
+           TRUST BAR
+        ========================================================= */
+
+        .trust {
+            border-top:
+                1px solid var(--line);
+
+            border-bottom:
+                1px solid var(--line);
+
+            background:
+                rgba(255,255,255,0.015);
+        }
+
+
+        .trust-grid {
+            min-height: 105px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            align-items: center;
+        }
+
+
+        .trust-item {
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            border-right:
+                1px solid var(--line);
+        }
+
+
+        .trust-item:last-child {
+            border-right: none;
+        }
+
+
+        .trust-item strong {
+            display: block;
+
+            color: var(--text);
+
+            font-size: 15px;
+
+            margin-bottom: 4px;
+        }
+
+
+        /* =========================================================
+           GENERAL SECTIONS
+        ========================================================= */
+
+        section {
+            padding: 115px 0;
+        }
+
+
+        .section-header {
+            max-width: 720px;
+
+            margin-bottom: 60px;
+        }
+
+
+        .section-kicker {
+            color: var(--accent);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.18em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 16px;
+        }
+
+
+        h2 {
+            font-size:
+                clamp(34px, 5vw, 56px);
+
+            line-height: 1.05;
+
+            letter-spacing: -0.04em;
+
+            margin-bottom: 20px;
+        }
+
+
+        .section-description {
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           CORE VALUE
+        ========================================================= */
+
+        .ownership {
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent,
+                    rgba(101,230,193,0.025),
+                    transparent
+                );
+        }
+
+
+        .ownership-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 18px;
+        }
+
+
+        .ownership-card {
+            padding: 32px;
+
+            min-height: 240px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,255,255,0.018);
+
+            transition:
+                border-color .25s ease,
+                transform .25s ease;
+        }
+
+
+        .ownership-card:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(101,230,193,0.25);
+        }
+
+
+        .icon {
+            width: 44px;
+            height: 44px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                var(--accent-soft);
+
+            color: var(--accent);
+
+            font-size: 19px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .ownership-card h3 {
+            font-size: 19px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .ownership-card p {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.75;
+        }
+
+
+        /* =========================================================
+           HOW IT WORKS
+        ========================================================= */
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 16px;
+        }
+
+
+        .step {
+            position: relative;
+
+            padding: 30px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 15px;
+
+            background:
+                var(--panel);
+        }
+
+
+        .step-number {
+            color: var(--accent);
+
+            font-size: 11px;
+
+            letter-spacing: 0.15em;
+
+            margin-bottom: 30px;
+        }
+
+
+        .step h3 {
+            font-size: 18px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .step p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           MARKETS
+        ========================================================= */
+
+        .markets-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 18px;
+        }
+
+
+        .market {
+            padding: 30px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 15px;
+
+            background:
+                var(--panel);
+        }
+
+
+        .market.active {
+            border-color:
+                rgba(101,230,193,0.25);
+        }
+
+
+        .market-status {
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 5px;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.1em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
+        }
+
+
+        .market.active
+        .market-status {
+
+            color: var(--accent);
+
+            background:
+                var(--accent-soft);
+        }
+
+
+        .market.experimental
+        .market-status {
+
+            color: #ffc56d;
+
+            background:
+                rgba(255,197,109,0.08);
+        }
+
+
+        .market.future
+        .market-status {
+
+            color: var(--blue);
+
+            background:
+                rgba(120,169,255,0.08);
+        }
+
+
+        .market h3 {
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .market p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           PERFORMANCE
+        ========================================================= */
+
+        .performance {
+            padding-top: 60px;
+        }
+
+
+        .performance-box {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 40px;
+
+            align-items: center;
+
+            padding: 50px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(101,230,193,0.06),
+                    rgba(255,255,255,0.015)
+                );
+        }
+
+
+        .performance-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+            color: var(--accent);
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .performance-link:hover {
+            text-decoration: underline;
+        }
+
+
+        .mini-dashboard {
+            padding: 25px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 15px;
+
+            background:
+                #080d13;
+        }
+
+
+        .mini-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 14px 0;
+
+            border-bottom:
+                1px solid var(--line);
+
+            font-size: 12px;
+        }
+
+
+        .mini-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .mini-row span:first-child {
+            color: var(--muted);
+        }
+
+
+        .positive {
+            color: var(--accent);
+        }
+
+
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .cta {
+            padding:
+                120px 0 140px;
+        }
+
+
+        .cta-box {
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                80px 60px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                rgba(101,230,193,0.2);
+
+            border-radius: 24px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(101,230,193,0.12),
+                    transparent 55%
+                ),
+                var(--panel);
+        }
+
+
+        .cta-box h2 {
+            max-width: 780px;
+
+            margin:
+                0 auto 20px;
+        }
+
+
+        .cta-box p {
+            max-width: 650px;
+
+            margin:
+                0 auto 35px;
+
+            color: var(--muted);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding:
+                35px 0;
+
+            border-top:
+                1px solid var(--line);
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        .footer-inner {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .footer-brand {
+            color: var(--text);
+
+            font-weight: 700;
+
+            letter-spacing: 0.12em;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .hero {
+                min-height: auto;
+
+                padding:
+                    100px 0;
+            }
+
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+            }
+
+
+            .hero-card {
+                max-width: 600px;
+            }
+
+
+            .ownership-grid,
+            .markets-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .performance-box {
+                grid-template-columns: 1fr;
+            }
+
+
+            .trust-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .trust-item {
+                padding: 20px 0;
+
+                border-bottom:
+                    1px solid var(--line);
+            }
+
+
+            .trust-item:nth-child(2) {
+                border-right: none;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .container {
+                width:
+                    min(
+                        calc(100% - 28px),
+                        var(--max-width)
+                    );
+            }
+
+
+            nav {
+                height: 66px;
+            }
+
+
+            .nav-cta {
+                display: none;
+            }
+
+
+            h1 {
+                font-size: 49px;
+            }
+
+
+            .hero-text {
+                font-size: 16px;
+            }
+
+
+            section {
+                padding: 80px 0;
+            }
+
+
+            .ownership-grid,
+            .markets-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+
+            .performance-box {
+                padding: 28px;
+            }
+
+
+            .cta-box {
+                padding:
+                    60px 25px;
+            }
+
+
+            .footer-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav>
+
+    <div class="nav-inner">
+
+        <a href="index.html"
+           class="brand">
+
+            <div class="brand-mark">
+                A
+            </div>
+
+            AIATS
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#how">
+                How It Works
+            </a>
+
+            <a href="#markets">
+                Markets
+            </a>
+
+            <a href="#performance">
+                Performance
+            </a>
+
+            <a href="#contact"
+               class="nav-cta">
+
+                Connect With AIATS
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-grid">
+
+
+            <div>
+
+                <div class="eyebrow">
+
+                    <span class="status-dot"></span>
+
+                    PORTFOLIO MANAGER
+
+                </div>
+
+
+                <h1>
+
+                    Your Capital.
+                    <br>
+
+                    <span>Your Portfolio.</span>
+
+                    <br>
+
+                    Our Trading System.
+
+                </h1>
+
+
+                <p class="hero-text">
+
+                    Connect your existing trading account
+                    to AIATS and let our automated trading
+                    system execute defined trading strategies
+                    while your account and capital remain
+                    under your control.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a href="#contact"
+                       class="btn btn-primary">
+
+                        CONNECT YOUR ACCOUNT
+
+                    </a>
+
+
+                    <a href="#how"
+                       class="btn btn-secondary">
+
+                        HOW IT WORKS
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Dashboard Preview -->
+
+            <div class="hero-card">
+
+
+                <div class="card-top">
+
+                    <span class="card-label">
+                        PORTFOLIO SYSTEM
+                    </span>
+
+                    <span class="live">
+                        ● SYSTEM READY
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <div class="portfolio-name">
+                        AIATS Portfolio
+                    </div>
+
+                    <div class="portfolio-sub">
+                        Automated Trading Environment
+                    </div>
+
+                </div>
+
+
+                <div class="chart">
+
+                    <svg viewBox="0 0 500 150"
+                         preserveAspectRatio="none">
+
+                        <defs>
+
+                            <linearGradient
+                                id="area"
+                                x1="0"
+                                y1="0"
+                                x2="0"
+                                y2="1">
+
+                                <stop
+                                    offset="0%"
+                                    stop-color="#65e6c1"
+                                    stop-opacity=".25"/>
+
+                                <stop
+                                    offset="100%"
+                                    stop-color="#65e6c1"
+                                    stop-opacity="0"/>
+
+                            </linearGradient>
+
+                        </defs>
+
+
+                        <path
+                            d="M0 120
+                               C40 115,
+                               45 100,
+                               80 105
+                               S125 80,
+                               160 88
+                               S205 70,
+                               235 78
+                               S275 45,
+                               310 60
+                               S355 50,
+                               385 42
+                               S430 25,
+                               470 35
+                               S490 15,
+                               500 20
+                               L500 150
+                               L0 150 Z"
+                            fill="url(#area)"
+                        />
+
+
+                        <path
+                            d="M0 120
+                               C40 115,
+                               45 100,
+                               80 105
+                               S125 80,
+                               160 88
+                               S205 70,
+                               235 78
+                               S275 45,
+                               310 60
+                               S355 50,
+                               385 42
+                               S430 25,
+                               470 35
+                               S490 15,
+                               500 20"
+                            fill="none"
+                            stroke="#65e6c1"
+                            stroke-width="2"
+                        />
+
+                    </svg>
+
+                </div>
+
+
+                <div class="metric-grid">
+
+                    <div class="metric">
+
+                        <small>
+                            Account
+                        </small>
+
+                        <strong>
+                            Connected
+                        </strong>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <small>
+                            Execution
+                        </small>
+
+                        <strong>
+                            Automated
+                        </strong>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <small>
+                            Strategy
+                        </small>
+
+                        <strong>
+                            Active
+                        </strong>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <small>
+                            Monitoring
+                        </small>
+
+                        <strong>
+                            Live
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TRUST BAR
+========================================================= -->
+
+<div class="trust">
+
+    <div class="container">
+
+        <div class="trust-grid">
+
+            <div class="trust-item">
+
+                <strong>
+                    Your Account
+                </strong>
+
+                Remains With You
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <strong>
+                    Your Capital
+                </strong>
+
+                Remains In Your Account
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <strong>
+                    Automated Execution
+                </strong>
+
+                System Driven
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <strong>
+                    AIATS Infrastructure
+                </strong>
+
+                Connected To Your Account
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     OWNERSHIP
+========================================================= -->
+
+<section class="ownership">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="section-kicker">
+                THE MODEL
+            </div>
+
+            <h2>
+                Your account stays yours.
+            </h2>
+
+            <p class="section-description">
+
+                AIATS provides the trading technology.
+                You retain control of your account,
+                portfolio and capital.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="ownership-grid">
+
+
+            <div class="ownership-card">
+
+                <div class="icon">
+                    $
+                </div>
+
+                <h3>
+                    Your Capital
+                </h3>
+
+                <p>
+                    Your trading capital remains
+                    within your own trading account
+                    with your selected brokerage.
+                </p>
+
+            </div>
+
+
+            <div class="ownership-card">
+
+                <div class="icon">
+                    ◇
+                </div>
+
+                <h3>
+                    Your Portfolio
+                </h3>
+
+                <p>
+                    You remain responsible for
+                    your portfolio and its operating
+                    structure.
+                </p>
+
+            </div>
+
+
+            <div class="ownership-card">
+
+                <div class="icon">
+                    ↗
+                </div>
+
+                <h3>
+                    AIATS System
+                </h3>
+
+                <p>
+                    AIATS connects to the account
+                    and provides the automated
+                    trading infrastructure.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section id="how">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="section-kicker">
+                SIMPLE CONNECTION
+            </div>
+
+            <h2>
+                Connect. Configure. Trade.
+            </h2>
+
+            <p class="section-description">
+
+                A straightforward operating model
+                designed for Portfolio Managers and
+                professional trading businesses.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    01 / ACCOUNT
+                </div>
+
+                <h3>
+                    Keep Your Account
+                </h3>
+
+                <p>
+                    Your trading account remains
+                    with your chosen brokerage.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02 / CONNECT
+                </div>
+
+                <h3>
+                    Connect To AIATS
+                </h3>
+
+                <p>
+                    Connect the trading account
+                    to the AIATS system.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03 / CONFIGURE
+                </div>
+
+                <h3>
+                    Select Strategies
+                </h3>
+
+                <p>
+                    Configure the applicable
+                    trading strategies and operating
+                    parameters.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    04 / EXECUTE
+                </div>
+
+                <h3>
+                    Automated Trading
+                </h3>
+
+                <p>
+                    The system executes trading
+                    operations according to the
+                    configured strategies.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MARKETS
+========================================================= -->
+
+<section id="markets">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="section-kicker">
+                CURRENT & FUTURE
+            </div>
+
+            <h2>
+                Built for digital markets.
+                Expanding further.
+            </h2>
+
+            <p class="section-description">
+
+                AIATS is continuously developing
+                its trading infrastructure across
+                multiple asset classes.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="markets-grid">
+
+
+            <div class="market active">
+
+                <span class="market-status">
+                    LIVE
+                </span>
+
+                <h3>
+                    Cryptocurrencies
+                </h3>
+
+                <p>
+                    The current AIATS trading
+                    environment operates on
+                    selected digital asset markets.
+                </p>
+
+            </div>
+
+
+            <div class="market experimental">
+
+                <span class="market-status">
+                    EXPERIMENTAL
+                </span>
+
+                <h3>
+                    Digital Gold
+                </h3>
+
+                <p>
+                    Digital Gold has been introduced
+                    experimentally as part of the
+                    current development phase.
+                </p>
+
+            </div>
+
+
+            <div class="market future">
+
+                <span class="market-status">
+                    FUTURE
+                </span>
+
+                <h3>
+                    Major Equities
+                </h3>
+
+                <p>
+                    Future development is planned
+                    to expand the system toward
+                    major and established equities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PERFORMANCE
+========================================================= -->
+
+<section id="performance"
+         class="performance">
+
+    <div class="container">
+
+
+        <div class="performance-box">
+
+
+            <div>
+
+                <div class="section-kicker">
+                    REAL SYSTEM EXAMPLE
+                </div>
+
+
+                <h2>
+                    See the system
+                    in operation.
+                </h2>
+
+
+                <p class="section-description">
+
+                    Explore a sample of automated
+                    trading results and system activity
+                    to understand how the AIATS
+                    environment operates.
+
+                </p>
+
+
+                <!-- Replace this URL -->
+
+                <a href="YOUR-TRADING-RESULTS-LINK"
+                   target="_blank"
+                   class="performance-link">
+
+                    VIEW TRADING PERFORMANCE
+                    →
+
+                </a>
+
+            </div>
+
+
+
+            <div class="mini-dashboard">
+
+
+                <div class="mini-row">
+
+                    <span>
+                        Trading Environment
+                    </span>
+
+                    <span class="positive">
+                        Automated
+                    </span>
+
+                </div>
+
+
+                <div class="mini-row">
+
+                    <span>
+                        Market
+                    </span>
+
+                    <span>
+                        Digital Assets
+                    </span>
+
+                </div>
+
+
+                <div class="mini-row">
+
+                    <span>
+                        Execution
+                    </span>
+
+                    <span class="positive">
+                        System Driven
+                    </span>
+
+                </div>
+
+
+                <div class="mini-row">
+
+                    <span>
+                        Monitoring
+                    </span>
+
+                    <span class="positive">
+                        Available
+                    </span>
+
+                </div>
+
+
+                <div class="mini-row">
+
+                    <span>
+                        Account Ownership
+                    </span>
+
+                    <span class="positive">
+                        Client / Manager
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section id="contact"
+         class="cta">
+
+    <div class="container">
+
+
+        <div class="cta-box">
+
+
+            <div class="section-kicker">
+                AIATS PORTFOLIO MANAGER
+            </div>
+
+
+            <h2>
+                Connect your portfolio
+                to AIATS.
+            </h2>
+
+
+            <p>
+
+                Keep your account.
+                Keep your capital.
+                Add an automated trading system
+                to your operating model.
+
+            </p>
+
+
+            <a href="mailto:contact@aiats-technologies.com"
+               class="btn btn-primary">
+
+                DISCUSS THE CONNECTION
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+                AIATS TECHNOLOGIES
+            </div>
+
+            <div>
+                Portfolio Management · Automated Trading · FinTech
+            </div>
+
+            <div>
+                © 2026 AIATS Technologies
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+</body>
+</html>
