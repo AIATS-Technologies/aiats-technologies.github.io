@@ -4,2099 +4,2180 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
 AIATS Performance — Algorithmic Trading Infrastructure
 </title>
 
-<meta name="description" content="AIATS algorithmic trading performance metrics, execution statistics and system evaluation results.">
+<meta name="description"
+      content="AIATS algorithmic trading performance metrics, execution statistics and system evaluation results.">
+
+
 <style>
 
 /* =========================================================
-   RESET
+RESET
 ========================================================= */
 
 *,
 *::before,
-*::after{
+*::after {
 
-box-sizing:border-box;
-margin:0;
-padding:0;
-
-}
-
-
-body{
-
-background:#03060b;
-
-color:#f4f7fb;
-
-font-family:
-Inter,
-Segoe UI,
-Arial,
-sans-serif;
-
-line-height:1.6;
-
-overflow-x:hidden;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 
 }
 
 
-:root{
+body {
 
---bg:#03060b;
+    background: #03060b;
 
---card:#0b111b;
+    color: #f4f7fb;
 
---card2:#070c14;
+    font-family:
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
 
---blue:#4da8ff;
+    line-height: 1.6;
 
---blue2:#8acbff;
-
---cyan:#52d9ff;
-
---green:#52df91;
-
---red:#ff6b6b;
-
---muted:#8490a3;
-
---border:
-rgba(255,255,255,.075);
-
---border-blue:
-rgba(77,168,255,.25);
+    overflow-x: hidden;
 
 }
 
 
-.container{
+:root {
 
-width:min(1180px,calc(100% - 40px));
+    --bg: #03060b;
 
-margin:auto;
+    --card: #0b111b;
+
+    --card2: #070c14;
+
+    --blue: #4da8ff;
+
+    --blue2: #8acbff;
+
+    --cyan: #52d9ff;
+
+    --green: #52df91;
+
+    --red: #ff6b6b;
+
+    --muted: #8490a3;
+
+    --border:
+        rgba(255,255,255,.075);
+
+    --border-blue:
+        rgba(77,168,255,.25);
 
 }
 
+
+/* =========================================================
+CONTAINER
+========================================================= */
+
+.container {
+
+    width:
+        min(
+            1180px,
+            calc(100% - 40px)
+        );
+
+    margin: auto;
+
+}
 
 
 /* =========================================================
 BACKGROUND
 ========================================================= */
 
+body::before {
 
-body::before{
+    content: "";
 
-content:"";
+    position: fixed;
 
-position:fixed;
+    inset: 0;
 
-inset:0;
+    z-index: -2;
 
-z-index:-2;
+    background-image:
 
-background-image:
+        linear-gradient(
+            rgba(255,255,255,.016) 1px,
+            transparent 1px
+        ),
 
-linear-gradient(
-rgba(255,255,255,.016) 1px,
-transparent 1px
-),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.016) 1px,
+            transparent 1px
+        );
 
-linear-gradient(
-90deg,
-rgba(255,255,255,.016) 1px,
-transparent 1px
-);
+    background-size: 70px 70px;
 
-background-size:
-70px 70px;
-
-
-mask-image:
-linear-gradient(
-to bottom,
-black,
-transparent 90%
-);
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
 
 }
 
 
+body::after {
 
-body::after{
+    content: "";
 
-content:"";
+    position: fixed;
 
-position:fixed;
+    width: 450px;
 
-width:450px;
+    height: 450px;
 
-height:450px;
+    top: 20%;
 
-top:20%;
+    right: 10%;
 
-right:10%;
+    z-index: -1;
 
-z-index:-1;
+    background:
 
-
-background:
-
-radial-gradient(
-circle,
-rgba(77,168,255,.08),
-transparent 70%
-);
-
+        radial-gradient(
+            circle,
+            rgba(77,168,255,.08),
+            transparent 70%
+        );
 
 }
-
 
 
 /* =========================================================
 PAGE HEADER
 ========================================================= */
 
+.performance-page {
 
-.performance-page{
-
-padding:90px 0;
-
-}
-
-
-
-.page-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-gap:40px;
-
-margin-bottom:60px;
+    padding: 90px 0;
 
 }
 
 
+.page-header {
 
-.eyebrow{
+    display: flex;
 
-display:inline-flex;
+    justify-content: space-between;
 
-padding:7px 14px;
+    align-items: center;
 
-border:
+    gap: 40px;
 
-1px solid var(--border-blue);
-
-border-radius:100px;
-
-color:var(--blue2);
-
-font-size:10px;
-
-letter-spacing:1.5px;
-
-font-weight:800;
-
-background:
-
-rgba(77,168,255,.04);
+    margin-bottom: 60px;
 
 }
 
 
+.eyebrow {
 
-.eyebrow::first-letter{
+    display: inline-flex;
 
-color:var(--green);
+    padding: 7px 14px;
 
-}
+    border:
+        1px solid var(--border-blue);
 
+    border-radius: 100px;
 
+    color: var(--blue2);
 
-h1{
+    font-size: 10px;
 
-margin-top:25px;
+    letter-spacing: 1.5px;
 
-font-size:
+    font-weight: 800;
 
-clamp(42px,6vw,70px);
-
-letter-spacing:-3px;
-
-line-height:1;
-
-}
-
-
-
-.page-title p{
-
-margin-top:20px;
-
-color:var(--muted);
-
-font-size:16px;
+    background:
+        rgba(77,168,255,.04);
 
 }
 
 
+h1 {
 
-.live-status{
+    margin-top: 25px;
 
-display:flex;
+    font-size:
+        clamp(42px,6vw,70px);
 
-gap:15px;
+    letter-spacing: -3px;
 
-}
-
-
-
-.status-card{
-
-padding:22px;
-
-min-width:170px;
-
-background:
-
-rgba(255,255,255,.02);
-
-border:
-
-1px solid var(--border);
-
-border-radius:14px;
+    line-height: 1;
 
 }
 
 
+.page-title p {
 
-.status-label{
+    margin-top: 20px;
 
-display:block;
+    color: var(--muted);
 
-font-size:10px;
+    font-size: 16px;
 
-color:var(--muted);
+}
+
+
+.live-status {
+
+    display: flex;
+
+    gap: 15px;
 
 }
 
 
+.status-card {
 
-.status-card strong{
+    padding: 22px;
 
-display:block;
+    min-width: 170px;
 
-margin-top:8px;
+    background:
+        rgba(255,255,255,.02);
 
-color:var(--blue2);
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
 
 }
 
+
+.status-label {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+}
+
+
+.status-card strong {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: var(--blue2);
+
+}
+
+
+.status-note {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.4;
+
+}
 
 
 /* =========================================================
 KPI
 ========================================================= */
 
+.kpi-grid {
 
-.kpi-grid{
+    display: grid;
 
-display:grid;
+    grid-template-columns:
+        repeat(6,1fr);
 
-grid-template-columns:
-
-repeat(6,1fr);
-
-gap:14px;
+    gap: 14px;
 
 }
 
 
+.kpi-card {
 
-.kpi-card{
+    padding: 25px;
 
-padding:25px;
+    background:
 
-background:
+        linear-gradient(
+            145deg,
+            rgba(14,25,42,.9),
+            rgba(5,9,16,.95)
+        );
 
-linear-gradient(
-145deg,
-rgba(14,25,42,.9),
-rgba(5,9,16,.95)
-);
+    border:
+        1px solid var(--border);
 
-border:
+    border-radius: 14px;
 
-1px solid var(--border);
+    transition: .3s;
 
-border-radius:14px;
+    position: relative;
 
-
-transition:.3s;
-
-position:relative;
-
-overflow:hidden;
+    overflow: hidden;
 
 }
 
 
+.kpi-card::before {
 
-.kpi-card::before{
+    content: "";
 
-content:"";
+    position: absolute;
 
-position:absolute;
+    width: 120px;
 
-width:120px;
+    height: 120px;
 
-height:120px;
+    right: -50px;
 
-right:-50px;
+    top: -50px;
 
-top:-50px;
+    background:
 
-
-background:
-
-radial-gradient(
-circle,
-rgba(77,168,255,.15),
-transparent 70%
-);
+        radial-gradient(
+            circle,
+            rgba(77,168,255,.15),
+            transparent 70%
+        );
 
 }
 
 
+.kpi-card:hover {
 
-.kpi-card:hover{
+    transform:
+        translateY(-6px);
 
-transform:translateY(-6px);
-
-border-color:
-
-var(--border-blue);
-
-}
-
-
-
-.kpi-card span{
-
-font-size:10px;
-
-color:var(--muted);
-
-text-transform:uppercase;
-
-letter-spacing:1px;
+    border-color:
+        var(--border-blue);
 
 }
 
 
+.kpi-card span {
 
-.kpi-card h2{
+    font-size: 10px;
 
-margin-top:12px;
+    color: var(--muted);
 
-font-size:34px;
+    text-transform: uppercase;
 
-color:white;
+    letter-spacing: 1px;
 
 }
 
+
+.kpi-card h2 {
+
+    margin-top: 12px;
+
+    font-size: 34px;
+
+    color: white;
+
+}
+
+
+.kpi-card h6 {
+
+    margin-top: 12px;
+
+    font-size: 13px;
+
+    color: var(--blue2);
+
+    line-height: 1.4;
+
+}
 
 
 /* =========================================================
 SECTIONS
 ========================================================= */
 
+section {
 
-section{
-
-margin-top:90px;
-
-}
-
-
-
-section h3{
-
-font-size:11px;
-
-letter-spacing:2px;
-
-color:var(--blue);
-
-text-transform:uppercase;
-
-margin-bottom:25px;
+    margin-top: 90px;
 
 }
 
+
+section h3 {
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: var(--blue);
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+}
 
 
 /* =========================================================
 STATISTICS
 ========================================================= */
 
-
 .statistics-grid,
-.system-grid{
+.system-grid {
 
-display:grid;
+    display: grid;
 
-grid-template-columns:
+    grid-template-columns:
+        repeat(4,1fr);
 
-repeat(4,1fr);
-
-gap:15px;
+    gap: 15px;
 
 }
-
 
 
 .stat-card,
-.system-card{
+.system-card {
 
-padding:25px;
+    padding: 25px;
 
-background:
+    background:
+        var(--card);
 
-var(--card);
+    border:
+        1px solid var(--border);
 
-border:
+    border-radius: 14px;
 
-1px solid var(--border);
-
-border-radius:14px;
-
-
-transition:.3s;
+    transition: .3s;
 
 }
-
 
 
 .stat-card:hover,
-.system-card:hover{
+.system-card:hover {
 
-border-color:
+    border-color:
+        var(--border-blue);
 
-var(--border-blue);
-
-transform:translateY(-4px);
+    transform:
+        translateY(-4px);
 
 }
-
 
 
 .stat-card span,
-.system-card span{
+.system-card span {
 
-font-size:11px;
+    font-size: 11px;
 
-color:var(--muted);
+    color: var(--muted);
 
 }
-
 
 
 .stat-card strong,
-.system-card strong{
+.system-card strong {
 
-display:block;
+    display: block;
 
-margin-top:10px;
+    margin-top: 10px;
 
-font-size:28px;
+    font-size: 28px;
 
-color:var(--blue2);
+    color: var(--blue2);
 
 }
-
 
 
 /* =========================================================
-LIVE STATUS
+SYSTEM STATUS
 ========================================================= */
 
-
-#feedStatus,
 #webhookStatus,
 #databaseStatus,
-#signalFeedStatus{
+#signalFeedStatus,
+#engineStatus {
 
-color:var(--green);
-
-}
-
-
-
-#feedStatus::before{
-
-content:"";
-
-display:inline-block;
-
-width:7px;
-
-height:7px;
-
-background:var(--green);
-
-border-radius:50%;
-
-margin-right:8px;
-
-box-shadow:
-
-0 0 15px var(--green);
-
-animation:pulse 2s infinite;
+    color: var(--green);
 
 }
 
 
+#feedStatus {
 
-@keyframes pulse{
-
-0%{
-
-box-shadow:
-0 0 0 0
-rgba(82,223,145,.6);
+    color: var(--green);
 
 }
 
 
-70%{
+#feedStatus::before {
 
-box-shadow:
-0 0 0 12px
-rgba(82,223,145,0);
+    content: "";
+
+    display: inline-block;
+
+    width: 7px;
+
+    height: 7px;
+
+    background:
+        var(--green);
+
+    border-radius: 50%;
+
+    margin-right: 8px;
+
+    box-shadow:
+        0 0 15px var(--green);
+
+    animation:
+        pulse 2s infinite;
 
 }
 
 
-100%{
+@keyframes pulse {
 
-box-shadow:
-0 0 0 0
-rgba(82,223,145,0);
+    0% {
+
+        box-shadow:
+            0 0 0 0
+            rgba(82,223,145,.6);
+
+    }
+
+    70% {
+
+        box-shadow:
+            0 0 0 12px
+            rgba(82,223,145,0);
+
+    }
+
+    100% {
+
+        box-shadow:
+            0 0 0 0
+            rgba(82,223,145,0);
+
+    }
 
 }
-
-}
-
 
 
 /* =========================================================
 TABLE
 ========================================================= */
 
+.table-wrapper {
 
-.table-wrapper{
+    overflow: auto;
 
-overflow:auto;
+    border:
+        1px solid var(--border);
 
-border:
+    border-radius: 16px;
 
-1px solid var(--border);
-
-border-radius:16px;
-
-background:
-
-var(--card);
+    background:
+        var(--card);
 
 }
 
 
+table {
 
-table{
+    width: 100%;
 
-width:100%;
-
-border-collapse:collapse;
-
-}
-
-
-
-th{
-
-padding:18px;
-
-text-align:left;
-
-font-size:11px;
-
-color:var(--blue2);
-
-border-bottom:
-
-1px solid var(--border);
+    border-collapse:
+        collapse;
 
 }
 
 
+th {
 
-td{
+    padding: 18px;
 
-padding:16px;
+    text-align: left;
 
-color:#ccd5e2;
+    font-size: 11px;
 
-font-size:13px;
+    color: var(--blue2);
 
-border-bottom:
-
-1px solid var(--border);
-
-}
-
-
-
-tbody tr{
-
-transition:.25s;
+    border-bottom:
+        1px solid var(--border);
 
 }
 
 
+td {
 
-tbody tr:hover{
+    padding: 16px;
 
-background:
+    color: #ccd5e2;
 
-rgba(77,168,255,.05);
+    font-size: 13px;
 
-}
-
-
-
-/* BUY / SELL COLORS */
-
-.buy{
-
-color:var(--green);
+    border-bottom:
+        1px solid var(--border);
 
 }
 
 
+tbody tr {
 
-.sell{
-
-color:var(--red);
+    transition: .25s;
 
 }
 
+
+tbody tr:hover {
+
+    background:
+        rgba(77,168,255,.05);
+
+}
+
+
+.buy {
+
+    color: var(--green);
+
+}
+
+
+.sell {
+
+    color: var(--red);
+
+}
 
 
 /* =========================================================
-PAIRS & STRATEGIES
+CHART
 ========================================================= */
 
+.chart-box {
 
-.pairs-grid,
-.strategies-grid{
+    width: 320px;
 
-display:grid;
+    height: 320px;
 
-grid-template-columns:
-
-repeat(4,1fr);
-
-gap:15px;
+    margin: auto;
 
 }
 
-
-
-.pair-card,
-.strategy-card{
-
-padding:22px;
-
-background:
-
-var(--card);
-
-border:
-
-1px solid var(--border);
-
-border-radius:12px;
-
-transition:.3s;
-
-}
-
-
-
-.pair-card:hover,
-.strategy-card:hover{
-
-transform:translateY(-5px);
-
-border-color:
-
-var(--border-blue);
-
-}
-
-
-
-.pair-card strong,
-.strategy-card strong{
-
-font-size:22px;
-
-}
-
-
-
-.pair-card span,
-.strategy-card span{
-
-display:block;
-
-margin-top:8px;
-
-font-size:12px;
-
-color:var(--muted);
-
-}
-
-.chart-box{
-
-    width:320px;
-
-    height:320px;
-
-    margin:auto;
-
-}
 
 /* =========================================================
 FOOTER
 ========================================================= */
 
+footer {
 
-footer{
+    margin-top: 100px;
 
-margin-top:100px;
+    padding-top: 35px;
 
-padding-top:35px;
+    border-top:
+        1px solid var(--border);
 
-border-top:
+    color: var(--muted);
 
-1px solid var(--border);
-
-color:var(--muted);
-
-font-size:12px;
+    font-size: 12px;
 
 }
 
 
+footer p {
 
-footer p{
+    color: white;
 
-color:white;
+    font-weight: 800;
 
-font-weight:800;
-
-letter-spacing:1px;
+    letter-spacing: 1px;
 
 }
-
 
 
 /* =========================================================
 MOBILE
 ========================================================= */
 
+@media(max-width:1000px) {
 
-@media(max-width:1000px){
+    .page-header {
 
+        flex-direction: column;
 
-.page-header{
+        align-items: flex-start;
 
-flex-direction:column;
-
-align-items:flex-start;
-
-}
+    }
 
 
-.kpi-grid{
+    .kpi-grid {
 
-grid-template-columns:
+        grid-template-columns:
+            repeat(3,1fr);
 
-repeat(3,1fr);
-
-}
+    }
 
 
-.statistics-grid,
-.system-grid{
+    .statistics-grid,
+    .system-grid {
 
-grid-template-columns:
+        grid-template-columns:
+            repeat(2,1fr);
 
-repeat(2,1fr);
+    }
 
 }
 
 
-.pairs-grid,
-.strategies-grid{
+@media(max-width:600px) {
 
-grid-template-columns:
+    .container {
 
-repeat(2,1fr);
+        width:
+            calc(100% - 28px);
 
-}
-
-
-}
+    }
 
 
+    .kpi-grid {
 
-@media(max-width:600px){
+        grid-template-columns: 1fr;
 
-
-.container{
-
-width:
-calc(100% - 28px);
-
-}
+    }
 
 
-.kpi-grid{
+    .statistics-grid,
+    .system-grid {
 
-grid-template-columns:1fr;
+        grid-template-columns: 1fr;
 
-}
-
-
-.statistics-grid,
-.system-grid,
-.pairs-grid,
-.strategies-grid{
-
-grid-template-columns:1fr;
-
-}
+    }
 
 
-.live-status{
+    .live-status {
 
-width:100%;
+        width: 100%;
 
-flex-direction:column;
+        flex-direction: column;
 
-}
+    }
 
 
-h1{
+    h1 {
 
-font-size:42px;
+        font-size: 42px;
 
-}
+    }
 
+
+    .chart-box {
+
+        width: 280px;
+
+        height: 280px;
+
+    }
 
 }
 
 </style>
+
+</head>
+
+
 <body>
+
 
 <section class="performance-page">
 
-    <div class="container">
 
-        <!-- ==========================================
-             HEADER
-        =========================================== -->
+<div class="container">
 
-        <header class="page-header">
 
-            <div class="page-title">
+<!-- =====================================================
+HEADER
+===================================================== -->
 
-                <div class="eyebrow">
-                    ● LIVE PERFORMANCE
-                </div>
+<header class="page-header">
 
-                <h1>
-                    AIATS Performance
-                </h1>
 
-                <p>
-                    Real-time algorithmic trading activity and execution statistics.
-                </p>
+<div class="page-title">
 
-            </div>
 
-            <div class="live-status">
-               <div class="status-card">
+<div class="eyebrow">
 
-                    <span class="status-label">
-                        Win Rate
-                    </span>
+● LIVE PERFORMANCE
 
-                    <strong style="color:#22c55e;  font-weight:700;" id="winRate">
-                        --
-                    </strong>
-   <span><small>Win Rate reflects the percentage of winning trades, not the percentage return on the trading budget or portfolio.</small></span>
-                </div>
+</div>
 
-               
-                <div class="status-card">
 
-                    <span class="status-label">
-                        Last Update
-                    </span>
+<h1>
 
-                    <strong id="lastUpdate">
-                        --
-                    </strong>
+AIATS Performance
 
-                </div>
+</h1>
 
-                <div class="status-card">
 
-                    <span class="status-label">
-                        Feed Status
-                    </span>
+<p>
 
-                    <strong id="feedStatus">
-                        LIVE
-                    </strong>
+Real-time algorithmic trading activity and execution statistics.
 
-                </div>
+</p>
 
-            </div>
 
-        </header>
+</div>
 
 
-        <!-- ==========================================
-             KPI CARDS
-        =========================================== -->
+<div class="live-status">
 
-        <section class="kpi-grid">
 
-            <div class="kpi-card">
-  <span>Total Signals</span>
+<!-- WIN RATE -->
 
-                <h2 id="totalTrades">0</h2>
+<div class="status-card">
 
-            </div>
 
-            <div class="kpi-card">
+<span class="status-label">
 
-                <span>Buy Orders</span>
+Win Rate
 
-                <h2 id="buySignals">0</h2>
+</span>
 
-            </div>
 
-            <div class="kpi-card">
+<strong
+    id="winRate"
+    style="color:#22c55e;font-weight:700;"
+>
 
-                <span>Sell Orders</span>
+--
 
-                <h2 id="sellSignals">0</h2>
+</strong>
 
-            </div>
 
-            <div class="kpi-card">
+<span class="status-note">
 
-                <span>Trading Pairs</span>
+Win Rate reflects the percentage of winning trades,
+not the percentage return on the trading budget or portfolio.
 
-                <h2 id="totalPairs">0</h2>
+</span>
 
-            </div>
 
-            <div class="kpi-card">
+</div>
 
-                <span>Strategies</span>
 
-                <h2 id="strategyCount">0</h2>
+<!-- LAST UPDATE -->
 
-            </div>
+<div class="status-card">
 
-            <div class="kpi-card">
 
-                <span>Last Signal</span>
+<span class="status-label">
 
-                <h6 id="lastSignal">--</h6>
+Last Update
 
-            </div>
+</span>
 
-        </section>
 
+<strong id="lastUpdate">
 
-        <!-- ==========================================
-             EXECUTION STATISTICS
-        =========================================== -->
+--
 
-        <section class="statistics-section">
+</strong>
 
-            <h3>
-                Execution Statistics
-            </h3>
 
-            <div class="statistics-grid">
+</div>
 
-                <div class="stat-card">
 
-                    <span>Buy Ratio</span>
+<!-- FEED -->
 
-                    <strong id="buyRatio">
-                        0%
-                    </strong>
+<div class="status-card">
 
-                </div>
 
-                <div class="stat-card">
+<span class="status-label">
 
-                    <span>Sell Ratio</span>
+Feed Status
 
-                    <strong id="sellRatio">
-                        0%
-                    </strong>
+</span>
 
-                </div>
 
-                <div class="stat-card">
+<strong id="feedStatus">
 
-                    <span>Signals Today</span>
+LIVE
 
-                    <strong id="signalsToday">
-                        0
-                    </strong>
+</strong>
 
-                </div>
 
-                <div class="stat-card">
+</div>
 
-                    <span>Average Daily Signal</span>
 
-                    <strong id="averageDailySignals">
-                        0
-                    </strong>
+</div>
 
-                </div>
 
-            </div>
+</header>
 
-        </section>
 
+<!-- =====================================================
+KPI CARDS
+===================================================== -->
 
-        <!-- ==========================================
-             SYSTEM STATUS
-        =========================================== -->
+<section class="kpi-grid">
 
-        <section class="system-section">
 
-            <h3>
-                System Status
-            </h3>
+<div class="kpi-card">
 
-            <div class="system-grid">
+<span>
+Total Signals
+</span>
 
-                <div class="system-card">
+<h2 id="totalTrades">
+0
+</h2>
 
-                    <span>Webhook</span>
+</div>
 
-                    <strong id="webhookStatus">
-                        Online
-                    </strong>
 
-                </div>
+<div class="kpi-card">
 
-                <div class="system-card">
+<span>
+Buy Orders
+</span>
 
-                    <span>Database</span>
+<h2 id="buySignals">
+0
+</h2>
 
-                    <strong id="databaseStatus">
-                        Connected
-                    </strong>
+</div>
 
-                </div>
 
-                <div class="system-card">
+<div class="kpi-card">
 
-                    <span>Signal Feed</span>
+<span>
+Sell Orders
+</span>
 
-                    <strong id="signalFeedStatus">
-                        Active
-                    </strong>
+<h2 id="sellSignals">
+0
+</h2>
 
-                </div>
+</div>
 
-                <div class="system-card">
 
-                    <span>Processing Engine</span>
+<div class="kpi-card">
 
-                    <strong id="engineStatus">
-                        Normal
-                    </strong>
+<span>
+Trading Pairs
+</span>
 
-                </div>
+<h2 id="totalPairs">
+0
+</h2>
 
-            </div>
+</div>
 
-        </section>
 
+<div class="kpi-card">
 
-        <!-- ==========================================
-             RECENT ACTIVITY
-        =========================================== -->
+<span>
+Strategies
+</span>
 
-        <section class="table-section">
+<h2 id="strategyCount">
+0
+</h2>
 
-            <h3>
-                Recent Trading Activity
-            </h3>
+</div>
 
-            <div class="table-wrapper">
 
-                <table>
+<div class="kpi-card">
 
-                    <thead>
+<span>
+Last Signal
+</span>
 
-                        <tr>
+<h6 id="lastSignal">
+--
+</h6>
 
-                            <th>Time</th>
+</div>
 
-                            <th>Pair</th>
-
-                            <th>Strategy</th>
-
-                            <th>Type</th>
-
-                            <th>Price</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="recentTrades">
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==========================================
-             PAIRS
-        =========================================== -->
-<section class="chart-section">
-
-    <h3>
-        Trading Pairs Distribution
-    </h3>
-
-
-    <div class="chart-box">
-
-        <canvas id="pairsChart"></canvas>
-
-    </div>
 
 </section>
 
 
-        <!-- ==========================================
-             STRATEGIES
-        =========================================== 
+<!-- =====================================================
+EXECUTION STATISTICS
+===================================================== -->
 
-        <section class="strategies-section">
+<section>
 
-            <h3>
-                Active Strategies
-            </h3>
 
-            <div
-                class="strategies-grid"
-                id="strategyList">
+<h3>
 
-            </div>
+Execution Statistics
 
-        </section>
+</h3>
 
--->
-        <!-- ==========================================
-             FOOTER
-        =========================================== -->
 
-        <footer>
+<div class="statistics-grid">
 
-            <p>
 
-                AIATS Technologies
+<div class="stat-card">
 
-            </p>
+<span>
+Buy Ratio
+</span>
 
-            <small>
+<strong id="buyRatio">
+0%
+</strong>
 
-                Live execution activity.
-                Data updates automatically.
+</div>
 
-            </small>
 
-        </footer>
+<div class="stat-card">
 
-    </div>
+<span>
+Sell Ratio
+</span>
+
+<strong id="sellRatio">
+0%
+</strong>
+
+</div>
+
+
+<div class="stat-card">
+
+<span>
+Signals Today
+</span>
+
+<strong id="signalsToday">
+0
+</strong>
+
+</div>
+
+
+<div class="stat-card">
+
+<span>
+Average Daily Signal
+</span>
+
+<strong id="averageDailySignals">
+0
+</strong>
+
+</div>
+
+
+</div>
+
 
 </section>
 
-</body>
+
+<!-- =====================================================
+SYSTEM STATUS
+===================================================== -->
+
+<section>
+
+
+<h3>
+
+System Status
+
+</h3>
+
+
+<div class="system-grid">
+
+
+<div class="system-card">
+
+<span>
+Webhook
+</span>
+
+<strong id="webhookStatus">
+Online
+</strong>
+
+</div>
+
+
+<div class="system-card">
+
+<span>
+Database
+</span>
+
+<strong id="databaseStatus">
+Connected
+</strong>
+
+</div>
+
+
+<div class="system-card">
+
+<span>
+Signal Feed
+</span>
+
+<strong id="signalFeedStatus">
+Active
+</strong>
+
+</div>
+
+
+<div class="system-card">
+
+<span>
+Processing Engine
+</span>
+
+<strong id="engineStatus">
+Normal
+</strong>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+RECENT TRADING ACTIVITY
+===================================================== -->
+
+<section>
+
+
+<h3>
+
+Recent Trading Activity
+
+</h3>
+
+
+<div class="table-wrapper">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Time
+</th>
+
+<th>
+Pair
+</th>
+
+<th>
+Strategy
+</th>
+
+<th>
+Type
+</th>
+
+<th>
+Price
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="recentTrades">
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+TRADING PAIRS DISTRIBUTION
+===================================================== -->
+
+<section>
+
+
+<h3>
+
+Trading Pairs Distribution
+
+</h3>
+
+
+<div class="chart-box">
+
+<canvas id="pairsChart"></canvas>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+FOOTER
+===================================================== -->
+
+<footer>
+
+
+<p>
+
+AIATS Technologies
+
+</p>
+
+
+<small>
+
+Live execution activity.
+Data updates automatically.
+
+</small>
+
+
+</footer>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+CHART.JS
+===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script type="module">
-
-import { supabase } from "/portal/js/supabase-config.js";
-
-async function loadLastUpdate(){
-
-    const {
-        data,
-        error
-    } = await supabase
-        .from("aiats_performance_status")
-        .select("*")
-        .single();
 
 
-
-    if(error){
-
-        console.error(
-            "Performance Status Error:",
-            error
-        );
-
-        return;
-
-    } else if (data) {
-
-    // Last Update
-    setValue(
-        "lastUpdate",
-        data.last_update
-            ? new Date(data.last_update).toLocaleString()
-            : "--"
-    );
-
-    // Win Rate
-    setValue(
-        "winRate",
-        data.win_rate != null
-            ? Number(data.win_rate).toFixed(2) + "%"
-            : "--"
-    );
-
-}
+<script>
 
 
+// =========================================================
+// API URL
+// =========================================================
 
-    console.log(
-        "Performance Status:",
-        data
-    );
-
-
-
-    const element =
-    document.getElementById(
-        "lastUpdate"
-    );
+const API_URL =
+    "https://api.larentra.com/aiats-performance.php";
 
 
+// =========================================================
+// CHART INSTANCE
+// =========================================================
 
-    if(element && data.last_update){
-
-
-        element.textContent =
-        new Date(
-            data.last_update
-        ).toLocaleString();
+let pairsChart = null;
 
 
-    }
+// =========================================================
+// LOAD PERFORMANCE
+// =========================================================
+
+async function loadPerformance() {
 
 
-}
-
-async function loadPerformance(){
+    try {
 
 
-    const {
-        data,
-        error
-    } = await supabase
-
-        .from("aiats_trading_activity")
-
-        .select("*")
-
-        .order(
-            "t_timestamp",
-            {
-                ascending:false
-            }
+        setFeedStatus(
+            "LOADING",
+            false
         );
 
 
-    if(error){
+        const response =
+            await fetch(
+                API_URL +
+                "?t=" +
+                Date.now(),
+                {
 
-        console.error(
-            "Supabase Error:",
-            error
-        );
+                    method: "GET",
 
-        return;
+                    cache: "no-store"
 
-    }
-
-
-    console.log(
-        "Trades:",
-        data
-    );
+                }
+            );
 
 
-    analyzePerformance(data);
-   loadRecentActivity(data);
-   loadPairsChart(data);
+        if (!response.ok) {
 
-}
-
-
-
-
-
-function analyzePerformance(trades){
-
-
-    if(
-        !trades ||
-        trades.length === 0
-    )
-    return;
-
-
-
-    /*
-    ==========================
-    BASIC EXECUTION
-    ==========================
-    */
-
-
-    const totalTrades =
-    trades.length;
-
-
-
-    const buys =
-    trades.filter(
-        t =>
-        t.t_type.toUpperCase()
-        === "BUY"
-    ).length;
-
-
-
-    const sells =
-    trades.filter(
-        t =>
-        t.t_type.toUpperCase()
-        === "SELL"
-    ).length;
-
-
-
-    /*
-    ==========================
-    RATIOS
-    ==========================
-    */
-
-
-    const buyRatio =
-    totalTrades > 0
-    ?
-    (
-        (buys / totalTrades)
-        * 100
-    ).toFixed(1)
-
-    :
-    0;
-
-
-
-    const sellRatio =
-    totalTrades > 0
-    ?
-    (
-        (sells / totalTrades)
-        * 100
-    ).toFixed(1)
-
-    :
-    0;
-
-
-
-
-
-    /*
-    ==========================
-    MARKETS
-    ==========================
-    */
-
-
-    const pairs =
-    [
-        ...new Set(
-            trades.map(
-                t =>
-                t.t_pair
-            )
-        )
-    ];
-
-
-
-
-
-    /*
-    ==========================
-    STRATEGIES
-    ==========================
-    */
-
-
-    const strategies = {};
-
-
-
-    trades.forEach(
-        t => {
-
-
-            if(
-                !strategies[t.t_strategy]
-            ){
-
-                strategies[t.t_strategy]=0;
-
-            }
-
-
-            strategies[t.t_strategy]++;
-
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
 
         }
-    );
 
 
+        const data =
+            await response.json();
 
 
+        if (!data.success) {
+
+            throw new Error(
+                data.error ||
+                "API returned an error"
+            );
+
+        }
 
 
-    /*
-    ==========================
-    TIME ANALYSIS
-    ==========================
-    */
+        console.log(
+            "AIATS Performance:",
+            data
+        );
 
 
-    const dates =
-    trades.map(
-        t =>
-        new Date(
-            t.t_timestamp
-        )
-    );
+        updateDashboard(
+            data
+        );
 
 
-
-    const firstDate =
-    new Date(
-        Math.min(
-            ...dates
-        )
-    );
+        loadRecentActivity(
+            data.recent_trades
+        );
 
 
-
-    const lastDate =
-    new Date(
-        Math.max(
-            ...dates
-        )
-    );
+        loadPairsChart(
+            data.pairs
+        );
 
 
-
-    const runningTime =
-    lastDate - firstDate;
-
-
-
-    const hours =
-    runningTime /
-    (1000*60*60);
+        setFeedStatus(
+            "LIVE",
+            true
+        );
 
 
-
-    const signalPerHour =
-    hours > 0
-
-    ?
-
-    (
-        totalTrades /
-        hours
-    ).toFixed(2)
-
-    :
-
-    totalTrades;
+        setValue(
+            "databaseStatus",
+            "Connected"
+        );
 
 
+        setValue(
+            "webhookStatus",
+            "Online"
+        );
 
 
+        setValue(
+            "signalFeedStatus",
+            "Active"
+        );
 
 
- /*
-==========================
-DAILY ACTIVITY
-==========================
-*/
+        setValue(
+            "engineStatus",
+            "Normal"
+        );
 
 
-const today =
-new Date()
-.toISOString()
-.split("T")[0];
+    }
+
+    catch (error) {
 
 
-const signalsToday =
-trades.filter(
-    t =>
-    new Date(t.t_timestamp)
-    .toISOString()
-    .split("T")[0] === today
-).length;
+        console.error(
+            "AIATS API Error:",
+            error
+        );
 
 
-
-const activeDays =
-[
-    ...new Set(
-        trades.map(
-            t =>
-            new Date(t.t_timestamp)
-            .toISOString()
-            .split("T")[0]
-        )
-    )
-].length;
+        setFeedStatus(
+            "OFFLINE",
+            false
+        );
 
 
-
-const averageDailySignals =
-activeDays > 0
-?
-(
-    totalTrades /
-    activeDays
-).toFixed(0)
-:
-0;
-    /*
-    ==========================
-    SEND TO UI
-    ==========================
-    */
+        setValue(
+            "databaseStatus",
+            "Unavailable"
+        );
 
 
-    updateDashboard({
-
-        totalTrades,
-
-        buys,
-
-        sells,
-
-        buyRatio,
-
-        sellRatio,
-
-        signalsToday,
-
-        averageDailySignals,
-
-        pairs,
-
-        strategies,
-
-        firstDate,
-
-        lastDate,
-
-        signalPerHour
-
-    });
+        setValue(
+            "signalFeedStatus",
+            "Unavailable"
+        );
 
 
+    }
 
 }
 
 
+// =========================================================
+// UPDATE DASHBOARD
+// =========================================================
+
+function updateDashboard(
+    data
+) {
 
 
+    const stats =
+        data.statistics;
 
 
+    if (!stats)
+        return;
 
-function updateDashboard(stats){
+
+    // -----------------------------------------------------
+    // WIN RATE
+    // -----------------------------------------------------
+
+    setValue(
+        "winRate",
+
+        stats.win_rate !== null &&
+        stats.win_rate !== undefined
+
+        ?
+
+        Number(
+            stats.win_rate
+        ).toFixed(2) + "%"
+
+        :
+
+        "--"
+    );
 
 
+    // -----------------------------------------------------
+    // LAST UPDATE
+    // -----------------------------------------------------
 
-    /*
-    ==========================
-    KPI
-    ==========================
-    */
+    setValue(
+        "lastUpdate",
 
+        formatDate(
+            stats.last_update
+        )
+    );
+
+
+    // -----------------------------------------------------
+    // TOTAL SIGNALS
+    // -----------------------------------------------------
 
     setValue(
         "totalTrades",
-        stats.totalTrades
+        formatNumber(
+            stats.total_trades
+        )
     );
 
 
+    // -----------------------------------------------------
+    // BUY
+    // -----------------------------------------------------
 
     setValue(
         "buySignals",
-        stats.buys
+        formatNumber(
+            stats.buy_orders
+        )
     );
 
 
+    // -----------------------------------------------------
+    // SELL
+    // -----------------------------------------------------
 
     setValue(
         "sellSignals",
-        stats.sells
+        formatNumber(
+            stats.sell_orders
+        )
     );
 
 
+    // -----------------------------------------------------
+    // PAIRS
+    // -----------------------------------------------------
 
     setValue(
         "totalPairs",
-        stats.pairs.length
-    );
-
-
-
-
-
-
-    /*
-    ==========================
-    RATIOS
-    ==========================
-    */
-
-
-    setValue(
-        "buyRatio",
-        stats.buyRatio + "%"
-    );
-
-
-
-    setValue(
-        "sellRatio",
-        stats.sellRatio + "%"
-    );
-
-
-
-
-
-
-    /*
-    ==========================
-    DAILY
-    ==========================
-    */
-
-
-    setValue(
-        "signalsToday",
-        stats.signalsToday
-    );
-
-
-
-    setValue(
-        "averageDailySignals",
-        stats.averageDailySignals
-    );
-
-
-
-
-
-
-    /*
-    ==========================
-    TIME
-    ==========================
-    */
-
-
-    setValue(
-        "signalFrequency",
-        stats.signalPerHour
-    );
-
-
-
-
-    if(
-        document.getElementById(
-            "firstSignal"
+        formatNumber(
+            stats.total_pairs
         )
-    ){
-
-        document.getElementById(
-            "firstSignal"
-        ).textContent =
-        stats.firstDate
-        .toLocaleString();
-
-    }
+    );
 
 
-
-
-
-    if(
-        document.getElementById(
-            "lastSignal"
-        )
-    ){
-
-        document.getElementById(
-            "lastSignal"
-        ).textContent =
-        stats.lastDate
-        .toLocaleString();
-
-    }
-
-
-
-
-
-
-    /*
-    ==========================
-    STRATEGIES COUNT ONLY
-    ==========================
-    */
-
-
-    const strategyCount =
-    Object.keys(
-        stats.strategies
-    ).length;
-
-
+    // -----------------------------------------------------
+    // STRATEGIES
+    // -----------------------------------------------------
 
     setValue(
         "strategyCount",
-        strategyCount
+        formatNumber(
+            stats.strategy_count
+        )
     );
+
+
+    // -----------------------------------------------------
+    // LAST SIGNAL
+    // -----------------------------------------------------
+
+    setValue(
+        "lastSignal",
+
+        formatDate(
+            stats.last_signal
+        )
+    );
+
+
+    // -----------------------------------------------------
+    // BUY RATIO
+    // -----------------------------------------------------
+
+    setValue(
+        "buyRatio",
+
+        Number(
+            stats.buy_ratio || 0
+        ).toFixed(1) +
+        "%"
+    );
+
+
+    // -----------------------------------------------------
+    // SELL RATIO
+    // -----------------------------------------------------
+
+    setValue(
+        "sellRatio",
+
+        Number(
+            stats.sell_ratio || 0
+        ).toFixed(1) +
+        "%"
+    );
+
+
+    // -----------------------------------------------------
+    // SIGNALS TODAY
+    // -----------------------------------------------------
+
+    setValue(
+        "signalsToday",
+
+        formatNumber(
+            stats.signals_today
+        )
+    );
+
+
+    // -----------------------------------------------------
+    // AVERAGE DAILY
+    // -----------------------------------------------------
+
+    setValue(
+        "averageDailySignals",
+
+        formatNumber(
+            stats.average_daily_signals
+        )
+    );
+
 }
 
 
-function loadRecentActivity(trades){
+// =========================================================
+// RECENT ACTIVITY
+// =========================================================
+
+function loadRecentActivity(
+    trades
+) {
 
 
     const table =
-    document.getElementById(
-        "recentTrades"
-    );
+        document.getElementById(
+            "recentTrades"
+        );
 
 
-    if(!table)
+    if (!table)
         return;
-
 
 
     table.innerHTML = "";
 
 
-
-    trades
-    .slice(0,5)
-    .forEach(
-        trade => {
-
-
-            const row =
-            document.createElement(
-                "tr"
-            );
+    if (
+        !trades ||
+        trades.length === 0
+    ) {
 
 
-            row.innerHTML = `
+        table.innerHTML = `
 
-            <td>
-                ${new Date(
-                    trade.t_timestamp
-                ).toLocaleString()}
-            </td>
+            <tr>
 
+                <td colspan="5">
 
-            <td>
-                ${trade.t_pair}
-            </td>
+                    No trading activity available.
 
+                </td>
 
-            <td>
-                ${trade.t_strategy}
-            </td>
+            </tr>
+
+        `;
 
 
-            <td class="${trade.t_type.toLowerCase()}">
+        return;
 
-                ${trade.t_type}
-
-            </td>
-
-
-            <td>
-                ${Number(
-                    trade.t_price
-                ).toFixed(6)}
-            </td>
-
-            `;
-
-
-            table.appendChild(row);
-
-
-        }
-    );
-
-
-}
-let pairsChart;
-
-
-function loadPairsChart(trades){
-
-
-    const pairStats = {};
-
+    }
 
 
     trades.forEach(
         trade => {
 
 
-            if(!pairStats[trade.t_pair]){
+            const row =
+                document.createElement(
+                    "tr"
+                );
 
-                pairStats[trade.t_pair] = 0;
 
-            }
+            const type =
+                String(
+                    trade.t_type ||
+                    ""
+                ).toUpperCase();
 
 
-            pairStats[trade.t_pair]++;
+            row.innerHTML = `
+
+                <td>
+
+                    ${formatDate(
+                        trade.t_timestamp
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+                        trade.t_pair
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+                        trade.t_strategy
+                    )}
+
+                </td>
+
+
+                <td
+                    class="${type.toLowerCase()}"
+                >
+
+                    ${escapeHTML(
+                        type
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${formatPrice(
+                        trade.t_price
+                    )}
+
+                </td>
+
+            `;
+
+
+            table.appendChild(
+                row
+            );
+
 
         }
     );
 
+}
+
+
+// =========================================================
+// PAIR DISTRIBUTION CHART
+// =========================================================
+
+function loadPairsChart(
+    pairData
+) {
 
 
     const labels =
-    Object.keys(pairStats);
-
+        Object.keys(
+            pairData || {}
+        );
 
 
     const values =
-    Object.values(pairStats);
+        Object.values(
+            pairData || {}
+        );
 
 
-
-    const ctx =
-    document
-    .getElementById(
-        "pairsChart"
-    );
+    const canvas =
+        document.getElementById(
+            "pairsChart"
+        );
 
 
+    if (!canvas)
+        return;
 
-    if(pairsChart){
+
+    if (pairsChart) {
 
         pairsChart.destroy();
 
     }
 
 
-
     pairsChart =
-    new Chart(
-        ctx,
-        {
+        new Chart(
+            canvas,
+            {
 
-            type:"pie",
-
-
-            data:{
-
-                labels:labels,
+                type: "pie",
 
 
-                datasets:[{
+                data: {
 
-                    data:values
-
-                }]
-
-            },
+                    labels: labels,
 
 
-            options:{
+                    datasets: [
+
+                        {
+
+                            data: values
+
+                        }
+
+                    ]
+
+                },
 
 
-                responsive:true,
+                options: {
 
-    maintainAspectRatio:false,
+                    responsive: true,
 
-                plugins:{
-
-
-                    legend:{
+                    maintainAspectRatio: false,
 
 
-                        position:"bottom",
-                       labels:{
+                    plugins: {
 
-                font:{
 
-                    size:12
+                        legend: {
+
+                            position: "bottom",
+
+
+                            labels: {
+
+                                font: {
+
+                                    size: 12
+
+                                }
+
+                            }
+
+                        },
+
+
+                        tooltip: {
+
+                            callbacks: {
+
+
+                                label:
+                                function(context) {
+
+
+                                    const total =
+                                        context
+                                        .dataset
+                                        .data
+                                        .reduce(
+                                            (
+                                                a,
+                                                b
+                                            ) =>
+                                                a + b,
+                                            0
+                                        );
+
+
+                                    const value =
+                                        context.raw;
+
+
+                                    const percentage =
+                                        total > 0
+
+                                        ?
+
+                                        (
+                                            value /
+                                            total *
+                                            100
+                                        ).toFixed(1)
+
+                                        :
+
+                                        0;
+
+
+                                    return (
+
+                                        context.label
+                                        +
+                                        ": "
+                                        +
+                                        percentage
+                                        +
+                                        "%"
+
+                                    );
+
+                                }
+
+                            }
+
+                        }
+
+                    }
 
                 }
 
             }
- },
+        );
 
-
-        tooltip:{
-
-
-            callbacks:{
-
-
-                label:function(context){
-
-
-                    const total =
-                    context.dataset.data
-                    .reduce(
-                        (a,b)=>a+b,
-                        0
-                    );
-
-
-                    const value =
-                    context.raw;
-
-
-                    const percentage =
-                    (
-                        value /
-                        total *
-                        100
-                    ).toFixed(1);
-
-
-
-                    return (
-                        context.label
-                        +
-                        ": "
-                        +
-                        percentage
-                        +
-                        "%"
-                    );
-                   }
-                }
-             }
-          }
-       }
-     }
-       );
 }
+
+
+// =========================================================
+// SET VALUE
+// =========================================================
+
 function setValue(
     id,
     value
-){
+) {
 
 
-    const el =
-    document.getElementById(
-        id
-    );
+    const element =
+        document.getElementById(
+            id
+        );
 
 
-    if(el){
+    if (element) {
 
-        el.textContent =
-        value;
+        element.textContent =
+            value;
+
+    }
+
+}
+
+
+// =========================================================
+// FORMAT NUMBER
+// =========================================================
+
+function formatNumber(
+    value
+) {
+
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "0";
 
     }
 
 
+    return Number(
+        value
+    ).toLocaleString();
+
 }
 
 
+// =========================================================
+// FORMAT DATE
+// =========================================================
+
+function formatDate(
+    value
+) {
+
+
+    if (!value) {
+
+        return "--";
+
+    }
+
+
+    const date =
+        new Date(
+            value
+        );
+
+
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return value;
+
+    }
+
+
+    return date.toLocaleString();
+
+}
+
+
+// =========================================================
+// FORMAT PRICE
+// =========================================================
+
+function formatPrice(
+    value
+) {
+
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        return "--";
+
+    }
+
+
+    const number =
+        Number(
+            value
+        );
+
+
+    if (
+        isNaN(number)
+    ) {
+
+        return value;
+
+    }
+
+
+    return number.toFixed(6);
+
+}
+
+
+// =========================================================
+// ESCAPE HTML
+// =========================================================
+
+function escapeHTML(
+    value
+) {
+
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+// =========================================================
+// FEED STATUS
+// =========================================================
+
+function setFeedStatus(
+    status,
+    live
+) {
+
+
+    const element =
+        document.getElementById(
+            "feedStatus"
+        );
+
+
+    if (!element)
+        return;
+
+
+    element.textContent =
+        status;
+
+
+    if (live) {
+
+        element.style.color =
+            "#52df91";
+
+    }
+
+    else {
+
+        element.style.color =
+            "#ff6b6b";
+
+    }
+
+}
+
+
+// =========================================================
+// INITIAL LOAD
+// =========================================================
+
 loadPerformance();
-loadLastUpdate();
+
+
+// =========================================================
+// AUTO REFRESH
+// =========================================================
+//
+// Refresh every 30 seconds.
+//
+
+setInterval(
+    loadPerformance,
+    30000
+);
 
 
 </script>
+
+
+</body>
 
 </html>
